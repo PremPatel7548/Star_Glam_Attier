@@ -6,6 +6,7 @@ package Entitys;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -122,10 +123,12 @@ public class UserOrderTb implements Serializable {
         this.isConfirmed = isConfirmed;
     }
 
+    @JsonbTransient
     public Collection<PaymentTb> getPaymentTbCollection() {
         return paymentTbCollection;
     }
 
+    @JsonbTransient
     public void setPaymentTbCollection(Collection<PaymentTb> paymentTbCollection) {
         this.paymentTbCollection = paymentTbCollection;
     }

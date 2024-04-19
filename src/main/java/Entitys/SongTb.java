@@ -6,6 +6,7 @@ package Entitys;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -79,10 +80,12 @@ public class SongTb implements Serializable {
         this.name = name;
     }
 
+    @JsonbTransient
     public Collection<ProductTb> getProductTbCollection() {
         return productTbCollection;
     }
 
+    @JsonbTransient
     public void setProductTbCollection(Collection<ProductTb> productTbCollection) {
         this.productTbCollection = productTbCollection;
     }

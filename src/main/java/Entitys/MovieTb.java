@@ -7,6 +7,7 @@ package Entitys;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -103,34 +104,42 @@ public class MovieTb implements Serializable {
         this.releaseDate = releaseDate;
     }
 
+    @JsonbTransient
     public Collection<MovieCelebrity> getMovieCelebrityCollection() {
         return movieCelebrityCollection;
     }
 
+    @JsonbTransient
     public void setMovieCelebrityCollection(Collection<MovieCelebrity> movieCelebrityCollection) {
         this.movieCelebrityCollection = movieCelebrityCollection;
     }
 
+    @JsonbTransient
     public Collection<ProductTb> getProductTbCollection() {
         return productTbCollection;
     }
 
+    @JsonbTransient
     public void setProductTbCollection(Collection<ProductTb> productTbCollection) {
         this.productTbCollection = productTbCollection;
     }
 
+    @JsonbTransient
     public Collection<SongTb> getSongTbCollection() {
         return songTbCollection;
     }
 
+    @JsonbTransient
     public void setSongTbCollection(Collection<SongTb> songTbCollection) {
         this.songTbCollection = songTbCollection;
     }
 
+    @JsonbTransient
     public Collection<MovieDesigner> getMovieDesignerCollection() {
         return movieDesignerCollection;
     }
 
+    @JsonbTransient
     public void setMovieDesignerCollection(Collection<MovieDesigner> movieDesignerCollection) {
         this.movieDesignerCollection = movieDesignerCollection;
     }

@@ -7,6 +7,7 @@ package Entitys;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -173,34 +174,42 @@ public class UserTb implements Serializable {
         this.dob = dob;
     }
 
+    @JsonbTransient
     public Collection<UserCartTb> getUserCartTbCollection() {
         return userCartTbCollection;
     }
 
+    @JsonbTransient
     public void setUserCartTbCollection(Collection<UserCartTb> userCartTbCollection) {
         this.userCartTbCollection = userCartTbCollection;
     }
 
+    @JsonbTransient
     public Collection<PaymentTb> getPaymentTbCollection() {
         return paymentTbCollection;
     }
 
+    @JsonbTransient
     public void setPaymentTbCollection(Collection<PaymentTb> paymentTbCollection) {
         this.paymentTbCollection = paymentTbCollection;
     }
 
+    @JsonbTransient
     public Collection<UserOrderTb> getUserOrderTbCollection() {
         return userOrderTbCollection;
     }
 
+    @JsonbTransient
     public void setUserOrderTbCollection(Collection<UserOrderTb> userOrderTbCollection) {
         this.userOrderTbCollection = userOrderTbCollection;
     }
 
+    @JsonbTransient
     public Collection<ReviewTb> getReviewTbCollection() {
         return reviewTbCollection;
     }
 
+    @JsonbTransient
     public void setReviewTbCollection(Collection<ReviewTb> reviewTbCollection) {
         this.reviewTbCollection = reviewTbCollection;
     }

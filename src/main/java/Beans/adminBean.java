@@ -148,6 +148,7 @@ public class adminBean implements adminBeanLocal {
         em.merge(m);
     }
 
+     // Song
     @Override
     public void addSong(String name, Integer mid) {
         SongTb s = new SongTb();
@@ -178,6 +179,7 @@ public class adminBean implements adminBeanLocal {
         em.merge(s);
     }
 
+    // MovieCelebrity
     @Override
     public void addMovieCelebrity(Integer mid, Integer cid) {
         MovieCelebrity mc = new MovieCelebrity();
@@ -210,6 +212,7 @@ public class adminBean implements adminBeanLocal {
         em.merge(mc);
     }
 
+//   MovieDesigner 
     @Override
     public void addMovieDesigner(Integer mid, Integer did) {
         MovieDesigner md = new MovieDesigner();

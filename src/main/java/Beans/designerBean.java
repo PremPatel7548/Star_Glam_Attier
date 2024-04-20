@@ -4,7 +4,12 @@
  */
 package Beans;
 
+import Entitys.CategoryTb;
+import Entitys.CelebrityTb;
 import Entitys.DesignerTb;
+import Entitys.MovieTb;
+import Entitys.ProductTb;
+import Entitys.SongTb;
 import java.math.BigInteger;
 import java.util.Collection;
 import javax.ejb.Stateless;
@@ -21,6 +26,7 @@ public class designerBean implements designerBeanLocal {
     @PersistenceContext(name = "my_persistence_unit")
     EntityManager em;
 
+    // Designer
     @Override
     public void addDesigner(String name, String password, String email, Long mobileno, String gender, String image) {
       DesignerTb d = new DesignerTb();
@@ -57,6 +63,61 @@ public class designerBean implements designerBeanLocal {
       d.setImage(image);
       d.setIsApproved(is_approved);
       em.merge(d);
+    }
+
+    // Product
+    @Override
+    public void addProduct(String name, Integer price, Integer stock, String size, String image, Integer cid, Integer mid, Integer cbid, Integer sid, Integer did) {
+       ProductTb p = new ProductTb();
+        CategoryTb c = em.find(CategoryTb.class, cid);
+        MovieTb m = em.find(MovieTb.class, mid);
+        CelebrityTb cb = em.find(CelebrityTb.class, cbid);
+        SongTb s = em.find(SongTb.class, sid);
+        DesignerTb d = em.find(DesignerTb.class, did);
+        p.setName(name);
+        p.setPrice(price);
+        p.setStock(stock);
+        p.setSize(size);
+        p.setImage(image);
+        p.setCategoryId(c);
+        p.setMovieId(m);
+        p.setCelebrityId(cb);
+        p.setSongId(s);
+        p.setDesignerId(d);
+        em.persist(p);
+    }
+
+    @Override
+    public Collection<ProductTb> getProducts() {
+        Collection<ProductTb> products = em.createNamedQuery("ProductTb.findAll").getResultList();
+        return products;
+    }
+
+    @Override
+    public void deleteProduct(Integer id) {
+        ProductTb p = em.find(ProductTb.class, id);
+        em.remove(p);
+    }
+
+    @Override
+    public void editProduct(Integer id, String name, Integer price, Integer stock, String size, String image, Integer cid, Integer mid, Integer cbid, Integer sid, Integer did) {
+        ProductTb p = em.find(ProductTb.class, id);
+        CategoryTb c = em.find(CategoryTb.class, cid);
+        MovieTb m = em.find(MovieTb.class, mid);
+        CelebrityTb cb = em.find(CelebrityTb.class, cbid);
+        SongTb s = em.find(SongTb.class, sid);
+        DesignerTb d = em.find(DesignerTb.class, did);
+        p.setName(name);
+        p.setPrice(price);
+        p.setStock(stock);
+        p.setSize(size);
+        p.setImage(image);
+        p.setCategoryId(c);
+        p.setMovieId(m);
+        p.setCelebrityId(cb);
+        p.setSongId(s);
+        p.setDesignerId(d);
+        em.merge(p);
     }
     
 }

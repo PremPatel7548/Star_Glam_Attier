@@ -5,6 +5,7 @@
 package Beans;
 
 import Entitys.DesignerTb;
+import Entitys.ProductTb;
 import java.math.BigInteger;
 import java.util.Collection;
 import javax.ejb.Local;
@@ -22,5 +23,9 @@ public interface designerBeanLocal {
     public void deleteDesigner(Integer id);
     public void editDesigner(Integer id,String name,String password,String email,Long mobileno,String gender,String image,Integer is_approved);
     
-    
+    // Product
+    public void addProduct(String name,Integer price,Integer stock,String size,String image,Integer cid,Integer mid,Integer cbid,Integer sid,Integer did);
+    public Collection<ProductTb> getProducts();
+    public void deleteProduct(Integer id);
+    public void editProduct(Integer id,String name,Integer price,Integer stock,String size,String image,Integer cid,Integer mid,Integer cbid,Integer sid,Integer did);
 }

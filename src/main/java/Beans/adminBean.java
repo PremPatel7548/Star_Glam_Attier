@@ -6,7 +6,10 @@ package Beans;
 
 import Entitys.CategoryTb;
 import Entitys.CelebrityTb;
+import Entitys.DesignerTb;
 import Entitys.MovieCategoryTb;
+import Entitys.MovieCelebrity;
+import Entitys.MovieDesigner;
 import Entitys.MovieTb;
 import Entitys.SongTb;
 import java.util.Collection;
@@ -174,6 +177,71 @@ public class adminBean implements adminBeanLocal {
         s.setMovieId(m);
         em.merge(s);
     }
+
+    @Override
+    public void addMovieCelebrity(Integer mid, Integer cid) {
+        MovieCelebrity mc = new MovieCelebrity();
+        MovieTb m = em.find(MovieTb.class, mid);
+        CelebrityTb c = em.find(CelebrityTb.class, cid);
+        mc.setMovieId(m);
+        mc.setCelebrityId(c);
+        em.persist(mc);
+    }
+
+    @Override
+    public Collection<MovieCelebrity> getMovieCelebrity() {
+        Collection<MovieCelebrity> mcs = em.createNamedQuery("MovieCelebrity.findAll").getResultList();
+        return mcs;
+    }
+
+    @Override
+    public void deleteMovieCelebrity(Integer id) {
+        MovieCelebrity mc = em.find(MovieCelebrity.class, id);
+        em.remove(mc);
+    }
+
+    @Override
+    public void editMovieCelebrity(Integer id, Integer mid, Integer cid) {
+       MovieCelebrity mc = em.find(MovieCelebrity.class, id);
+       MovieTb m = em.find(MovieTb.class, mid);
+        CelebrityTb c = em.find(CelebrityTb.class, cid);
+        mc.setMovieId(m);
+        mc.setCelebrityId(c);
+        em.merge(mc);
+    }
+
+    @Override
+    public void addMovieDesigner(Integer mid, Integer did) {
+        MovieDesigner md = new MovieDesigner();
+        MovieTb m = em.find(MovieTb.class, mid);
+        DesignerTb d = em.find(DesignerTb.class, did);
+        md.setMovieId(m);
+        md.setDesignerId(d);
+        em.persist(md);
+    }
+
+    @Override
+    public Collection<MovieDesigner> getMovieDesigner() {
+        Collection<MovieDesigner> mds = em.createNamedQuery("MovieDesigner.findAll").getResultList();
+        return mds;
+    }
+
+    @Override
+    public void deleteMovieDesigner(Integer id) {
+        MovieDesigner md = em.find(MovieDesigner.class, id);
+        em.remove(md);
+    }
+
+    @Override
+    public void editMovieDesigner(Integer id, Integer mid, Integer did) {
+       MovieDesigner md = em.find(MovieDesigner.class, id);
+       MovieTb m = em.find(MovieTb.class, mid);
+        DesignerTb d = em.find(DesignerTb.class, did);
+        md.setMovieId(m);
+        md.setDesignerId(d);
+        em.merge(md);
+    }
+    
     
     
 }

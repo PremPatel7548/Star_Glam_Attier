@@ -7,6 +7,8 @@ package Beans;
 import Entitys.CategoryTb;
 import Entitys.CelebrityTb;
 import Entitys.MovieCategoryTb;
+import Entitys.MovieCelebrity;
+import Entitys.MovieDesigner;
 import Entitys.MovieTb;
 import Entitys.SongTb;
 import java.util.Collection;
@@ -49,4 +51,16 @@ public interface adminBeanLocal {
     public Collection<SongTb> getSongs();
     public void deleteSong(Integer id);
     public void editSong(Integer id,String name,Integer mid);
+    
+    // movie_celebrity
+    public void addMovieCelebrity(Integer mid,Integer cid);
+    public Collection<MovieCelebrity> getMovieCelebrity();
+    public void deleteMovieCelebrity(Integer id);
+    public void editMovieCelebrity(Integer id,Integer mid,Integer cid);
+    
+    //Movie_designer
+    public void addMovieDesigner(Integer mid,Integer did);
+    public Collection<MovieDesigner> getMovieDesigner();
+    public void deleteMovieDesigner(Integer id);
+    public void editMovieDesigner(Integer id,Integer mid,Integer did);
 }

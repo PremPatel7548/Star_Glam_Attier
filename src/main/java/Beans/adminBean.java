@@ -5,8 +5,12 @@
 package Beans;
 
 import Entitys.CategoryTb;
+import Entitys.CelebrityTb;
 import Entitys.MovieCategoryTb;
+import Entitys.MovieTb;
+import Entitys.SongTb;
 import java.util.Collection;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -75,4 +79,101 @@ public class adminBean implements adminBeanLocal {
         em.merge(mc);
     }
 
+    // Celebrity
+    @Override
+    public void addCelebrity(String name, Date dob, String gender, String image) {
+       CelebrityTb c = new CelebrityTb();
+       c.setName(name);
+       c.setDob(dob);
+       c.setGender(gender);
+       c.setImage(image);
+       em.persist(c);
+    }
+
+    @Override
+    public Collection<CelebrityTb> getCelebritys() {
+        Collection<CelebrityTb> celebritys = em.createNamedQuery("CelebrityTb.findAll").getResultList();
+        return celebritys;
+    }
+
+    @Override
+    public void deleteCelebrity(Integer id) {
+        CelebrityTb c = em.find(CelebrityTb.class, id);
+        em.remove(c);
+    }
+
+    @Override
+    public void editCelebrity(Integer id, String name, Date dob, String gender, String image) {
+        CelebrityTb c = em.find(CelebrityTb.class, id);
+        c.setName(name);
+        c.setDob(dob);
+        c.setGender(gender);
+        c.setImage(image);
+       em.merge(c);
+    }
+
+    // Movie
+    @Override
+    public void addMovie(String name, Date date, Integer mcid) {
+        MovieTb m = new MovieTb();
+        MovieCategoryTb mc = em.find(MovieCategoryTb.class, mcid);
+        m.setName(name);
+        m.setReleaseDate(date);
+        m.setMovieCategoryId(mc);
+        em.persist(m);
+    }
+
+    @Override
+    public Collection<MovieTb> getMovies() {
+        Collection<MovieTb> movies = em.createNamedQuery("MovieTb.findAll").getResultList();
+        return movies;
+    }
+
+    @Override
+    public void deleteMovie(Integer id) {
+        MovieTb m = em.find(MovieTb.class, id);
+        em.remove(m);
+    }
+
+    @Override
+    public void editMovie(Integer id, String name, Date date, Integer mcid) {
+        MovieTb m = em.find(MovieTb.class, id);
+        MovieCategoryTb mc = em.find(MovieCategoryTb.class, mcid);
+        m.setName(name);
+        m.setReleaseDate(date);
+        m.setMovieCategoryId(mc);
+        em.merge(m);
+    }
+
+    @Override
+    public void addSong(String name, Integer mid) {
+        SongTb s = new SongTb();
+        MovieTb m = em.find(MovieTb.class,mid);
+        s.setName(name);
+        s.setMovieId(m);
+        em.persist(s);
+    }
+
+    @Override
+    public Collection<SongTb> getSongs() {
+     Collection<SongTb> songs = em.createNamedQuery("SongTb.findAll").getResultList();
+     return songs;
+    }
+
+    @Override
+    public void deleteSong(Integer id) {
+     SongTb s = em.find(SongTb.class, id);
+     em.remove(s);
+    }
+
+    @Override
+    public void editSong(Integer id, String name, Integer mid) {
+    SongTb s = em.find(SongTb.class, id);
+    MovieTb m = em.find(MovieTb.class,mid);
+        s.setName(name);
+        s.setMovieId(m);
+        em.merge(s);
+    }
+    
+    
 }

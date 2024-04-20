@@ -5,8 +5,12 @@
 package Beans;
 
 import Entitys.CategoryTb;
+import Entitys.CelebrityTb;
 import Entitys.MovieCategoryTb;
+import Entitys.MovieTb;
+import Entitys.SongTb;
 import java.util.Collection;
+import java.util.Date;
 import javax.ejb.Local;
 
 /**
@@ -27,4 +31,22 @@ public interface adminBeanLocal {
     public Collection<MovieCategoryTb> getMovieCategorys();
     public void deleteMovieCategory(Integer id);
     public void editMovieCategory(Integer id,String name);
+    
+    //celebrity
+    public void addCelebrity(String name,Date dob,String gender,String image);
+    public Collection<CelebrityTb> getCelebritys();
+    public void deleteCelebrity(Integer id);
+    public void editCelebrity(Integer id,String name,Date dob,String gender,String image);
+    
+    //Movie
+    public void addMovie(String name,Date date,Integer mcid);
+    public Collection<MovieTb> getMovies();
+    public void deleteMovie(Integer id);
+    public void editMovie(Integer id,String name,Date date,Integer mcid);
+    
+    //Song
+    public void addSong(String name,Integer mid);
+    public Collection<SongTb> getSongs();
+    public void deleteSong(Integer id);
+    public void editSong(Integer id,String name,Integer mid);
 }

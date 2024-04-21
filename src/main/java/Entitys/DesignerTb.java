@@ -63,8 +63,9 @@ public class DesignerTb implements Serializable {
     private String email;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 11)
     @Column(name = "mobileno")
-    private long mobileno;
+    private String mobileno;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -91,7 +92,7 @@ public class DesignerTb implements Serializable {
         this.id = id;
     }
 
-    public DesignerTb(Integer id, String name, String password, String email, long mobileno, String gender, String image, int isApproved) {
+    public DesignerTb(Integer id, String name, String password, String email, String mobileno, String gender, String image, int isApproved) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -134,11 +135,11 @@ public class DesignerTb implements Serializable {
         this.email = email;
     }
 
-    public long getMobileno() {
+    public String getMobileno() {
         return mobileno;
     }
 
-    public void setMobileno(long mobileno) {
+    public void setMobileno(String mobileno) {
         this.mobileno = mobileno;
     }
 

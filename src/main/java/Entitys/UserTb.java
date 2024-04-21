@@ -66,8 +66,9 @@ public class UserTb implements Serializable {
     private String password;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 11)
     @Column(name = "mobileno")
-    private long mobileno;
+    private String mobileno;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -99,7 +100,7 @@ public class UserTb implements Serializable {
         this.id = id;
     }
 
-    public UserTb(Integer id, String name, String email, String password, long mobileno, String address, String image, Date dob) {
+    public UserTb(Integer id, String name, String email, String password, String mobileno, String address, String image, Date dob) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -142,11 +143,11 @@ public class UserTb implements Serializable {
         this.password = password;
     }
 
-    public long getMobileno() {
+    public String getMobileno() {
         return mobileno;
     }
 
-    public void setMobileno(long mobileno) {
+    public void setMobileno(String mobileno) {
         this.mobileno = mobileno;
     }
 

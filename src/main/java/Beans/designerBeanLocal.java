@@ -18,10 +18,10 @@ import javax.ejb.Local;
 public interface designerBeanLocal {
     
     // Designer
-    public void addDesigner(String name,String password,String email,Long mobileno,String gender,String image);
+    public void addDesigner(String name,String password,String email,String mobileno,String gender,String image);
     public Collection<DesignerTb> getDesigners();
     public void deleteDesigner(Integer id);
-    public void editDesigner(Integer id,String name,String password,String email,Long mobileno,String gender,String image,Integer is_approved);
+    public void editDesigner(Integer id,String name,String password,String email,String mobileno,String gender,String image,Integer is_approved);
     
     // Product
     public void addProduct(String name,Integer price,Integer stock,String size,String image,Integer cid,Integer mid,Integer cbid,Integer sid,Integer did);

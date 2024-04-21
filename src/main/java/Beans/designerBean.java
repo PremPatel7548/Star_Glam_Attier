@@ -27,7 +27,7 @@ public class designerBean implements designerBeanLocal {
 
     // Designer
     @Override
-    public void addDesigner(String name, String password, String email, Long mobileno, String gender, String image) {
+    public void addDesigner(String name, String password, String email, String mobileno, String gender, String image) {
       DesignerTb d = new DesignerTb();
       d.setName(name);
       d.setPassword(password);
@@ -52,7 +52,7 @@ public class designerBean implements designerBeanLocal {
     }
 
     @Override
-    public void editDesigner(Integer id, String name, String password, String email, Long mobileno, String gender, String image, Integer is_approved) {
+    public void editDesigner(Integer id, String name, String password, String email,String mobileno, String gender, String image, Integer is_approved) {
        DesignerTb d = em.find(DesignerTb.class, id);
        d.setName(name);
       d.setPassword(password);

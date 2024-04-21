@@ -50,7 +50,7 @@ public class JakartaEE8Resource {
    
    @POST
    @Path("addDesigner/{name}/{password}/{email}/{mobile_no}/{gender}/{image}")
-   public void addDesigner(@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno")Long mobileno,@PathParam("gender") String gender,@PathParam("image") String image)
+   public void addDesigner(@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno")String mobileno,@PathParam("gender") String gender,@PathParam("image") String image)
    {
        designer.addDesigner(name, password, email, mobileno, gender, image);
    }
@@ -64,7 +64,7 @@ public class JakartaEE8Resource {
   
    @POST
    @Path("updateDesigner/{id}/{name}/{password}/{email}/{mobile_no}/{gender}/{image}")
-   public void updateDesigner(@PathParam("id") Integer id,@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno")Long mobileno,@PathParam("gender") String gender,@PathParam("image") String image)
+   public void updateDesigner(@PathParam("id") Integer id,@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno")String mobileno,@PathParam("gender") String gender,@PathParam("image") String image)
    {
        designer.editDesigner(id, name, password, email, mobileno, gender, image, id);
    }

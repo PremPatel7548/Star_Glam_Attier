@@ -49,7 +49,7 @@ public class JakartaEE8Resource {
    }
    
    @POST
-   @Path("addDesigner/{name}/{password}/{email}/{mobile_no}/{gender}/{image}")
+   @Path("addDesigner/{name}/{password}/{email}/{mobileno}/{gender}/{image}")
    public void addDesigner(@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno")String mobileno,@PathParam("gender") String gender,@PathParam("image") String image)
    {
        designer.addDesigner(name, password, email, mobileno, gender, image);
@@ -63,7 +63,7 @@ public class JakartaEE8Resource {
    }
   
    @POST
-   @Path("updateDesigner/{id}/{name}/{password}/{email}/{mobile_no}/{gender}/{image}")
+   @Path("updateDesigner/{id}/{name}/{password}/{email}/{mobileno}/{gender}/{image}")
    public void updateDesigner(@PathParam("id") Integer id,@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno")String mobileno,@PathParam("gender") String gender,@PathParam("image") String image)
    {
        designer.editDesigner(id, name, password, email, mobileno, gender, image, id);
@@ -318,7 +318,7 @@ public class JakartaEE8Resource {
    }
    
    @POST
-   @Path("addMovieDesigner/{mid}/{cid}")
+   @Path("addMovieDesigner/{mid}/{did}")
    public void addMovieDesigner(@PathParam("mid") Integer mid,@PathParam("did") Integer did)
    {
        admin.addMovieDesigner(mid, did);
@@ -333,9 +333,9 @@ public class JakartaEE8Resource {
   
    @POST
    @Path("updateMovieDesigner/{id}/{mid}/{did}")
-   public void updateMovieDesigner(@PathParam("id") Integer id,@PathParam("mid") Integer mid,@PathParam("did") Integer cid)
+   public void updateMovieDesigner(@PathParam("id") Integer id,@PathParam("mid") Integer mid,@PathParam("did") Integer did)
    {
-       admin.editMovieDesigner(id, mid, cid);
+       admin.editMovieDesigner(id, mid, did);
    }
    
 }

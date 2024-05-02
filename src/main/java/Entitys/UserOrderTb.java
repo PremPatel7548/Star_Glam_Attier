@@ -6,6 +6,7 @@ package Entitys;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -20,6 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -34,6 +37,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "UserOrderTb.findByQty", query = "SELECT u FROM UserOrderTb u WHERE u.qty = :qty"),
     @NamedQuery(name = "UserOrderTb.findByPrice", query = "SELECT u FROM UserOrderTb u WHERE u.price = :price"),
     @NamedQuery(name = "UserOrderTb.findByTotal", query = "SELECT u FROM UserOrderTb u WHERE u.total = :total"),
+    @NamedQuery(name = "UserOrderTb.findByOrderDate", query = "SELECT u FROM UserOrderTb u WHERE u.orderDate = :orderDate"),
     @NamedQuery(name = "UserOrderTb.findByIsConfirmed", query = "SELECT u FROM UserOrderTb u WHERE u.isConfirmed = :isConfirmed")})
 public class UserOrderTb implements Serializable {
 
@@ -57,6 +61,11 @@ public class UserOrderTb implements Serializable {
     private int total;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "order_date")
+    @Temporal(TemporalType.DATE)
+    private Date orderDate;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "is_confirmed")
     private int isConfirmed;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
@@ -75,11 +84,12 @@ public class UserOrderTb implements Serializable {
         this.id = id;
     }
 
-    public UserOrderTb(Integer id, int qty, int price, int total, int isConfirmed) {
+    public UserOrderTb(Integer id, int qty, int price, int total, Date orderDate, int isConfirmed) {
         this.id = id;
         this.qty = qty;
         this.price = price;
         this.total = total;
+        this.orderDate = orderDate;
         this.isConfirmed = isConfirmed;
     }
 
@@ -113,6 +123,14 @@ public class UserOrderTb implements Serializable {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
     public int getIsConfirmed() {

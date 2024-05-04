@@ -24,15 +24,15 @@ public class RestClient {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/SGA/resources";
+    private static final String BASE_URI = "http://localhost:8080/Star_Glam_Attier/resources";
 
     public RestClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("rest");
     }
 
-    public void addDesigner(String name, String password, String email, String mobile_no, String gender, String image) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("addDesigner/{0}/{1}/{2}/{3}/{4}/{5}", new Object[]{name, password, email, mobile_no, gender, image})).request().post(null);
+    public void addDesigner(String name, String password, String email, String mobileno, String gender, String image) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("addDesigner/{0}/{1}/{2}/{3}/{4}/{5}", new Object[]{name, password, email, mobileno, gender, image})).request().post(null);
     }
 
     public void deleteMovieDesigner(String id) throws ClientErrorException {
@@ -59,8 +59,8 @@ public class RestClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void updateDesigner(String id, String name, String password, String email, String mobile_no, String gender, String image) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updateDesigner/{0}/{1}/{2}/{3}/{4}/{5}/{6}", new Object[]{id, name, password, email, mobile_no, gender, image})).request().post(null);
+    public void updateDesigner(String id, String name, String password, String email, String mobileno, String gender, String image) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("updateDesigner/{0}/{1}/{2}/{3}/{4}/{5}/{6}", new Object[]{id, name, password, email, mobileno, gender, image})).request().post(null);
     }
 
     public void deleteSong(String id) throws ClientErrorException {
@@ -151,8 +151,8 @@ public class RestClient {
         webTarget.path(java.text.MessageFormat.format("addCelebrity/{0}/{1}/{2}/{3}", new Object[]{name, dob, gender, image})).request().post(null);
     }
 
-    public void addMovieDesigner(String mid, String cid) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("addMovieDesigner/{0}/{1}", new Object[]{mid, cid})).request().post(null);
+    public void addMovieDesigner(String mid, String did) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("addMovieDesigner/{0}/{1}", new Object[]{mid, did})).request().post(null);
     }
 
     public void deleteCategory(String id) throws ClientErrorException {

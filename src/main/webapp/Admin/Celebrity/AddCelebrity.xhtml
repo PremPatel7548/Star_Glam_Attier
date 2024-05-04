@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="../adminHeader.xhtml" />
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Add Celebrity</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Add Celebrity</h3>
+                            </div>
+                            <div class="card-body">
+                                <h:form enctype="multipart/form-data">
+                                    <div>
+                                        <div class="input-group mb-1">
+                                            <label for="exampleInputName">Enter Name:</label>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                            </div>
+                                            <h:inputText  class="form-control" value="#{adminCelebrityBean.celebrity.name}"/>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="input-group mb-1">
+                                            <label for="exampleInputEmail1">Enter Date of Birth:</label>
+                                        </div>
+
+                                        <div class="input-group date mb-3" id="reservationdate">
+                                            <div class="input-group-append" >
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                            <p:calendar id="exampleInputDate" value="#{adminCelebrityBean.celebrity.dob}" placeholder="Select Date Of Birth"/>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="input-group mb-1">
+                                            <label for="gender">Select Gender:</label>
+                                        </div>
+
+                                        <div class="input-group mb-3">
+                                            <h:selectOneRadio id="gender" value="#{adminCelebrityBean.celebrity.gender}">
+                                                <f:selectItem itemValue="Male" itemLabel="Male"/>
+                                                <f:selectItem itemValue="Female" itemLabel="Female"/>
+                                                <f:selectItem itemValue="Other" itemLabel="Other"/>
+                                            </h:selectOneRadio>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="input-group mb-1">
+                                            <label for="exampleInputEmail1">Upload Profile</label>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <p:fileUpload id="profile" value="#{adminCelebrityBean.file}" mode="simple" />
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <h:commandButton class="btn btn-info" value="Submit" action="#{adminCelebrityBean.addCelebrity()}"></h:commandButton>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </h:body>
+</html>

@@ -29,6 +29,7 @@ public class AdminMovieCategoryBean {
     Response res;
     RestClient rc;
     MovieCategoryTb moviecategory = new MovieCategoryTb();
+    String successmessage;
 
     public AdminMovieCategoryBean() {
         rc = new RestClient();
@@ -36,6 +37,16 @@ public class AdminMovieCategoryBean {
         };
         moviecategoryList = new ArrayList<>();
     }
+
+    public String getSuccessmessage() {
+        return successmessage;
+    }
+
+    public void setSuccessmessage(String successmessage) {
+        this.successmessage = successmessage;
+    }
+    
+    
 
     public Collection<MovieCategoryTb> getMoviecategoryList() {
         res = rc.displayMovieCategorys(Response.class);
@@ -57,6 +68,8 @@ public class AdminMovieCategoryBean {
 
     public String addmovieCategory() {
         rc.addMovieCategory(moviecategory.getCategoryName());
+        successmessage = "MovieCategory Added Successfully";
+        this.moviecategory = null;
         return "MovieCategoryList";
     }
 
@@ -67,12 +80,18 @@ public class AdminMovieCategoryBean {
 
     public String editmovieCategory() {
         rc.updateMovieCategory(String.valueOf(moviecategory.getId()), moviecategory.getCategoryName());
+        successmessage = "MovieCategory Edited Successfully";
         return "MovieCategoryList";
     }
 
     public String deletemovieCategory(Integer moviecategoryid) {
         rc.deleteMovieCategory(String.valueOf(moviecategoryid));
+        successmessage = "MovieCategory Deleted Successfully";
         return "MovieCategoryList";
+    }
+    
+    public void clearSuccessMessage() {
+        successmessage = null;
     }
 
 }

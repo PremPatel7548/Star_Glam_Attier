@@ -31,6 +31,7 @@ public class AdminMovieCelebrityBean {
     MovieCelebrity movieCelebrity = new MovieCelebrity();
     Integer movie_id;
     Integer celebrity_id;
+    String successmessage;
 
     public AdminMovieCelebrityBean() {
          rc = new RestClient();
@@ -38,6 +39,16 @@ public class AdminMovieCelebrityBean {
         };
         movieCelebrityList = new ArrayList<>();
     }
+
+    public String getSuccessmessage() {
+        return successmessage;
+    }
+
+    public void setSuccessmessage(String successmessage) {
+        this.successmessage = successmessage;
+    }
+    
+    
 
     public Collection<MovieCelebrity> getMovieCelebrityList() {
         res=rc.displayMovieCelebrity(Response.class);
@@ -75,22 +86,31 @@ public class AdminMovieCelebrityBean {
     
     public String addmovieCelebrity(){
         rc.addMovieCelebrity(String.valueOf(movie_id), String.valueOf(celebrity_id));
+        successmessage = "MovieCelebrity Added Successfully";
         return "MovieCelebrityList";
     }
     
       public String deletemovieCelebrity(Integer id) {
         rc.deleteMovieCelebrity(String.valueOf(id));
+        successmessage = "MovieCelebrity Deleted Successfully";
         return "MovieCelebrityList";
     }
 
     public String getdataFormovieCelebrity(MovieCelebrity movieCelebrity) {
         this.movieCelebrity = movieCelebrity;
+        this.movie_id = movieCelebrity.getMovieId().getId();
+        this.celebrity_id = movieCelebrity.getCelebrityId().getId();
         return "EditmovieCelebrity";
     }
     
     public String editmovieCelebrity(){
         rc.updateMovieCelebrity(String.valueOf(movieCelebrity.getId()),String.valueOf(movie_id), String.valueOf(celebrity_id));
+        successmessage = "MovieCelebrity Edited Successfully";
         return "MovieCelebrityList";
+    }
+    
+     public void clearSuccessMessage() {
+        successmessage = null;
     }
     
 }

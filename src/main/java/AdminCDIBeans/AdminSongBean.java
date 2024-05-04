@@ -30,12 +30,21 @@ public class AdminSongBean {
     RestClient rc;
     SongTb song = new SongTb();
     Integer movie_id;
+    String successmessage;
     
     public AdminSongBean() {
         rc = new RestClient();
         gc = new GenericType<Collection<SongTb>>() {
         };
         songList = new ArrayList<>();
+    }
+
+    public String getSuccessmessage() {
+        return successmessage;
+    }
+
+    public void setSuccessmessage(String successmessage) {
+        this.successmessage = successmessage;
     }
 
     public Collection<SongTb> getSongList() {
@@ -66,22 +75,30 @@ public class AdminSongBean {
 
     public String addSong(){
         rc.addSong(song.getName(), String.valueOf(movie_id));
+        successmessage = "Song Added Successfully";
         return "SongList";
     }
     
       public String deleteSong(Integer id) {
         rc.deleteSong(String.valueOf(id));
+        successmessage = "Song Deleted Successfully";
         return "SongList";
     }
 
     public String getdataForSong(SongTb song) {
         this.song = song;
+        this.movie_id = song.getMovieId().getId();
         return "Editsong";
     }
     
     public String editSong(){
         rc.updateSong(String.valueOf(song.getId()),song.getName(), String.valueOf(movie_id));
+        successmessage = "Song Edited Successfully";
         return "SongList";
+    }
+    
+    public void clearSuccessMessage() {
+        successmessage = null;
     }
     
 }

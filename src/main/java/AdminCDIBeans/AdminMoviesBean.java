@@ -31,6 +31,7 @@ public class AdminMoviesBean {
     RestClient rc;
     MovieTb movie = new MovieTb();
     Integer MoviecategoryID;
+    String successmessage;
 
     public AdminMoviesBean() {
         rc = new RestClient();
@@ -39,6 +40,15 @@ public class AdminMoviesBean {
         MovieList = new ArrayList<>();
     }
 
+    public String getSuccessmessage() {
+        return successmessage;
+    }
+
+    public void setSuccessmessage(String successmessage) {
+        this.successmessage = successmessage;
+    }
+
+    
     public Collection<MovieTb> getMovieList() {
         res = rc.displayMovie(Response.class);
         MovieList = res.readEntity(gc);
@@ -69,16 +79,19 @@ public class AdminMoviesBean {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String relesedate = dateFormat.format(movie.getReleaseDate());
         rc.addMovie(movie.getName(), String.valueOf(relesedate), String.valueOf(MoviecategoryID));
+        successmessage = "Movie Added Successfully";
         return "MovieList";
     }
 
     public String deletemovie(Integer movieid) {
         rc.deleteMovie(String.valueOf(movieid));
+        successmessage = "Movie Deleted Successfully";
         return "MovieList";
     }
 
     public String getdataForeditmovie(MovieTb movie) {
         this.movie = movie;
+        this.MoviecategoryID = movie.getMovieCategoryId().getId();
         return "EditMovie";
     }
 
@@ -86,7 +99,12 @@ public class AdminMoviesBean {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String relesedate = dateFormat.format(movie.getReleaseDate());
         rc.updateMovie(String.valueOf(movie.getId()), movie.getName(), String.valueOf(relesedate), String.valueOf(MoviecategoryID));
+        successmessage = "Movie Edited Successfully";
         return "MovieList";
+    }
+    
+    public void clearSuccessMessage() {
+        successmessage = null;
     }
 
 }

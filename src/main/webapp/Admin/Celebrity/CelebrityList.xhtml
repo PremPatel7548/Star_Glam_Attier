@@ -13,13 +13,14 @@
         <div class="container" style="margin-top: 2%; margin-left: 250px">
             <div class="container-fluid">
 
-                <c:if test="${not empty sessionScope.successmessage}">
+                <c:if test="${not empty adminCelebrityBean.successmessage}">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        ${sessionScope.successmessage}
+                        ${adminCelebrityBean.successmessage}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    #{adminCelebrityBean.clearSuccessMessage()}
                 </c:if>
                 <h:form>
                     <h:commandLink class="btn btn-info" action="AddCelebrity.jsf" value="Add New" />
@@ -69,6 +70,7 @@
                     "responsive": true,
                     "lengthChange": false,
                     "autoWidth": false,
+                    "pageLength": 4,
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
                 });
             });

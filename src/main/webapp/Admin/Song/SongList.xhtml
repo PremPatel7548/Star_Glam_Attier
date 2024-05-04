@@ -13,13 +13,14 @@
         <div class="container" style="margin-top: 2%; margin-left: 250px">
             <div class="container-fluid">
 
-                <c:if test="${not empty sessionScope.successmessage}">
+                <c:if test="${not empty adminSongBean.successmessage}">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        ${sessionScope.successmessage}
+                        ${adminSongBean.successmessage}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    #{adminSongBean.clearSuccessMessage()}
                 </c:if>
                 <h:form>
                     <h:commandLink class="btn btn-info" action="AddSong.jsf" value="Add New" />
@@ -66,6 +67,7 @@
                     "responsive": true,
                     "lengthChange": false,
                     "autoWidth": false,
+                    "pageLength": 5,
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
                 });
             });

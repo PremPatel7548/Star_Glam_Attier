@@ -36,6 +36,7 @@ public class AdminCelebrityBean {
     RestClient rc;
     UploadedFile file;
     CelebrityTb celebrity = new CelebrityTb();
+    String successmessage;
 
     public AdminCelebrityBean() {
         rc = new RestClient();
@@ -49,6 +50,16 @@ public class AdminCelebrityBean {
         CelebrityTbList = res.readEntity(gc);
         return CelebrityTbList;
     }
+
+    public String getSuccessmessage() {
+        return successmessage;
+    }
+
+    public void setSuccessmessage(String successmessage) {
+        this.successmessage = successmessage;
+    }
+    
+    
 
     public void setCelebrityTbList(Collection<CelebrityTb> CelebrityTbList) {
         this.CelebrityTbList = CelebrityTbList;
@@ -75,7 +86,7 @@ public class AdminCelebrityBean {
         if (file != null) {
             try (InputStream input = file.getInputStream()) {
                 fileName = file.getFileName();
-                OutputStream output = new FileOutputStream("D:/college/8th Sem/Start Glam Attire Project/Star_Glam_Attier/src/main/webapp/public/uploads" + fileName);
+                OutputStream output = new FileOutputStream("D:/JWD/Project/SGA/src/main/webapp/public/uploads/" + fileName);
                 try {
                     byte[] buffer = new byte[1024];
                     int bytesRead;
@@ -94,11 +105,13 @@ public class AdminCelebrityBean {
         String dob = dateFormat.format(celebrity.getDob());
 
         rc.addCelebrity(celebrity.getName(), String.valueOf(dob), celebrity.getGender(), fileName);
+        successmessage = "Celebrity Added Successfully";
         return "CelebrityList";
     }
 
     public String deleteCelebrity(Integer id) {
         rc.deleteCelebrity(String.valueOf(id));
+        successmessage = "Celebrity Deleted Successfully";
         return "CelebrityList";
     }
 
@@ -112,7 +125,7 @@ public class AdminCelebrityBean {
         if (file != null) {
             try (InputStream input = file.getInputStream()) {
                 fileName = file.getFileName();
-                OutputStream output = new FileOutputStream("D:/college/8th Sem/Start Glam Attire Project/Star_Glam_Attier/src/main/webapp/public/uploads/" + fileName);
+                OutputStream output = new FileOutputStream("D:/JWD/Project/SGA/src/main/webapp/public/uploads/" + fileName);
                 try {
                     byte[] buffer = new byte[1024];
                     int bytesRead;
@@ -131,6 +144,11 @@ public class AdminCelebrityBean {
         String dob = dateFormat.format(celebrity.getDob());
 
         rc.updateCelebrity(String.valueOf(celebrity.getId()),celebrity.getName(), String.valueOf(dob), celebrity.getGender(), fileName);
+        successmessage = "Celebrity Edited Successfully";
         return "CelebrityList";
+    }
+    
+    public void clearSuccessMessage() {
+        successmessage = null;
     }
 }

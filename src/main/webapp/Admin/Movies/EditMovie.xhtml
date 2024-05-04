@@ -18,7 +18,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Admin/Movies/MovieList.jsf">Home</a></li>
                                 <li class="breadcrumb-item active">Edit Movie</li>
                             </ol>
                         </div>
@@ -30,9 +30,9 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <div class="card card-info">
-                            <div class="card-header">
-                                <h3 class="card-title">Edit Movie</h3>
+                       <div class="card" style="border: 1px solid #212a47;">
+                            <div class="card-header row justify-content-center">
+                                <h3 class="card-title font-weight-bold" style="color: #212a47; font-size: 25px">Edit Movie</h3>
                             </div>
                             <div class="card-body">
                                 <h:form id="quickForm">
@@ -54,7 +54,7 @@
                                             <label for="exampleInputEmail1">Enter Release Date:</label>
                                         </div>
 
-                                        <div class="input-group date mb-3">
+                                        <div class="input-group date mb-3 border border-1">
                                             <div class="input-group-append" >
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
@@ -76,8 +76,8 @@
                                             </p:selectOneMenu>                                
                                         </div>
                                     </div>
-                                    <div class="modal-footer justify-content-between">
-                                        <h:commandButton class="btn btn-primary" value="Save changes" action="#{adminMoviesBean.editmovie()}"></h:commandButton>
+                                    <div style="text-align: center;" class="pt-4">
+                                        <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Submit" action="#{adminMoviesBean.editmovie()}"></h:commandButton>
 
                                     </div>
 

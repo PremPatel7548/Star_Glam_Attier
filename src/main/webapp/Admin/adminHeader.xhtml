@@ -36,7 +36,7 @@
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="#{request.contextPath}/public/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" />
         </div>
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background:#17a2b8">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -92,7 +92,7 @@
         </nav>
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: absolute;">
+        <aside class="main-sidebar elevation-4" style="position: absolute; background-color: #212a47">
             <!-- Brand Logo -->
             <!--    <a href="index3.html" class="brand-link">
                 <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" />
@@ -102,14 +102,14 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                <!--        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" />
-                        </div>
-                        <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
-                        </div>
-                        </div>-->
+                <div class="user-panel mt-3">
+                    <!--                        <div class="image">
+                                            <img src="#{request.contextPath}/public/uploads/blog-details-01.png" class="img-md w-25 h-25" alt="User Image" />
+                                            </div>-->
+                    <div class="info">
+                        <a href="#" class="d-block" style="color: white; font-size: 27px;">𝐒𝐭𝐚𝐫 𝐆𝐥𝐚𝐦 𝐀𝐭𝐭𝐢𝐞𝐫</a>
+                    </div>
+                </div>
 
                 <!-- SidebarSearch Form -->
                 <!--        <div class="form-inline">
@@ -125,63 +125,64 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column h-auto" data-widget="treeview" role="menu" data-accordion="false">
 
-                        <li class="nav-item menu-open">
-                            <a class="nav-link active" style="background:#17a2b8">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
+                        <li class="nav-item">
+                            <a class="nav-link" style="cursor: pointer">
+                                <i class="nav-icon fas fa-tachometer-alt" style="color: #929cbe"></i>
+
+                                <p style="color: #929cbe">
                                     Dashboard
                                 </p>
                             </a>
                         </li>
 
-                        <li class="nav-header">Admin Details</li>
+                        <li class="nav-header text-white align-items-start">ADMIN MENU</li>
                         <li class="nav-item" style="cursor: pointer">
                             <a class="nav-link" href="#{request.contextPath}/Admin/category/CategoryList.jsf">
-                                <i class="nav-icon fas fa-laptop"></i>
-                                <p>
+                                <i class="nav-icon fas fa-list" style="color: #929cbe"></i>
+                                <p style="color: #929cbe">
                                     Categories
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item" style="cursor: pointer">
                             <a class="nav-link" href="#{request.contextPath}/Admin/MovieCategory/MovieCategoryList.jsf">
-                                <i class="nav-icon fas fa-tablet-alt"></i>
-                                <p>
+                                <i class="nav-icon fas fa-icons" style="color: #929cbe"></i>
+                                <p style="color: #929cbe">
                                     Movie Categories
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item" style="cursor: pointer">
                             <a class="nav-link" href="#{request.contextPath}/Admin/Celebrity/CelebrityList.jsf">
-                                <i class="nav-icon fas fa-list-alt"></i>
-                                <p>
+                                <i class="nav-icon fas fa-star" style="color: #929cbe"></i>
+                                <p style="color: #929cbe">
                                     Celebrity
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item" style="cursor: pointer">
                             <a class="nav-link" href="#{request.contextPath}/Admin/Movies/MovieList.jsf">
-                                <i class="nav-icon fas fa-store"></i>
-                                <p>
+                                <i class="nav-icon fas fa-film" style="color: #929cbe"></i>
+                                <p style="color: #929cbe">
                                     Movies
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item" style="cursor: pointer">
                             <a class="nav-link" href="#{request.contextPath}/Admin/Song/SongList.jsf">
-                                <i class="nav-icon fas fa-cubes"></i>
-                                <p>
+                                <i class="nav-icon fas fa-music" style="color: #929cbe"></i>
+                                <p style="color: #929cbe">
                                     Song
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item" style="cursor: pointer">
                             <a class="nav-link" href="#{request.contextPath}/Admin/MovieCelebrity/MovieCelebrityList.jsf">
-                                <i class="nav-icon fas fa-comment"></i>
-                                <p>
-                                   Movie Celebrity
+                                <i class="nav-icon fas fa-users" style="color: #929cbe"></i>
+                                <p style="color: #929cbe">
+                                    Movie Celebrity
                                 </p>
                             </a>
                         </li>

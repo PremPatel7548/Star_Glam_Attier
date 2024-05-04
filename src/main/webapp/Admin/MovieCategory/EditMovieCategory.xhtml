@@ -16,7 +16,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Admin/MovieCategory/MovieCategoryList.jsf">Home</a></li>
                                 <li class="breadcrumb-item active">Edit Category</li>
                             </ol>
                         </div>
@@ -26,13 +26,12 @@
 
             <!-- Main content -->
             <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <!-- left column -->
-                        <div class="col-md-12">
-                            <div class="card card-default">
-                                <div class="card-header">
-                                    <h3 class="card-title">Edit Category</h3>
+                        <div class="col-md-6">
+                             <div class="card" style="border: 1px solid #212a47;">
+                                <div class="card-header row justify-content-center">
+                                    <h3 class="card-title font-weight-bold" style="color: #212a47; font-size: 25px">Edit Movie Category</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
@@ -48,8 +47,8 @@
                                         
                                     </div>
                                     <!-- /.card-body -->
-                                    <div class="card-footer">
-                                        <h:commandButton class="btn btn-primary" value="Submit" action="#{adminMovieCategoryBean.editmovieCategory()}"></h:commandButton>
+                                    <div style="text-align: center;" class="pb-3">
+                                        <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Submit" action="#{adminMovieCategoryBean.editmovieCategory()}"></h:commandButton>
                                     </div>
                                 </h:form>
                             </div>
@@ -57,13 +56,8 @@
                         </div>
                         <!--/.col (left) -->
                         <!-- right column -->
-                        <div class="col-md-6">
-
-                        </div>
-                        <!--/.col (right) -->
                     </div>
                     <!-- /.row -->
-                </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
         </div>

@@ -18,7 +18,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Admin/Celebrity/CelebrityList.jsf">Home</a></li>
                                 <li class="breadcrumb-item active">Edit Celebrity</li>
                             </ol>
                         </div>
@@ -30,9 +30,9 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <div class="card card-info">
-                            <div class="card-header">
-                                <h3 class="card-title">Edit Celebrity</h3>
+                        <div class="card" style="border: 1px solid #212a47;">
+                            <div class="card-header row justify-content-center">
+                                <h3 class="card-title font-weight-bold" style="color: #212a47; font-size: 25px">Edit Celebrity Information</h3>
                             </div>
                             <div class="card-body">
                                 <h:form enctype="multipart/form-data">
@@ -67,7 +67,8 @@
                                             <label for="gender">Select Gender:</label>
                                         </div>
 
-                                        <div class="input-group mb-3">
+                                        <div class="input-group mb-3 border border-1">
+
                                             <h:selectOneRadio id="gender" value="#{adminCelebrityBean.celebrity.gender}">
                                                 <f:selectItem itemValue="Male" itemLabel="Male"/>
                                                 <f:selectItem itemValue="Female" itemLabel="Female"/>
@@ -80,12 +81,12 @@
                                         <div class="input-group mb-1">
                                             <label for="exampleInputEmail1">Upload Profile</label>
                                         </div>
-                                        <div class="input-group mb-3">
+                                        <div class="input-group mb-3  border border-1">
                                             <p:fileUpload id="profile" value="#{adminCelebrityBean.file}" mode="simple" />
                                         </div>
                                     </div>
-                                    <div class="">
-                                        <h:commandButton class="btn btn-info" value="Submit" action="#{adminCelebrityBean.updateCelebrity()}"></h:commandButton>
+                                    <div style="text-align: center;" class="pt-4">
+                                        <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Submit" action="#{adminCelebrityBean.updateCelebrity()}"></h:commandButton>
                                     </div>
                                 </h:form>
                             </div>

@@ -39,6 +39,12 @@ public class RestClient {
         webTarget.path(java.text.MessageFormat.format("deleteMovieDesigner/{0}", new Object[]{id})).request().delete();
     }
 
+    public <T> T getUserById(Class<T> responseType, String id) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getUserById/{0}", new Object[]{id}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public void addMovieCelebrity(String mid, String cid) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("addMovieCelebrity/{0}/{1}", new Object[]{mid, cid})).request().post(null);
     }
@@ -51,6 +57,10 @@ public class RestClient {
         WebTarget resource = webTarget;
         resource = resource.path("displaySongs");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void editUser(String id, String name, String password, String email, String mobileno, String address, String image, String dob) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("editUser/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}", new Object[]{id, name, password, email, mobileno, address, image, dob})).request().post(null);
     }
 
     public <T> T displayMovie(Class<T> responseType) throws ClientErrorException {
@@ -125,6 +135,12 @@ public class RestClient {
         webTarget.path(java.text.MessageFormat.format("addSong/{0}/{1}", new Object[]{name, mid})).request().post(null);
     }
 
+    public <T> T displayUsers(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("displayUsers");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public void updateMovieDesigner(String id, String mid, String did) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("updateMovieDesigner/{0}/{1}/{2}", new Object[]{id, mid, did})).request().post(null);
     }
@@ -151,6 +167,10 @@ public class RestClient {
         webTarget.path(java.text.MessageFormat.format("addCelebrity/{0}/{1}/{2}/{3}", new Object[]{name, dob, gender, image})).request().post(null);
     }
 
+    public void afterRegister(String username) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("afterRegister/{0}", new Object[]{username})).request().post(null);
+    }
+
     public void addMovieDesigner(String mid, String did) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("addMovieDesigner/{0}/{1}", new Object[]{mid, did})).request().post(null);
     }
@@ -173,6 +193,14 @@ public class RestClient {
 
     public void deleteDesignerProduct(String id) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("deleteDesignerProducts/{0}", new Object[]{id})).request().delete();
+    }
+
+    public void registerUser(String name, String password, String email, String mobileno, String address, String image, String dob) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("registerUser/{0}/{1}/{2}/{3}/{4}/{5}/{6}", new Object[]{name, password, email, mobileno, address, image, dob})).request().post(null);
+    }
+
+    public void deleteUser(String id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("deleteUser/{0}", new Object[]{id})).request().delete();
     }
 
     public void deleteCelebrity(String id) throws ClientErrorException {

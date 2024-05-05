@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Profile Page</title>
+    </h:head>
+    <h:body>
+        <ui:include src="./adminHeader.xhtml" />
+
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+
+                        <div class="col-sm-12">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Admin/Profile.jsf">Home</a></li>
+                                <li class="breadcrumb-item active">Profile</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-md-9">
+
+                            <!-- Profile Image -->
+                            <div class="card card-primary card-outline">
+                                <div class="card-body box-profile">
+                                    <!--<div class="card-header p-2">-->
+                                    <!--                                    <ul class="nav nav-pills">
+                                    ]                                        <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                                                                        </ul>
+                                                                    </div>-->
+                                    <div class="text-center">
+                                        <img class="profile-user-img img-fluid img-circle"
+                                             src="#{request.contextPath}/public/dist/img/user4-128x128.jpg"
+                                             alt="User profile picture"/>
+                                    </div>
+
+                                    <h3 class="profile-username text-center">Nina Mcintire</h3>
+
+                                    <p class="text-muted text-center">Software Engineer</p>
+
+                                    <div class="card">
+                                        <div class="card-header d-flex justify-content-end">
+                                            <a class="ml-auto" data-toggle="modal" data-target="#modal-default">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </div>
+
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <strong><i class="fas fa-book mr-1"></i> Education</strong>
+
+                                            <p class="text-muted">
+                                                B.S. in Computer Science from the University of Tennessee at Knoxville
+                                            </p>
+
+                                            <hr/>
+
+                                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                                            <p class="text-muted">Malibu, California</p>
+
+                                            <hr/>
+
+                                            <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+                                            <p class="text-muted">
+                                                <span class="tag tag-danger">UI Design</span>
+                                                <span class="tag tag-success">Coding</span>
+                                                <span class="tag tag-info">Javascript</span>
+                                                <span class="tag tag-warning">PHP</span>
+                                                <span class="tag tag-primary">Node.js</span>
+                                            </p>
+
+                                            <hr/>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+
+                        </div>
+
+                    </div>
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+
+        </div>
+
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Profile</h4>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputName" placeholder="Name"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputName2" class="col-sm-2 col-form-label">Location</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputName2" placeholder="location"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputSkills" placeholder="Skills"/>
+                                </div>
+                            </div>
+                            
+                                <div style="text-align: center;" class="pb-3">
+                                    <button class="w-50 btn text-white" style="background-color: #212a47;">Submit</button>
+                                </div>
+                         
+                        </form>
+                        
+                    </div>
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </h:body>
+</html>

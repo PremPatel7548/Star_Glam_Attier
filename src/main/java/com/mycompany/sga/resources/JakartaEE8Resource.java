@@ -1,5 +1,6 @@
 package com.mycompany.sga.resources;
 
+import Beans.UserBeanLocal;
 import Beans.adminBeanLocal;
 import Beans.designerBeanLocal;
 import Entitys.CategoryTb;
@@ -10,6 +11,7 @@ import Entitys.MovieCelebrity;
 import Entitys.MovieDesigner;
 import Entitys.MovieTb;
 import Entitys.ProductTb;
+import Entitys.UserTb;
 import Entitys.SongTb;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,6 +37,8 @@ public class JakartaEE8Resource {
     designerBeanLocal designer;
     @EJB
     adminBeanLocal admin;
+    @EJB
+    UserBeanLocal user;
 
 //----------------------------------------------------------------------------------------------------------------   
 //                                            Designer Module Rest Logic
@@ -322,4 +326,56 @@ public class JakartaEE8Resource {
         admin.editMovieDesigner(id, mid, did);
     }
 
+    
+    //---------------------------------------------------------------------------------------------------------------- 
+//                                          User Module Rest Logic 
+//----------------------------------------------------------------------------------------------------------------  
+    
+//   ===================
+//     User
+//   ===================
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("displayUsers")
+    public Collection<UserTb> displayUsers()
+    {
+        return user.displayUsers();
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getUserById/{id}")
+    public UserTb getUserById(@PathParam("id") Integer id)
+    {
+        return user.getUserById(id);
+    }
+    
+    @POST
+    @Path("registerUser/{name}/{password}/{email}/{mobileno}/{address}/{image}/{dob}")
+    public void registerUser(@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno") String mobileno,@PathParam("address") String address,@PathParam("image") String image,@PathParam("dob") Date date)
+    {
+        user.RegisterUser(name, password, email, mobileno, address, image, date);
+    }
+    
+    @DELETE
+    @Path("deleteUser/{id}")
+    public void deleteUser(@PathParam("id") Integer id)
+    {
+        user.deleteUser(id);
+    }
+    
+    @POST
+    @Path("editUser/{id}/{name}/{password}/{email}/{mobileno}/{address}/{image}/{dob}")
+    public void editUser(@PathParam("id") Integer id,@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno") String mobileno,@PathParam("address") String address,@PathParam("image") String image,@PathParam("dob") Date date)
+    {
+        user.editUser(id, name, password, email, mobileno, address, image, date);
+    }
+
+    @POST
+    @Path("afterRegister/{username}")
+    public void afterRegister(@PathParam("username") String username)
+    {
+        user.afterRegister(username);
+    }
 }

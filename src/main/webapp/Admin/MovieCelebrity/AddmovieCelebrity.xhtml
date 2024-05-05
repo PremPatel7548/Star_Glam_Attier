@@ -43,7 +43,7 @@
 
                                         <div class="input-group date mb-3">
                                             <div class="input-group-append" >
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                <div class="input-group-text"><i class="fa fa-film"></i></div>
                                             </div>
                                             <p:selectOneMenu id="movies" value="#{adminMovieCelebrityBean.movie_id}" style="width:470px">
                                                 <f:selectItems value="#{adminMoviesBean.movieList}" var="movie" itemLabel="#{movie.name}" itemValue="#{movie.id}"/>
@@ -59,7 +59,7 @@
 
                                         <div class="input-group date mb-3">
                                             <div class="input-group-append" >
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                <div class="input-group-text"><i class="fa fa-user"></i></div>
                                             </div>
                                             <p:selectOneMenu id="celebritys" value="#{adminMovieCelebrityBean.celebrity_id}" style="width:470px">
                                                 <f:selectItems value="#{adminCelebrityBean.celebrityTbList}" var="c" itemLabel="#{c.name}" itemValue="#{c.id}"/>

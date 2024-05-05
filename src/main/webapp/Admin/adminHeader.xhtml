@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="#{request.contextPath}/public/plugins/daterangepicker/daterangepicker.css" />
 
         <!-- Toastr -->
-        <link rel="stylesheet" href="#{request.contextPath}/plugins/toastr/toastr.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/public/plugins/toastr/toastr.min.css"/>
 
         <link rel="stylesheet" href="#{request.contextPath}/public/plugins/summernote/summernote-bs4.min.css" />
         <!--datatable-->
@@ -42,57 +42,38 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <!--        <li class="nav-item d-none d-sm-inline-block">
-                            <a href="index3.html" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item d-none d-sm-inline-block">
-                            <a href="#" class="nav-link">Contact</a>
-                        </li>-->
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
+                 <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+                
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                        <img src="#{request.contextPath}/public/uploads/blog-01.jpg" class="img-circle elevation-2" alt="User Image" style="width: 30px; height: 30px; cursor:pointer;" />
-
+                        <img src="#{request.contextPath}/public/dist/img/user4-128x128.jpg" class="img-circle elevation-2" alt="User Image" style="width: 30px; height: 30px; cursor:pointer;" />
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="profileDropdown" style="cursor: pointer">
-                        <a class="dropdown-item">
+                        <a class="dropdown-item" href="#{request.contextPath}/Admin/Profile.jsf">
                             <i class="fas fa-edit"></i> Edit Profile
                         </a>
-                        <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider"></div>
                         <a class="dropdown-item">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </a>
                     </div>
                 </div>
 
-                <!--        <li class="nav-item">
-                
-                        <li class="nav-item">
-                            <a class="nav-link" asp-action="Logout" asp-controller="MedicalShopRegister">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                            </a>
-                        </li>-->
-
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
-                <!--        <li class="nav-item">
-                        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                        </a>
-                        </li>-->
+               
             </ul>
         </nav>
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar elevation-4" style="position: absolute; background-color: #212a47">
+        <aside class="main-sidebar elevation-4" style="position: absolute;  background-color: #212a47">
             <!-- Brand Logo -->
             <!--    <a href="index3.html" class="brand-link">
                 <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" />
@@ -111,24 +92,12 @@
                     </div>
                 </div>
 
-                <!-- SidebarSearch Form -->
-                <!--        <div class="form-inline">
-                        <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search" />
-                        <div class="input-group-append">
-                        <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                        </button>
-                        </div>
-                        </div>
-                        </div>-->
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column h-auto" data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-item">
-                            <a class="nav-link" style="cursor: pointer">
+                            <a class="nav-link" style="cursor: pointer" href="#{request.contextPath}/Admin/Dashboard.jsf">
                                 <i class="nav-icon fas fa-tachometer-alt" style="color: #929cbe"></i>
 
                                 <p style="color: #929cbe">
@@ -139,7 +108,7 @@
 
                         <li class="nav-header text-white align-items-start">ADMIN MENU</li>
                         <li class="nav-item" style="cursor: pointer">
-                            <a class="nav-link" href="#{request.contextPath}/Admin/category/CategoryList.jsf">
+                            <a class="nav-link" href="#{request.contextPath}/Admin/Category/CategoryList.jsf">
                                 <i class="nav-icon fas fa-list" style="color: #929cbe"></i>
                                 <p style="color: #929cbe">
                                     Categories
@@ -220,6 +189,10 @@
         <script src="#{request.contextPath}/public/dist/js/demo.js"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="#{request.contextPath}/public/dist/js/pages/dashboard.js"></script>
+        <script src="#{request.contextPath}/public/dist/js/pages/dashboard2.js"></script>
+
+        <script src="#{request.contextPath}/public/plugins/chart.js/Chart.min.js"></script>
+
         <!-- Datatable -->
         <script src="#{request.contextPath}/public/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
         <script src="#{request.contextPath}/public/plugins/datatables-buttons/js/buttons.print.min.js"></script>
@@ -230,5 +203,7 @@
         <script src="#{request.contextPath}/public/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
         <script src="#{request.contextPath}/public/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
         <script src="#{request.contextPath}/public/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
+
     </h:body>
 </html>

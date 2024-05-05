@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="public/assets/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css"/>
+
+        <!-- STYLE CSS -->
+        <link rel="stylesheet" href="public/assets/css/registerform/style.css"/>
+    </h:head>
+    <h:body>
+
+        <div class="wrapper" style="background-image: url('public/assets/images/registerform/bg-registration-form-1.jpg');">
+            <div class="inner">
+                <div class="image-holder">
+                    <img src="public/assets/images/registerform/bg-registration-form-1.jpg" alt="" style="height: 500px"/>
+                </div>
+                <form action="">
+                    <h3>Registration Form</h3>
+                    <div class="form-group">
+                        <input type="text" placeholder="First Name" class="form-control"/>
+                        <input type="text" placeholder="Last Name" class="form-control"/>
+                    </div>
+                    <div class="form-wrapper">
+                        <input type="text" placeholder="Username" class="form-control"/>
+                        <i class="zmdi zmdi-account"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <input type="text" placeholder="Email Address" class="form-control"/>
+                        <i class="zmdi zmdi-email"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <select name="" id="" class="form-control">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="femal">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <input type="password" placeholder="Password" class="form-control"/>
+                        <i class="zmdi zmdi-lock"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <input type="password" placeholder="Confirm Password" class="form-control"/>
+                        <i class="zmdi zmdi-lock"></i>
+                    </div>
+                    <button>Register
+                        <i class="zmdi zmdi-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </h:body>
+</html>

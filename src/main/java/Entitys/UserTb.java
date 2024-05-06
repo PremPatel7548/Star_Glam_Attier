@@ -37,6 +37,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "UserTb.findByEmail", query = "SELECT u FROM UserTb u WHERE u.email = :email"),
     @NamedQuery(name = "UserTb.findByPassword", query = "SELECT u FROM UserTb u WHERE u.password = :password"),
     @NamedQuery(name = "UserTb.findByMobileno", query = "SELECT u FROM UserTb u WHERE u.mobileno = :mobileno"),
+    @NamedQuery(name = "UserTb.findByGender", query = "SELECT u FROM UserTb u WHERE u.gender = :gender"),
     @NamedQuery(name = "UserTb.findByAddress", query = "SELECT u FROM UserTb u WHERE u.address = :address"),
     @NamedQuery(name = "UserTb.findByImage", query = "SELECT u FROM UserTb u WHERE u.image = :image"),
     @NamedQuery(name = "UserTb.findByDob", query = "SELECT u FROM UserTb u WHERE u.dob = :dob")})
@@ -72,6 +73,11 @@ public class UserTb implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
+    @Column(name = "gender")
+    private String gender;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "address")
     private String address;
     @Basic(optional = false)
@@ -100,12 +106,13 @@ public class UserTb implements Serializable {
         this.id = id;
     }
 
-    public UserTb(Integer id, String name, String email, String password, String mobileno, String address, String image, Date dob) {
+    public UserTb(Integer id, String name, String email, String password, String mobileno, String gender, String address, String image, Date dob) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.mobileno = mobileno;
+        this.gender = gender;
         this.address = address;
         this.image = image;
         this.dob = dob;
@@ -149,6 +156,14 @@ public class UserTb implements Serializable {
 
     public void setMobileno(String mobileno) {
         this.mobileno = mobileno;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getAddress() {

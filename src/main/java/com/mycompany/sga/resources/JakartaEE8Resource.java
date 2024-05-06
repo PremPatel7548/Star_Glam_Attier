@@ -352,10 +352,10 @@ public class JakartaEE8Resource {
     }
     
     @POST
-    @Path("registerUser/{name}/{password}/{email}/{mobileno}/{address}/{image}/{dob}")
-    public void registerUser(@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno") String mobileno,@PathParam("address") String address,@PathParam("image") String image,@PathParam("dob") Date date)
+    @Path("registerUser/{name}/{password}/{email}/{mobileno}/{gender}/{address}/{image}/{dob}")
+    public void registerUser(@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno") String mobileno,@PathParam("gender") String gender,@PathParam("address") String address,@PathParam("image") String image,@PathParam("dob") Date date)
     {
-        user.RegisterUser(name, password, email, mobileno, address, image, date);
+        user.RegisterUser(name, password, email, mobileno,gender, address, image, date);
     }
     
     @DELETE
@@ -366,10 +366,10 @@ public class JakartaEE8Resource {
     }
     
     @POST
-    @Path("editUser/{id}/{name}/{password}/{email}/{mobileno}/{address}/{image}/{dob}")
-    public void editUser(@PathParam("id") Integer id,@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno") String mobileno,@PathParam("address") String address,@PathParam("image") String image,@PathParam("dob") Date date)
+    @Path("editUser/{id}/{name}/{password}/{email}/{mobileno}/{gender}/{address}/{image}/{dob}")
+    public void editUser(@PathParam("id") Integer id,@PathParam("name") String name,@PathParam("password") String password,@PathParam("email") String email,@PathParam("mobileno") String mobileno,@PathParam("gender") String gender,@PathParam("address") String address,@PathParam("image") String image,@PathParam("dob") Date date)
     {
-        user.editUser(id, name, password, email, mobileno, address, image, date);
+        user.editUser(id, name, password, email, mobileno,gender, address, image, date);
     }
 
     @POST

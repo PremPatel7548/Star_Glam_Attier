@@ -24,13 +24,14 @@ public class UserBean implements UserBeanLocal {
     
     
     @Override
-    public void RegisterUser(String name,String password,String email,String mobileno,String address,String image,Date dob)
+    public void RegisterUser(String name,String password,String email,String mobileno,String gender,String address,String image,Date dob)
     {
         UserTb ut = new UserTb();
         ut.setName(name);
         ut.setPassword(password);
         ut.setEmail(email);
         ut.setMobileno(mobileno);
+        ut.setGender(gender);
         ut.setAddress(address);
         ut.setImage(image);
         ut.setDob(dob);
@@ -61,13 +62,14 @@ public class UserBean implements UserBeanLocal {
     }
     
     @Override
-    public void editUser(Integer id,String name,String password,String email,String mobileno,String address,String image,Date dob)
+    public void editUser(Integer id,String name,String password,String email,String mobileno,String gender,String address,String image,Date dob)
     {
         UserTb ut = em.find(UserTb.class, id);
         ut.setName(name);
         ut.setPassword(password);
         ut.setEmail(email);
         ut.setMobileno(mobileno);
+        ut.setGender(gender);
         ut.setAddress(address);
         ut.setImage(image);
         ut.setDob(dob);

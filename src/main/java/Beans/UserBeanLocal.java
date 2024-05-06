@@ -15,10 +15,10 @@ import javax.ejb.Local;
  */
 @Local
 public interface UserBeanLocal {
-    public void RegisterUser(String name,String password,String email,String mobileno,String address,String image,Date dob);
+    public void RegisterUser(String name,String password,String email,String mobileno,String gender,String address,String image,Date dob);
     public void afterRegister(String username);
     public Collection<UserTb> displayUsers();
     public void deleteUser(Integer id);
-    public void editUser(Integer id,String name,String password,String email,String mobileno,String address,String image,Date dob);
+    public void editUser(Integer id,String name,String password,String email,String mobileno,String gender,String address,String image,Date dob);
     public UserTb getUserById(Integer id);
 }

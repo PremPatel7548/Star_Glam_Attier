@@ -17,6 +17,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -31,6 +33,7 @@ import javax.ws.rs.core.MediaType;
  * @author
  */
 @Path("rest")
+@DeclareRoles({"Admin","User"})
 public class JakartaEE8Resource {
 
     @EJB
@@ -108,24 +111,28 @@ public class JakartaEE8Resource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("displayCategorys")
+    @RolesAllowed("Admin")
     public Collection<CategoryTb> displayCategorys() {
         return admin.getCategorys();
     }
 
     @POST
     @Path("addCategory/{name}")
+    @RolesAllowed("Admin")
     public void addCategory(@PathParam("name") String name) {
         admin.addCategory(name);
     }
 
     @DELETE
     @Path("deleteCategory/{id}")
+    @RolesAllowed("Admin")
     public void deleteCategory(@PathParam("id") Integer id) {
         admin.deleteCategory(id);
     }
 
     @POST
     @Path("updateCategory/{id}/{name}")
+    @RolesAllowed("Admin")
     public void updateCategory(@PathParam("id") Integer id, @PathParam("name") String name) {
         admin.editCategory(id, name);
     }
@@ -136,24 +143,28 @@ public class JakartaEE8Resource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("displayMovieCategorys")
+    @RolesAllowed("Admin")
     public Collection<MovieCategoryTb> displayMovieCategorys() {
         return admin.getMovieCategorys();
     }
 
     @POST
     @Path("addMovieCategory/{name}")
+    @RolesAllowed("Admin")
     public void addMovieCategory(@PathParam("name") String name) {
         admin.addMovieCategory(name);
     }
 
     @DELETE
     @Path("deleteMovieCategory/{id}")
+    @RolesAllowed("Admin")
     public void deleteMovieCategory(@PathParam("id") Integer id) {
         admin.deleteMovieCategory(id);
     }
 
     @POST
     @Path("updateMovieCategory/{id}/{name}")
+    @RolesAllowed("Admin")
     public void updateMovieCategory(@PathParam("id") Integer id, @PathParam("name") String name) {
         admin.editMovieCategory(id, name);
     }
@@ -164,12 +175,14 @@ public class JakartaEE8Resource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("displayCelebrity")
+    @RolesAllowed("Admin")
     public Collection<CelebrityTb> displayCelebrity() {
         return admin.getCelebritys();
     }
 
     @POST
     @Path("addCelebrity/{name}/{dob}/{gender}/{image}")
+    @RolesAllowed("Admin")
     public void addCelebrity(@PathParam("name") String name, @PathParam("dob") String dob, @PathParam("gender") String gender, @PathParam("image") String image) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -183,12 +196,14 @@ public class JakartaEE8Resource {
 
     @DELETE
     @Path("deleteCelebrity/{id}")
+    @RolesAllowed("Admin")
     public void deleteCelebrity(@PathParam("id") Integer id) {
         admin.deleteCelebrity(id);
     }
 
     @POST
     @Path("updateCelebrity/{id}/{name}/{dob}/{gender}/{image}")
+    @RolesAllowed("Admin")
     public void updateCelebrity(@PathParam("id") Integer id, @PathParam("name") String name, @PathParam("dob") String dob, @PathParam("gender") String gender, @PathParam("image") String image) throws ParseException {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -206,12 +221,14 @@ public class JakartaEE8Resource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("displayMovie")
+    @RolesAllowed("Admin")
     public Collection<MovieTb> displayMovie() {
         return admin.getMovies();
     }
 
     @POST
     @Path("addMovie/{name}/{date}/{mcid}")
+    @RolesAllowed("Admin")
     public void addMovie(@PathParam("name") String name, @PathParam("date") String date, @PathParam("mcid") Integer mcid) throws ParseException {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -225,12 +242,14 @@ public class JakartaEE8Resource {
 
     @DELETE
     @Path("deleteMovie/{id}")
+    @RolesAllowed("Admin")
     public void deleteMovie(@PathParam("id") Integer id) {
         admin.deleteMovie(id);
     }
 
     @POST
     @Path("updateMovie/{id}/{name}/{date}/{mcid}")
+    @RolesAllowed("Admin")
     public void updateMovie(@PathParam("id") Integer id, @PathParam("name") String name, @PathParam("date") String date, @PathParam("mcid") Integer mcid) throws ParseException {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -248,24 +267,28 @@ public class JakartaEE8Resource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("displaySongs")
+    @RolesAllowed("Admin")
     public Collection<SongTb> displaySongs() {
         return admin.getSongs();
     }
 
     @POST
     @Path("addSong/{name}/{mid}")
+    @RolesAllowed("Admin")
     public void addSong(@PathParam("name") String name, @PathParam("mid") Integer mid) {
         admin.addSong(name, mid);
     }
 
     @DELETE
     @Path("deleteSong/{id}")
+    @RolesAllowed("Admin")
     public void deleteSong(@PathParam("id") Integer id) {
         admin.deleteSong(id);
     }
 
     @POST
     @Path("UpdateSong/{id}/{name}/{mid}")
+    @RolesAllowed("Admin")
     public void updateSong(@PathParam("id") Integer id, @PathParam("name") String name, @PathParam("mid") Integer mid) {
         admin.editSong(id, name, mid);
     }
@@ -276,24 +299,28 @@ public class JakartaEE8Resource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("displayMovieCelebrity")
+    @RolesAllowed("Admin")
     public Collection<MovieCelebrity> displayMovieCelebrity() {
         return admin.getMovieCelebrity();
     }
 
     @POST
     @Path("addMovieCelebrity/{mid}/{cid}")
+    @RolesAllowed("Admin")
     public void addMovieCelebrity(@PathParam("mid") Integer mid, @PathParam("cid") Integer cid) {
         admin.addMovieCelebrity(mid, cid);
     }
 
     @DELETE
     @Path("deleteMovieCelebrity/{id}")
+    @RolesAllowed("Admin")
     public void deleteMovieCelebrity(@PathParam("id") Integer id) {
         admin.deleteMovieCelebrity(id);
     }
 
     @POST
     @Path("updateMovieCelebrity/{id}/{mid}/{cid}")
+    @RolesAllowed("Admin")
     public void updateMovieCelebrity(@PathParam("id") Integer id, @PathParam("mid") Integer mid, @PathParam("cid") Integer cid) {
         admin.editMovieCelebrity(id, mid, cid);
     }
@@ -304,24 +331,28 @@ public class JakartaEE8Resource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("displayMovieDesigner")
+    @RolesAllowed("Admin")
     public Collection<MovieDesigner> displayMovieDesigner() {
         return admin.getMovieDesigner();
     }
 
     @POST
     @Path("addMovieDesigner/{mid}/{did}")
+    @RolesAllowed("Admin")
     public void addMovieDesigner(@PathParam("mid") Integer mid, @PathParam("did") Integer did) {
         admin.addMovieDesigner(mid, did);
     }
 
     @DELETE
     @Path("deleteMovieDesigner/{id}")
+    @RolesAllowed("Admin")
     public void deleteMovieDesigner(@PathParam("id") Integer id) {
         admin.deleteMovieDesigner(id);
     }
 
     @POST
     @Path("updateMovieDesigner/{id}/{mid}/{did}")
+    @RolesAllowed("Admin")
     public void updateMovieDesigner(@PathParam("id") Integer id, @PathParam("mid") Integer mid, @PathParam("did") Integer did) {
         admin.editMovieDesigner(id, mid, did);
     }
@@ -377,5 +408,20 @@ public class JakartaEE8Resource {
     public void afterRegister(@PathParam("username") String username)
     {
         user.afterRegister(username);
+    }
+    
+    @GET
+    @Path("p1")
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("Admin")
+    public String path(){
+        return "admin allowed";
+    }
+    @GET
+    @Path("p2")
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("User")
+    public String path2(){
+        return "User allowed";
     }
 }

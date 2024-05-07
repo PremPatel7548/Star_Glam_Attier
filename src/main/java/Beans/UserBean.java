@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 
 /**
  *
@@ -28,7 +29,9 @@ public class UserBean implements UserBeanLocal {
     {
         UserTb ut = new UserTb();
         ut.setName(name);
-        ut.setPassword(password);
+        Pbkdf2PasswordHashImpl pb = new Pbkdf2PasswordHashImpl();
+        String hash = pb.generate(password.toCharArray());
+        ut.setPassword(hash);
         ut.setEmail(email);
         ut.setMobileno(mobileno);
         ut.setGender(gender);

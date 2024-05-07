@@ -9,18 +9,23 @@
     <h:body>
         <div class="wrapper" style="background-image: url('#{request.contextPath}/public/assets/images/loginform/bg-login-form-2.jpg');">
             <div class="inner">
-                <form action="">
+                <h:form>
                     <h3>Login Here</h3>
                     <div class="form-wrapper">
                         <label for="">Email</label>
-                        <input type="text" class="form-control"/>
+                        <!--<input type="text" class="form-control"/>-->
+                        <h:inputText value="#{loginBean.username}"></h:inputText>
                     </div>
                     <div class="form-wrapper">
                         <label for="">Password</label>
-                        <input type="password" class="form-control"/>
+                        <!--<input type="password" class="form-control"/>-->
+                        <h:inputSecret value="#{loginBean.password}"></h:inputSecret>
                     </div>
-                    <button>Login</button>
-                </form>
+                    <h:selectBooleanCheckbox value="#{loginBean.rememberme}" /> Remember Me<br/>
+            <h:commandButton value="Login" action="#{loginBean.login()}"/><br/>
+            <h:outputText value="#{loginBean.errorstatus}" style="color:red"/><br/>
+                    
+                </h:form>
             </div>
         </div>
     </h:body>

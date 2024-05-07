@@ -62,9 +62,12 @@
                             <i class="fas fa-edit"></i> Edit Profile
                         </a>
                     <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
+        
+                    <h:form>
+                            <h:commandButton value="Logout" class="dropdown-item" action="#{loginBean.logout()}"></h:commandButton>
+                            <!--<i class="fas fa-sign-out-alt"></i>-->
+                    </h:form>
+                        
                     </div>
                 </div>
 
@@ -108,7 +111,7 @@
 
                         <li class="nav-header text-white align-items-start">ADMIN MENU</li>
                         <li class="nav-item" style="cursor: pointer">
-                            <a class="nav-link" href="#{request.contextPath}/Admin/Category/CategoryList.jsf">
+                            <a class="nav-link" href="#{request.contextPath}/Admin/category/CategoryList.jsf">
                                 <i class="nav-icon fas fa-list" style="color: #929cbe"></i>
                                 <p style="color: #929cbe">
                                     Categories

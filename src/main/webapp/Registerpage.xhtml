@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" href="public/assets/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css"/>
@@ -14,43 +17,80 @@
         <div class="wrapper" style="background-image: url('public/assets/images/registerform/bg-registration-form-1.jpg');">
             <div class="inner">
                 <div class="image-holder">
-                    <img src="public/assets/images/registerform/bg-registration-form-1.jpg" alt="" style="height: 500px"/>
+                    <img src="public/assets/images/registerform/bg-registration-form-1.jpg" alt="" style="height: 650px"/>
                 </div>
-                <form action="">
+                <h:form enctype="multipart/form-data">
                     <h3>Registration Form</h3>
-                    <div class="form-group">
-                        <input type="text" placeholder="First Name" class="form-control"/>
-                        <input type="text" placeholder="Last Name" class="form-control"/>
-                    </div>
+
                     <div class="form-wrapper">
-                        <input type="text" placeholder="Username" class="form-control"/>
+                        <h:inputText value="#{registerBean.ut.name}" class="form-control">
+                            <f:passThroughAttribute name="placeholder" value="Username" />
+                        </h:inputText>
                         <i class="zmdi zmdi-account"></i>
                     </div>
                     <div class="form-wrapper">
-                        <input type="text" placeholder="Email Address" class="form-control"/>
+                        <h:inputText value="#{registerBean.ut.email}" class="form-control">
+                            <f:passThroughAttribute name="placeholder" value="Email Address" />
+                        </h:inputText>
                         <i class="zmdi zmdi-email"></i>
                     </div>
                     <div class="form-wrapper">
-                        <select name="" id="" class="form-control">
-                            <option value="">Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="femal">Female</option>
-                            <option value="other">Other</option>
-                        </select>
+                        <h:inputText value="#{registerBean.ut.mobileno}" class="form-control">
+                            <f:passThroughAttribute name="placeholder" value="Mobile Number" />
+                        </h:inputText>
+                        <i class="zmdi zmdi-smartphone"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <!--                        <select name="" id="" class="form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="femal">Female</option>
+                                                    <option value="other">Other</option>
+                                                </select>-->
+                        <h:selectOneMenu value="#{registerBean.ut.gender}" class="form-control">
+                            <f:selectItem itemLabel="Select Gender" itemValue=""></f:selectItem>
+                            <f:selectItem itemLabel="Male" itemValue="Male"></f:selectItem>
+                            <f:selectItem itemLabel="Female" itemValue="Female"></f:selectItem>
+                            <f:selectItem itemLabel="Other" itemValue="Other"></f:selectItem>
+                        </h:selectOneMenu>
                         <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
                     </div>
                     <div class="form-wrapper">
-                        <input type="password" placeholder="Password" class="form-control"/>
+                        <h:inputText value="#{registerBean.ut.address}" class="form-control">
+                            <f:passThroughAttribute name="placeholder" value="Address" />
+                        </h:inputText>
+                        <i class="zmdi zmdi-pin"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <h:inputSecret value="#{registerBean.ut.password}" class="form-control">
+                            <f:passThroughAttribute name="placeholder" value="Password" />
+                        </h:inputSecret>
                         <i class="zmdi zmdi-lock"></i>
                     </div>
                     <div class="form-wrapper">
-                        <input type="password" placeholder="Confirm Password" class="form-control"/>
+                        <h:inputSecret value="#{registerBean.cpass}" class="form-control">
+                            <f:passThroughAttribute name="placeholder" value="Confirm Password" />
+                        </h:inputSecret>
                         <i class="zmdi zmdi-lock"></i>
                     </div>
-                    <button>Register
+                    <c:if test="${not empty registerBean.errorMsg}">
+                    <div style="color:red;">
+                         ${registerBean.errorMsg}
+                    </div>
+                    </c:if>
+                    <div class="form-wrapper">
+                        <p:fileUpload id="profile" value="#{registerBean.file}" mode="simple" class="form-control"/>
+                        <i class="zmdi zmdi-user"></i>
+                    </div>
+                    <div class="form-wrapper">
+                        <p:calendar value="#{registerBean.ut.dob}" placeholder="Select Date Of Birth"/>
+                        <i class="zmdi zmdi-date"></i>
+                    </div>
+                    <button>
+                        <h:commandButton value="Register" action="#{registerBean.registerUser()}"></h:commandButton>
                         <i class="zmdi zmdi-arrow-right"></i>
                     </button>
-                </form>
+                </h:form>
             </div>
         </div>
     </h:body>

@@ -14,15 +14,15 @@
                     <div class="form-wrapper">
                         <label for="">Email</label>
                         <!--<input type="text" class="form-control"/>-->
-                        <h:inputText value="#{loginBean.username}"></h:inputText>
+                        <h:inputText value="#{loginBean.username}" class="form-control"></h:inputText>
                     </div>
                     <div class="form-wrapper">
                         <label for="">Password</label>
                         <!--<input type="password" class="form-control"/>-->
-                        <h:inputSecret value="#{loginBean.password}"></h:inputSecret>
+                        <h:inputSecret value="#{loginBean.password}" class="form-control"></h:inputSecret>
                     </div>
                     <h:selectBooleanCheckbox value="#{loginBean.rememberme}" /> Remember Me<br/>
-            <h:commandButton value="Login" action="#{loginBean.login()}"/><br/>
+                    <h:commandButton value="Login" action="#{loginBean.login()}" /><br/>
             <h:outputText value="#{loginBean.errorstatus}" style="color:red"/><br/>
                     
                 </h:form>

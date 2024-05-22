@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="../adminHeader.xhtml" />
+
+        <div class="content-wrapper" style="padding-left: 30px;padding-right: 30px;padding-bottom:20px">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Movie Celebrities</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Admin/Dashboard.jsf">Home</a></li>
+                                <li class="breadcrumb-item active">Movie Designer</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+
+                <c:if test="${not empty adminMovieCelebrityBean.successmessage}">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        ${adminMovieCelebrityBean.successmessage}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    #{adminMovieCelebrityBean.clearSuccessMessage()}
+                </c:if>
+                <h:form>
+                    <h:commandLink class="btn text-white" style="background-color: #212a47;" action="AddmovieCelebrity.jsf" value="Add New" />
+                </h:form>
+
+
+                <div class="card" style="margin-top: 20px;">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th> Id</th>
+                                    <th> Movie</th>
+                                    <th> Designer</th>
+                                    <th> Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="#{adminMovieDesigner.mds}" var="m">
+                                    <tr>
+                                        <td>#{m.id}</td>
+                                        <td>#{m.movieId.name}</td>
+
+                                        <td>#{m.designerId.name}</td>
+                                        <td>
+                                            <h:form>
+                                                <h:commandButton value="Remove" action="#{adminMovieDesigner.removeMovieDesigner(m.id)}" class="btn text-white" style="background-color:red;"></h:commandButton>
+                                            </h:form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        <script>
+            $(document).ready(function () {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "pageLength": 5,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                });
+            });
+        </script>
+    </h:body>
+</html>

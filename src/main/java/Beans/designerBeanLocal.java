@@ -28,4 +28,6 @@ public interface designerBeanLocal {
     public Collection<ProductTb> getProducts();
     public void deleteProduct(Integer id);
     public void editProduct(Integer id,String name,Integer price,Integer stock,String size,String image,Integer cid,Integer mid,Integer cbid,Integer sid,Integer did);
+    
+    
 }

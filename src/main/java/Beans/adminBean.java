@@ -244,7 +244,12 @@ public class adminBean implements adminBeanLocal {
         md.setDesignerId(d);
         em.merge(md);
     }
-    
-    
+
+    @Override
+    public Collection<MovieTb> getMovieForDesigner() {
+        String sql = "SELECT m.* FROM movie_tb m LEFT JOIN movie_designer md ON m.id = md.movie_id WHERE md.movie_id IS NULL";
+        Collection<MovieTb> movies = em.createNativeQuery(sql,MovieTb.class).getResultList();
+        return movies;
+    }
     
 }

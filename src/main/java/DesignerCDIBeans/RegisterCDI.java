@@ -2,18 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
  */
-package UserCDIBeans;
+package DesignerCDIBeans;
 
-import Beans.UserBean;
 import Beans.UserBeanLocal;
-import Entitys.UserTb;
+import Beans.designerBeanLocal;
+import Entitys.DesignerTb;
 import RestFullClient.RestClient;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -23,18 +22,53 @@ import org.primefaces.model.file.UploadedFile;
  *
  * @author Admin
  */
-@Named(value = "registerBean")
+@Named(value = "registerCDI")
 @RequestScoped
-public class RegisterBean {
+public class RegisterCDI {
 
-    @EJB UserBeanLocal ub;
+    @EJB designerBeanLocal db;
     RestClient rc;
-    UserTb ut = new UserTb();
+    DesignerTb dt = new DesignerTb();
     UploadedFile file;
     String cpass;
     String ErrorMsg;
-    public RegisterBean() {
+    /**
+     * Creates a new instance of RegisterCDI
+     */
+    public RegisterCDI() {
         rc = new RestClient();
+    }
+
+    public designerBeanLocal getDb() {
+        return db;
+    }
+
+    public void setDb(designerBeanLocal db) {
+        this.db = db;
+    }
+
+    public DesignerTb getDt() {
+        return dt;
+    }
+
+    public void setDt(DesignerTb dt) {
+        this.dt = dt;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+
+    public String getCpass() {
+        return cpass;
+    }
+
+    public void setCpass(String cpass) {
+        this.cpass = cpass;
     }
 
     public String getErrorMsg() {
@@ -46,34 +80,9 @@ public class RegisterBean {
     }
     
     
-
-    public UserTb getUt() {
-        return ut;
-    }
-
-    public String getCpass() {
-        return cpass;
-    }
-
-    public void setCpass(String cpass) {
-        this.cpass = cpass;
-    }
-
-    public void setUt(UserTb ut) {
-        this.ut = ut;
-    }
-
-    public UploadedFile getFile() {
-        return file;
-    }
-
-    public void setFile(UploadedFile file) {
-        this.file = file;
-    }
-    
-    public void registerUser()
+    public void registerDesigner()
     {
-        if(cpass == null ? ut.getPassword() != null : !cpass.equals(ut.getPassword()))
+        if(cpass == null ? dt.getPassword() != null : !cpass.equals(dt.getPassword()))
         {
             ErrorMsg = "Password and confirm password must be same";
         }
@@ -97,14 +106,7 @@ public class RegisterBean {
                 e.printStackTrace();
             }
         }
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String dob = dateFormat.format(ut.getDob());
-        
-//        rc.registerUser(ut.getName(), ut.getPassword(),ut.getEmail(),ut.getMobileno(),ut.getGender(),"India", fileName, String.valueOf(new Date()));
-         ub.RegisterUser(ut.getName(),ut.getPassword(),ut.getEmail(),ut.getMobileno(),ut.getGender(),ut.getAddress(),fileName,ut.getDob());
-//         rc.afterRegister(ut.getName()); 
-         ub.afterRegister(ut.getName());
+        rc.addDesigner(dt.getName(), dt.getPassword(), dt.getEmail(),String.valueOf(dt.getMobileno()), dt.getGender(),fileName);
             ErrorMsg = "";
         }
     }

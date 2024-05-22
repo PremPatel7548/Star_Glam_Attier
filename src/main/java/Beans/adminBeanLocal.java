@@ -63,4 +63,6 @@ public interface adminBeanLocal {
     public Collection<MovieDesigner> getMovieDesigner();
     public void deleteMovieDesigner(Integer id);
     public void editMovieDesigner(Integer id,Integer mid,Integer did);
+    
+    public Collection<MovieTb> getMovieForDesigner();
 }

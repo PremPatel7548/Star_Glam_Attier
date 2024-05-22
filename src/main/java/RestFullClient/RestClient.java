@@ -69,8 +69,8 @@ public class RestClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void updateDesigner(String id, String name, String password, String email, String mobileno, String gender, String image) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updateDesigner/{0}/{1}/{2}/{3}/{4}/{5}/{6}", new Object[]{id, name, password, email, mobileno, gender, image})).request().post(null);
+    public void updateDesigner(String id, String name, String password, String email, String mobileno, String gender, String image, String isapprove) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("updateDesigner/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}", new Object[]{id, name, password, email, mobileno, gender, image, isapprove})).request().post(null);
     }
 
     public void deleteSong(String id) throws ClientErrorException {

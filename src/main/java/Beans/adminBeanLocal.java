@@ -65,4 +65,13 @@ public interface adminBeanLocal {
     public void editMovieDesigner(Integer id,Integer mid,Integer did);
     
     public Collection<MovieTb> getMovieForDesigner();
+    
+    public Integer countCategory();
+    public Integer countCelebrity();
+    public Integer countMovie();
+    public Integer countSong();
+    public Integer countDesigners();
+    public Integer countMovieCategory();
+    public Integer countMovieCelebrity();
+    public Integer countMovieDesigners();
 }

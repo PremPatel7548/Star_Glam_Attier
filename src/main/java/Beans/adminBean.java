@@ -17,6 +17,7 @@ import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -250,6 +251,62 @@ public class adminBean implements adminBeanLocal {
         String sql = "SELECT m.* FROM movie_tb m LEFT JOIN movie_designer md ON m.id = md.movie_id WHERE md.movie_id IS NULL";
         Collection<MovieTb> movies = em.createNativeQuery(sql,MovieTb.class).getResultList();
         return movies;
+    }
+
+    @Override
+    public Integer countCategory() {
+        TypedQuery<Long> query = em.createQuery("select count(c) from CategoryTb c",Long.class);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
+    @Override
+    public Integer countCelebrity() {
+        TypedQuery<Long> query = em.createQuery("select count(c) from CelebrityTb c",Long.class);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
+    @Override
+    public Integer countMovie() {
+        TypedQuery<Long> query = em.createQuery("select count(c) from MovieTb c",Long.class);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
+    @Override
+    public Integer countSong() {
+        TypedQuery<Long> query = em.createQuery("select count(c) from SongTb c",Long.class);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
+    @Override
+    public Integer countDesigners() {
+        TypedQuery<Long> query = em.createQuery("select count(c) from DesignerTb c where c.isApproved=1",Long.class);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
+    @Override
+    public Integer countMovieCategory() {
+        TypedQuery<Long> query = em.createQuery("select count(c) from MovieCategoryTb c",Long.class);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
+    @Override
+    public Integer countMovieCelebrity() {
+        TypedQuery<Long> query = em.createQuery("select count(c) from MovieCelebrity c",Long.class);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
+    @Override
+    public Integer countMovieDesigners() {
+        TypedQuery<Long> query = em.createQuery("select count(c) from MovieDesigner c",Long.class);
+        Long count = query.getSingleResult();
+        return count.intValue();
     }
     
 }

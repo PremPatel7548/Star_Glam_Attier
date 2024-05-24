@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Add Product</title>
+    </h:head>
+    <h:body>
+        <ui:include src="./designerHeader.xhtml" />
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Admin/Dashboard.jsf">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Designer/ProductList.jsf">Products</a></li>
+                                <li class="breadcrumb-item active">Add Product</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="card" style="border: 1px solid #212a47;">
+                            <div class="card-header row justify-content-center">
+                                <h3 class="card-title font-weight-bold" style="color: #212a47; font-size: 25px">Add Product</h3>
+                            </div>
+                            <div class="card-body">
+                                <h:form enctype="multipart/form-data" id="quickForm">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group mb-1">
+                                        <label for="exampleInputName">Enter Name:</label>
+                                        </div>
+                                        <h:inputText id="name" class="form-control" value="#{designerProductBean.pt.name}" required="true" />
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group mb-1">
+                                        <label for="exampleInputPrice">Enter Price:</label>
+                                        </div>
+                                        <h:inputText id="price" class="form-control" value="#{designerProductBean.pt.price}" required="true" />
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="selectcategory">Select Category:</label>
+                                        <p:selectOneMenu id="category" value="#{designerProductBean.cid}" style="width:470px" required="true">
+                                            <f:selectItem itemLabel="--Select Category--" itemValue="" />
+                                            <f:selectItems value="#{designerProductBean.categorys}" var="cat" itemLabel="#{cat.categoryName}" itemValue="#{cat.id}" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="selectmovie">Select Movie:</label>
+                                        <p:selectOneMenu id="movies" value="#{designerProductBean.mid}" style="width:470px" required="true">
+                                            <f:selectItem itemLabel="--Select Movie--" itemValue="" />
+                                            <f:selectItems value="#{designerProductBean.mds}" var="m" itemLabel="#{m.movieId.name}" itemValue="#{m.movieId.id}" />
+                                            <p:ajax listener="#{designerProductBean.onMovieChange}" update="celebrities songs" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="selectcelebrity">Select Celebrity:</label>
+                                        <p:selectOneMenu id="celebrities" value="#{designerProductBean.celid}" style="width:470px">
+                                            <f:selectItem itemLabel="--Select Celebrity--" itemValue="" />
+                                            <f:selectItems value="#{designerProductBean.mcs}" var="c" itemLabel="#{c.celebrityId.name}" itemValue="#{c.celebrityId.id}" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="selectsong">Select Song:</label>
+                                        <p:selectOneMenu id="songs" value="#{designerProductBean.sid}" style="width:470px">
+                                            <f:selectItem itemLabel="--Select Song--" itemValue="" />
+                                            <f:selectItems value="#{designerProductBean.songs}" var="s" itemLabel="#{s.name}" itemValue="#{s.id}" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="exampleInputProfile">Upload Image:</label>
+                                        <p:fileUpload id="image" value="#{designerProductBean.file}" mode="simple" />
+                                    </div>
+                                    <div style="text-align: center;" class="pt-4">
+                                        <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Submit" action="#{designerProductBean.addProduct}" />
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

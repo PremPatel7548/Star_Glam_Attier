@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="./designerHeader.xhtml" />
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Admin/Dashboard.jsf">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Designer/productStock.jsf">Product Stocks</a></li>
+                                <li class="breadcrumb-item active">Add Product Stock</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="card" style="border: 1px solid #212a47;">
+                            <div class="card-header row justify-content-center">
+                                <h3 class="card-title font-weight-bold" style="color: #212a47; font-size: 25px">Add Product Stock</h3>
+                            </div>
+                            <div class="card-body">
+                                <h:form id="quickForm">
+                                    <h:messages globalOnly="true" />
+                                    <h:inputHidden value="#{designerProductStockBean.pt.id}" />
+
+                                    <div>
+                                        <div class="input-group mb-1">
+                                            <label for="productname">Product Name :</label>
+                                        </div>
+                                        <div class="input-group date mb-3">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-film"></i></div>
+                                            </div>
+                                            <h:inputText class="form-control" value="#{designerProductStockBean.pt.name}" readonly="true" />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="input-group mb-1">
+                                            <label for="selectmovie">Current Stock :</label>
+                                        </div>
+                                        <div class="input-group date mb-3">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                            </div>
+                                            <h:inputText class="form-control" value="#{designerProductStockBean.pt.stock}" readonly="true" />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="input-group mb-1">
+                                            <label for="selectmovie">Add Stock :</label>
+                                        </div>
+                                        <div class="input-group date mb-3">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                            </div>
+                                            <h:inputText class="form-control" value="#{designerProductStockBean.pstock}" />
+                                        </div>
+                                    </div>
+
+                                    <div style="text-align: center;" class="pt-4">
+                                        <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Add" action="#{designerProductStockBean.addStock}" />
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

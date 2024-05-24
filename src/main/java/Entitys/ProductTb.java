@@ -35,7 +35,6 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "ProductTb.findByName", query = "SELECT p FROM ProductTb p WHERE p.name = :name"),
     @NamedQuery(name = "ProductTb.findByPrice", query = "SELECT p FROM ProductTb p WHERE p.price = :price"),
     @NamedQuery(name = "ProductTb.findByStock", query = "SELECT p FROM ProductTb p WHERE p.stock = :stock"),
-    @NamedQuery(name = "ProductTb.findBySize", query = "SELECT p FROM ProductTb p WHERE p.size = :size"),
     @NamedQuery(name = "ProductTb.findByImage", query = "SELECT p FROM ProductTb p WHERE p.image = :image")})
 public class ProductTb implements Serializable {
 
@@ -58,11 +57,6 @@ public class ProductTb implements Serializable {
     @NotNull
     @Column(name = "stock")
     private int stock;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "size")
-    private String size;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -97,12 +91,11 @@ public class ProductTb implements Serializable {
         this.id = id;
     }
 
-    public ProductTb(Integer id, String name, int price, int stock, String size, String image) {
+    public ProductTb(Integer id, String name, int price, int stock, String image) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
-        this.size = size;
         this.image = image;
     }
 
@@ -136,14 +129,6 @@ public class ProductTb implements Serializable {
 
     public void setStock(int stock) {
         this.stock = stock;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
     }
 
     public String getImage() {

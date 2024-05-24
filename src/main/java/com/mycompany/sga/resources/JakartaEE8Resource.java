@@ -85,9 +85,9 @@ public class JakartaEE8Resource {
     }
 
     @POST
-    @Path("addDesignerProducts/{name}/{price}/{stock}/{size}/{image}/{cid}/{mid}/{cbid}/{sid}/{did}")
-    public void addDesignerProducts(@PathParam("name") String name, @PathParam("price") Integer price, @PathParam("stock") Integer stock, @PathParam("size") String size, @PathParam("image") String image, @PathParam("cid") Integer cid, @PathParam("mid") Integer mid, @PathParam("cbid") Integer cbid, @PathParam("sid") Integer sid, @PathParam("did") Integer did) {
-        designer.addProduct(name, price, stock, name, image, cid, mid, cbid, sid, did);
+    @Path("addDesignerProducts/{name}/{price}/{stock}/{image}/{cid}/{mid}/{cbid}/{sid}/{did}")
+    public void addDesignerProducts(@PathParam("name") String name, @PathParam("price") Integer price, @PathParam("stock") Integer stock, @PathParam("image") String image, @PathParam("cid") Integer cid, @PathParam("mid") Integer mid, @PathParam("cbid") Integer cbid, @PathParam("sid") Integer sid, @PathParam("did") Integer did) {
+        designer.addProduct(name, price, stock, image, cid, mid, cbid, sid, did);
     }
 
     @DELETE
@@ -97,9 +97,17 @@ public class JakartaEE8Resource {
     }
 
     @POST
-    @Path("updateDesignerProducts/{name}/{price}/{stock}/{size}/{image}/{cid}/{mid}/{cbid}/{sid}/{did}")
-    public void updateDesignerProducts(@PathParam("name") String name, @PathParam("price") Integer price, @PathParam("stock") Integer stock, @PathParam("size") Integer size, @PathParam("image") String image, @PathParam("cid") Integer cid, @PathParam("mid") Integer mid, @PathParam("cbid") Integer cbid, @PathParam("sid") Integer sid, @PathParam("did") Integer did) {
-        designer.editProduct(did, name, price, stock, name, image, cid, mid, cbid, sid, did);
+    @Path("updateDesignerProducts/{id}/{name}/{price}/{stock}/{image}/{cid}/{mid}/{cbid}/{sid}/{did}")
+    public void updateDesignerProducts(@PathParam("id") Integer id,@PathParam("name") String name, @PathParam("price") Integer price, @PathParam("stock") Integer stock, @PathParam("image") String image, @PathParam("cid") Integer cid, @PathParam("mid") Integer mid, @PathParam("cbid") Integer cbid, @PathParam("sid") Integer sid, @PathParam("did") Integer did) {
+        designer.editProduct(id, name, price, stock, image, cid, mid, cbid, sid, did);
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getProductByDesigner/{did}")
+    public Collection<ProductTb> getProductByDesigner(@PathParam("did") Integer did)
+    {
+        return designer.getProductByDesigner(did);
     }
 
 //---------------------------------------------------------------------------------------------------------------- 

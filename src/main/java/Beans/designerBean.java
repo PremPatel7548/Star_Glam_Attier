@@ -7,6 +7,8 @@ package Beans;
 import Entitys.CategoryTb;
 import Entitys.CelebrityTb;
 import Entitys.DesignerTb;
+import Entitys.MovieCelebrity;
+import Entitys.MovieDesigner;
 import Entitys.MovieTb;
 import Entitys.ProductTb;
 import Entitys.SongTb;
@@ -66,7 +68,7 @@ public class designerBean implements designerBeanLocal {
 
     // Product
     @Override
-    public void addProduct(String name, Integer price, Integer stock, String size, String image, Integer cid, Integer mid, Integer cbid, Integer sid, Integer did) {
+    public void addProduct(String name, Integer price, Integer stock, String image, Integer cid, Integer mid, Integer cbid, Integer sid, Integer did) {
        ProductTb p = new ProductTb();
         CategoryTb c = em.find(CategoryTb.class, cid);
         MovieTb m = em.find(MovieTb.class, mid);
@@ -76,7 +78,6 @@ public class designerBean implements designerBeanLocal {
         p.setName(name);
         p.setPrice(price);
         p.setStock(stock);
-        p.setSize(size);
         p.setImage(image);
         p.setCategoryId(c);
         p.setMovieId(m);
@@ -99,7 +100,7 @@ public class designerBean implements designerBeanLocal {
     }
 
     @Override
-    public void editProduct(Integer id, String name, Integer price, Integer stock, String size, String image, Integer cid, Integer mid, Integer cbid, Integer sid, Integer did) {
+    public void editProduct(Integer id, String name, Integer price, Integer stock, String image, Integer cid, Integer mid, Integer cbid, Integer sid, Integer did) {
         ProductTb p = em.find(ProductTb.class, id);
         CategoryTb c = em.find(CategoryTb.class, cid);
         MovieTb m = em.find(MovieTb.class, mid);
@@ -109,7 +110,6 @@ public class designerBean implements designerBeanLocal {
         p.setName(name);
         p.setPrice(price);
         p.setStock(stock);
-        p.setSize(size);
         p.setImage(image);
         p.setCategoryId(c);
         p.setMovieId(m);
@@ -118,5 +118,66 @@ public class designerBean implements designerBeanLocal {
         p.setDesignerId(d);
         em.merge(p);
     }
+
+    @Override
+    public Collection<ProductTb> getProductByDesigner(Integer did) {
+        DesignerTb dt = em.find(DesignerTb.class, did);
+        Collection<ProductTb> products = em.createQuery("select p from ProductTb p where p.designerId =:designer")
+                .setParameter("designer",dt)
+                .getResultList();
+        return products;
+    }
+
+    @Override
+    public Collection<MovieDesigner> getMovieByDesigner(Integer did) {
+        DesignerTb dt = em.find(DesignerTb.class,did);
+        Collection<MovieDesigner> movieDesigner = em.createQuery("select m from MovieDesigner m where m.designerId=:designer")
+                .setParameter("designer",dt)
+                .getResultList();
+        return movieDesigner;
+    }
+
+    @Override
+    public Collection<MovieCelebrity> getCelebrityByMovie(Integer mid) {
+       MovieTb mt = em.find(MovieTb.class,mid);
+       Collection<MovieCelebrity> movieCelebrity = em.createQuery("select m from MovieCelebrity m where m.movieId=:movie")
+               .setParameter("movie", mt)
+               .getResultList();
+       return movieCelebrity;
+    }
+
+    @Override
+    public Collection<SongTb> getSongByMovie(Integer mid) {
+        MovieTb mt = em.find(MovieTb.class, mid);
+        Collection<SongTb> songs = em.createQuery("select s from SongTb s where s.movieId=:movie")
+                .setParameter("movie", mt)
+                .getResultList();
+        return songs;
+    }
+
+    @Override
+    public Collection<CategoryTb> getCategorys() {
+        Collection<CategoryTb> categorys = em.createNamedQuery("CategoryTb.findAll").getResultList();
+        return categorys;
+    }
+
+    @Override
+    public boolean checkLogin(String email, String password) {
+        Collection<DesignerTb> designers = em.createQuery("select d from DesignerTb d where d.email=:email and d.password=:password")
+                .setParameter("email",email)
+                .setParameter("password", password)
+                .getResultList();
+        
+        if(designers.isEmpty())
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    
+    
     
 }

@@ -77,8 +77,8 @@ public class RestClient {
         webTarget.path(java.text.MessageFormat.format("deleteSong/{0}", new Object[]{id})).request().delete();
     }
 
-    public void updateDesignerProducts(String name, String price, String stock, String size, String image, String cid, String mid, String cbid, String sid, String did) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updateDesignerProducts/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}", new Object[]{name, price, stock, size, image, cid, mid, cbid, sid, did})).request().post(null);
+    public void updateDesignerProducts(String id, String name, String price, String stock, String image, String cid, String mid, String cbid, String sid, String did) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("updateDesignerProducts/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}", new Object[]{id, name, price, stock, image, cid, mid, cbid, sid, did})).request().post(null);
     }
 
     public void addCategory(String name) throws ClientErrorException {
@@ -155,6 +155,12 @@ public class RestClient {
         webTarget.path(java.text.MessageFormat.format("UpdateSong/{0}/{1}/{2}", new Object[]{id, name, mid})).request().post(null);
     }
 
+    public <T> T getProductByDesigner(Class<T> responseType, String did) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getProductByDesigner/{0}", new Object[]{did}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public <T> T displayDesignersProducts(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("displayDesignersProducts");
@@ -229,8 +235,8 @@ public class RestClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void addDesignerProducts(String name, String price, String stock, String size, String image, String cid, String mid, String cbid, String sid, String did) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("addDesignerProducts/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}", new Object[]{name, price, stock, size, image, cid, mid, cbid, sid, did})).request().post(null);
+    public void addDesignerProducts(String name, String price, String stock, String image, String cid, String mid, String cbid, String sid, String did) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("addDesignerProducts/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}", new Object[]{name, price, stock, image, cid, mid, cbid, sid, did})).request().post(null);
     }
 
     public void close() {

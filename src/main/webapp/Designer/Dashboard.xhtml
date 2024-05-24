@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="./designerHeader.xhtml" />
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Dashboard</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Admin/Dashboard.jsf">Home</a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>#{adminDashboardBean.category_count}</h3>
+
+                                    <p>Total Categories</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-list"></i>
+                                </div>
+                                <a href="#{request.contextPath}/Admin/category/CategoryList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>#{adminDashboardBean.celebrity_count}</h3>
+
+                                    <p>Total Celebrities</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-star"></i>
+                                </div>
+                                <a href="#{request.contextPath}/Admin/Celebrity/CelebrityList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-warning">
+                                <div class="inner">
+                                    <h3>#{adminDashboardBean.movie_count}</h3>
+
+                                    <p>Total Movies</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-film"></i>
+                                </div>
+                                <a href="#{request.contextPath}/Admin/Movies/MovieList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>#{adminDashboardBean.song_count}</h3>
+
+                                    <p>Total Songs</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-music"></i>
+                                </div>
+                                <a href="#{request.contextPath}/Admin/Song/SongList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                         <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-primary">
+                                <div class="inner">
+                                    <h3>#{adminDashboardBean.designer_count}</h3>
+
+                                    <p>Active Designers</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-users"></i>
+                                </div>
+                                <a href="#{request.contextPath}/Admin/Designer/DesignerList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-dark">
+                                <div class="inner">
+                                    <h3>#{adminDashboardBean.movie_category_count}</h3>
+
+                                    <p>Total Movie Categories</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-icons"></i>
+                                </div>
+                                <a href="#{request.contextPath}/Admin/MovieCategory/MovieCategoryList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>#{adminDashboardBean.movie_celebrity_count}</h3>
+
+                                    <p>Total Movie Celebrity</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-users"></i>
+                                </div>
+                                <a href="#{request.contextPath}/Admin/MovieCelebrity/MovieCelebrityList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>#{adminDashboardBean.movie_designer_count}</h3>
+
+                                    <p>Total Movie Designer</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon fas fa-users"></i>
+                                </div>
+                                <a href="#{request.contextPath}/Admin/MovieDesigner/MovieDesignerList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                </div>
+
+
+            </section>
+            <!-- /.content -->
+        </div>
+
+
+
+        <script>
+            $(function () {
+                $("#example1").DataTable({
+                    "responsive": true, "lengthChange": false, "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                });
+            });
+        </script>
+    </h:body>
+</html>

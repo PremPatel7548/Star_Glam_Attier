@@ -24,6 +24,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -34,6 +35,7 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name = "UserOrderTb.findAll", query = "SELECT u FROM UserOrderTb u"),
     @NamedQuery(name = "UserOrderTb.findById", query = "SELECT u FROM UserOrderTb u WHERE u.id = :id"),
+    @NamedQuery(name = "UserOrderTb.findBySize", query = "SELECT u FROM UserOrderTb u WHERE u.size = :size"),
     @NamedQuery(name = "UserOrderTb.findByQty", query = "SELECT u FROM UserOrderTb u WHERE u.qty = :qty"),
     @NamedQuery(name = "UserOrderTb.findByPrice", query = "SELECT u FROM UserOrderTb u WHERE u.price = :price"),
     @NamedQuery(name = "UserOrderTb.findByTotal", query = "SELECT u FROM UserOrderTb u WHERE u.total = :total"),
@@ -47,6 +49,11 @@ public class UserOrderTb implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "size")
+    private String size;
     @Basic(optional = false)
     @NotNull
     @Column(name = "qty")
@@ -84,8 +91,9 @@ public class UserOrderTb implements Serializable {
         this.id = id;
     }
 
-    public UserOrderTb(Integer id, int qty, int price, int total, Date orderDate, int isConfirmed) {
+    public UserOrderTb(Integer id, String size, int qty, int price, int total, Date orderDate, int isConfirmed) {
         this.id = id;
+        this.size = size;
         this.qty = qty;
         this.price = price;
         this.total = total;
@@ -99,6 +107,14 @@ public class UserOrderTb implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public int getQty() {

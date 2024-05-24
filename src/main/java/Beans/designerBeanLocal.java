@@ -4,8 +4,13 @@
  */
 package Beans;
 
+import Entitys.CategoryTb;
 import Entitys.DesignerTb;
+import Entitys.MovieCelebrity;
+import Entitys.MovieDesigner;
+import Entitys.MovieTb;
 import Entitys.ProductTb;
+import Entitys.SongTb;
 import java.math.BigInteger;
 import java.util.Collection;
 import javax.ejb.Local;
@@ -24,10 +29,16 @@ public interface designerBeanLocal {
     public void editDesigner(Integer id,String name,String password,String email,String mobileno,String gender,String image,Integer is_approved);
     
     // Product
-    public void addProduct(String name,Integer price,Integer stock,String size,String image,Integer cid,Integer mid,Integer cbid,Integer sid,Integer did);
+    public void addProduct(String name,Integer price,Integer stock,String image,Integer cid,Integer mid,Integer cbid,Integer sid,Integer did);
     public Collection<ProductTb> getProducts();
     public void deleteProduct(Integer id);
-    public void editProduct(Integer id,String name,Integer price,Integer stock,String size,String image,Integer cid,Integer mid,Integer cbid,Integer sid,Integer did);
+    public void editProduct(Integer id,String name,Integer price,Integer stock,String image,Integer cid,Integer mid,Integer cbid,Integer sid,Integer did);
     
+    public Collection<ProductTb> getProductByDesigner(Integer did);
+    public Collection<MovieDesigner> getMovieByDesigner(Integer did);
+    public Collection<MovieCelebrity> getCelebrityByMovie(Integer mid);
+    public Collection<SongTb> getSongByMovie(Integer mid);
+    public Collection<CategoryTb> getCategorys();
     
+    public boolean checkLogin(String email,String password);
 }

@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,6 +28,7 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name = "UserCartTb.findAll", query = "SELECT u FROM UserCartTb u"),
     @NamedQuery(name = "UserCartTb.findById", query = "SELECT u FROM UserCartTb u WHERE u.id = :id"),
+    @NamedQuery(name = "UserCartTb.findBySize", query = "SELECT u FROM UserCartTb u WHERE u.size = :size"),
     @NamedQuery(name = "UserCartTb.findByQty", query = "SELECT u FROM UserCartTb u WHERE u.qty = :qty"),
     @NamedQuery(name = "UserCartTb.findByPrice", query = "SELECT u FROM UserCartTb u WHERE u.price = :price"),
     @NamedQuery(name = "UserCartTb.findByTotal", query = "SELECT u FROM UserCartTb u WHERE u.total = :total")})
@@ -38,6 +40,11 @@ public class UserCartTb implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "size")
+    private String size;
     @Basic(optional = false)
     @NotNull
     @Column(name = "qty")
@@ -64,8 +71,9 @@ public class UserCartTb implements Serializable {
         this.id = id;
     }
 
-    public UserCartTb(Integer id, int qty, int price, int total) {
+    public UserCartTb(Integer id, String size, int qty, int price, int total) {
         this.id = id;
+        this.size = size;
         this.qty = qty;
         this.price = price;
         this.total = total;
@@ -77,6 +85,14 @@ public class UserCartTb implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public int getQty() {

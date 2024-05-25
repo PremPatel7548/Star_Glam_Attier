@@ -16,8 +16,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import org.primefaces.model.file.UploadedFile;
@@ -26,6 +30,7 @@ import org.primefaces.model.file.UploadedFile;
 @ViewScoped
 public class DesignerProductBean implements Serializable {
 
+    
     @EJB designerBeanLocal dl;
     RestClient rc;
     ProductTb pt = new ProductTb();
@@ -40,6 +45,11 @@ public class DesignerProductBean implements Serializable {
     Integer cid, mid, celid, sid;
     UploadedFile file;
     String successmessage;
+     Integer sessionid;
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            
+    HttpSession session = request.getSession();
 
     public DesignerProductBean() {
         rc = new RestClient();
@@ -55,7 +65,8 @@ public class DesignerProductBean implements Serializable {
     @PostConstruct
     public void init() {
         categorys = getCategorys();
-        mds = dl.getMovieByDesigner(2); 
+        sessionid = (Integer)session.getAttribute("designerId");
+        mds = dl.getMovieByDesigner(sessionid); 
         System.out.println("DesignerProductBean initialized with categories and movies.");
     }
 
@@ -68,7 +79,7 @@ public class DesignerProductBean implements Serializable {
     }
 
     public Collection<ProductTb> getProducts() {
-        rs = rc.getProductByDesigner(Response.class, String.valueOf(2));
+        rs = rc.getProductByDesigner(Response.class, String.valueOf(sessionid));
         products = rs.readEntity(gc);
         return products;
     }
@@ -157,6 +168,16 @@ public class DesignerProductBean implements Serializable {
     public void setSuccessmessage(String successmessage) {
         this.successmessage = successmessage;
     }
+
+    public Integer getSessionid() {
+        
+        return sessionid;
+    }
+
+    public void setSessionid(Integer sessionid) {
+        this.sessionid = sessionid;
+    }
+    
 
     public void onMovieChange() {
         if (mid != null) {

@@ -8,6 +8,10 @@ import Beans.designerBeanLocal;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -58,6 +62,7 @@ public class DesignerLoginBean {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
+    
     
     public String checkLogin()
     {

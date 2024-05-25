@@ -12,6 +12,11 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
@@ -29,6 +34,11 @@ public class DesignerProductStockBean implements Serializable {
     GenericType<Collection<ProductTb>> gc;
     Response rs;
     Integer pstock;
+    Integer sessionid;
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            
+    HttpSession session = request.getSession();
 
     /**
      * Creates a new instance of DesignerProductStockBean
@@ -39,6 +49,12 @@ public class DesignerProductStockBean implements Serializable {
         gc = new GenericType<Collection<ProductTb>>() {
         };
     }
+    
+    @PostConstruct
+    public void init() {
+        sessionid = (Integer)session.getAttribute("designerId");
+    }
+
 
     public ProductTb getPt() {
         return pt;
@@ -49,7 +65,7 @@ public class DesignerProductStockBean implements Serializable {
     }
 
     public Collection<ProductTb> getProducts() {
-        rs = rc.getProductByDesigner(Response.class, String.valueOf(2));
+        rs = rc.getProductByDesigner(Response.class, String.valueOf(sessionid));
         products = rs.readEntity(gc);
         return products;
     }
@@ -64,6 +80,14 @@ public class DesignerProductStockBean implements Serializable {
 
     public void setPstock(Integer pstock) {
         this.pstock = pstock;
+    }
+
+    public Integer getSessionid() {
+        return sessionid;
+    }
+
+    public void setSessionid(Integer sessionid) {
+        this.sessionid = sessionid;
     }
 
     public String addStockView(ProductTb p) {

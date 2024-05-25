@@ -14,8 +14,10 @@ import Entitys.ProductTb;
 import Entitys.SongTb;
 import java.util.Collection;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -163,7 +165,7 @@ public class designerBean implements designerBeanLocal {
 
     @Override
     public boolean checkLogin(String email, String password) {
-        Collection<DesignerTb> designers = em.createQuery("select d from DesignerTb d where d.email=:email and d.password=:password")
+        Collection<DesignerTb> designers = em.createQuery("select d from DesignerTb d where d.email=:email and d.password=:password and d.isApproved=1")
                 .setParameter("email",email)
                 .setParameter("password", password)
                 .getResultList();
@@ -174,6 +176,12 @@ public class designerBean implements designerBeanLocal {
         }
         else
         {
+            HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            
+            for(DesignerTb d : designers)
+            {
+                session.setAttribute("designerId", d.getId());
+            }
             return true;
         }
     }

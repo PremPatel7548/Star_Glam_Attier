@@ -210,7 +210,7 @@ public class DesignerProductBean implements Serializable {
             }
         }
 
-        rc.addDesignerProducts(pt.getName(), String.valueOf(pt.getPrice()), String.valueOf(0), fileName, String.valueOf(cid), String.valueOf(mid), String.valueOf(celid), String.valueOf(sid), String.valueOf(2));
+        rc.addDesignerProducts(pt.getName(), String.valueOf(pt.getPrice()), String.valueOf(0), fileName, String.valueOf(cid), String.valueOf(mid), String.valueOf(celid), String.valueOf(sid), String.valueOf(sessionid));
         System.out.println("Product added successfully");
         successmessage = "Product Added Successfully";
         return "ProductList";

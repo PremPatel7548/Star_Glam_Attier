@@ -15,7 +15,7 @@ import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
  */
 @DatabaseIdentityStoreDefinition(
     dataSourceLookup = "sgadbRes",
-    callerQuery = "select password from user_tb where name=?",
+    callerQuery = "select password from user_tb where email=?",
     groupsQuery = "select groupname from group_master where username=?",
     hashAlgorithm = Pbkdf2PasswordHash.class,
     priority = 30

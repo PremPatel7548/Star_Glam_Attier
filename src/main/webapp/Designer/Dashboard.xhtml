@@ -34,7 +34,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-6">
                             <!-- small box -->
-                            <div class="small-box bg-info">
+                            <div class="small-box  bg-gradient-navy">
                                 <div class="inner">
                                     <h3>#{adminDashboardBean.category_count}</h3>
 
@@ -49,7 +49,7 @@
                         <!-- ./col -->
                         <div class="col-lg-3 col-6">
                             <!-- small box -->
-                            <div class="small-box bg-success">
+                            <div class="small-box bg-gradient-maroon">
                                 <div class="inner">
                                     <h3>#{adminDashboardBean.celebrity_count}</h3>
 
@@ -64,7 +64,7 @@
                         <!-- ./col -->
                         <div class="col-lg-3 col-6">
                             <!-- small box -->
-                            <div class="small-box bg-warning">
+                            <div class="small-box bg-gradient-lightblue">
                                 <div class="inner">
                                     <h3>#{adminDashboardBean.movie_count}</h3>
 
@@ -75,84 +75,184 @@
                                 </div>
                                 <a href="#{request.contextPath}/Admin/Movies/MovieList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <h3>#{adminDashboardBean.song_count}</h3>
-
-                                    <p>Total Songs</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="nav-icon fas fa-music"></i>
-                                </div>
-                                <a href="#{request.contextPath}/Admin/Song/SongList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                         <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-primary">
-                                <div class="inner">
-                                    <h3>#{adminDashboardBean.designer_count}</h3>
-
-                                    <p>Active Designers</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="nav-icon fas fa-users"></i>
-                                </div>
-                                <a href="#{request.contextPath}/Admin/Designer/DesignerList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-dark">
-                                <div class="inner">
-                                    <h3>#{adminDashboardBean.movie_category_count}</h3>
-
-                                    <p>Total Movie Categories</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="nav-icon fas fa-icons"></i>
-                                </div>
-                                <a href="#{request.contextPath}/Admin/MovieCategory/MovieCategoryList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3>#{adminDashboardBean.movie_celebrity_count}</h3>
-
-                                    <p>Total Movie Celebrity</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="nav-icon fas fa-users"></i>
-                                </div>
-                                <a href="#{request.contextPath}/Admin/MovieCelebrity/MovieCelebrityList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3>#{adminDashboardBean.movie_designer_count}</h3>
-
-                                    <p>Total Movie Designer</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="nav-icon fas fa-users"></i>
-                                </div>
-                                <a href="#{request.contextPath}/Admin/MovieDesigner/MovieDesignerList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
+                        </div>   
                     </div>
                     <!-- /.row -->
 
                 </div>
 
+
+                <!--Designer Movie List -->
+<!--                <div class="card card-solid">
+                    <div class="card-body pb-0">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                                <div class="card bg-light d-flex flex-fill">
+                                    <div class="card-body pt-0">
+                                        <div class="text-center">
+                                            <img src="../public/dist/img/prod-4.jpg" alt="user-avatar" class="img-fluid"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-footer">
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <p style="margin: 0;">movie</p>
+                                            <div>
+                                                <a href="#" class="btn btn-sm btn-primary">
+                                                    <i class="fas fa-user"></i> View Profile
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                                <div class="card bg-light d-flex flex-fill">
+                                    <div class="card-header text-muted border-bottom-0">
+                                        Digital Strategist
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h2 class="lead"><b>Nicole Pearson</b></h2>
+                                                <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                                <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-5 text-center">
+                                                <img src="../../dist/img/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-right">
+                                            <a href="#" class="btn btn-sm bg-teal">
+                                                <i class="fas fa-comments"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-user"></i> View Profile
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                                <div class="card bg-light d-flex flex-fill">
+                                    <div class="card-header text-muted border-bottom-0">
+                                        Digital Strategist
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h2 class="lead"><b>Nicole Pearson</b></h2>
+                                                <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                                <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-5 text-center">
+                                                <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-right">
+                                            <a href="#" class="btn btn-sm bg-teal">
+                                                <i class="fas fa-comments"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-user"></i> View Profile
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                                <div class="card bg-light d-flex flex-fill">
+                                    <div class="card-header text-muted border-bottom-0">
+                                        Digital Strategist
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h2 class="lead"><b>Nicole Pearson</b></h2>
+                                                <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                                <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-5 text-center">
+                                                <img src="../../dist/img/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-right">
+                                            <a href="#" class="btn btn-sm bg-teal">
+                                                <i class="fas fa-comments"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-user"></i> View Profile
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                                <div class="card bg-light d-flex flex-fill">
+                                    <div class="card-header text-muted border-bottom-0">
+                                        Digital Strategist
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h2 class="lead"><b>Nicole Pearson</b></h2>
+                                                <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                                <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-5 text-center">
+                                                <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-right">
+                                            <a href="#" class="btn btn-sm bg-teal">
+                                                <i class="fas fa-comments"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-user"></i> View Profile
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                     /.card-body 
+                    <div class="card-footer">
+                        <nav aria-label="Contacts Page Navigation">
+                            <ul class="pagination justify-content-center m-0">
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                                <li class="page-item"><a class="page-link" href="#">8</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                     /.card-footer 
+                </div>-->
 
             </section>
             <!-- /.content -->

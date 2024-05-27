@@ -14,7 +14,7 @@
     </h:head>
     <h:body>
 
-        <div class="wrapper" style="background-image: url('public/assets/images/registerform/bg-registration-form-1.jpg');">
+        <div class="wrapper" style="background-image: url('public/assets/images/registerform/colorful-shopping-bags.jpg');">
             <div class="inner">
                 <div class="image-holder">
                     <img src="public/assets/images/registerform/bg-registration-form-1.jpg" alt="" style="height: 650px"/>
@@ -74,9 +74,9 @@
                         <i class="zmdi zmdi-lock"></i>
                     </div>
                     <c:if test="${not empty registerBean.errorMsg}">
-                    <div style="color:red;">
-                         ${registerBean.errorMsg}
-                    </div>
+                        <div style="color:red;">
+                            ${registerBean.errorMsg}
+                        </div><br/>
                     </c:if>
                     <div class="form-wrapper">
                         <p:fileUpload id="profile" value="#{registerBean.file}" mode="simple" class="form-control"/>
@@ -90,6 +90,9 @@
                         <h:commandButton value="Register" action="#{registerBean.registerUser()}"></h:commandButton>
                         <i class="zmdi zmdi-arrow-right"></i>
                     </button>
+                    <p class="text-center" style="display: flex;align-items: center;justify-content: center; margin-top: 10px">You have an account? 
+                        <a href="#{request.contextPath}/Login.jsf" style='color: blue'>  Login here</a>
+                    </p>
                 </h:form>
             </div>
         </div>

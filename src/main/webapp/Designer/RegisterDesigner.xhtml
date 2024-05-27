@@ -14,10 +14,10 @@
     </h:head>
     <h:body>
 
-        <div class="wrapper" style="background-image: url('../public/assets/images/registerform/bg-registration-form-1.jpg');">
+        <div class="wrapper" style="background-image: url('../public/assets/images/registerform/bg-designerregister.jpg');">
             <div class="inner">
                 <div class="image-holder">
-                    <img src="../public/assets/images/registerform/bg-registration-form-1.jpg" alt="" style="height: 580px"/>
+                    <img src="../public/assets/images/registerform/designerregister-form.jpg" alt="" style="height: 580px"/>
                 </div>
                 <h:form enctype="multipart/form-data">
                     <h3>Designer Registration</h3>
@@ -64,7 +64,7 @@
                     <c:if test="${not empty registerCDI.errorMsg}">
                     <div style="color:red;">
                          ${registerCDI.errorMsg}
-                    </div>
+                    </div><br/>
                     </c:if>
                     <div class="form-wrapper">
                         <p:fileUpload id="profile" value="#{registerCDI.file}" mode="simple" class="form-control"/>
@@ -74,6 +74,9 @@
                         <h:commandButton value="Register" action="#{registerCDI.registerDesigner()}"></h:commandButton>
                         <i class="zmdi zmdi-arrow-right"></i>
                     </button>
+                    <p class="text-center" style="display: flex;align-items: center;justify-content: center; margin-top: 10px">You have an account? 
+                        <a href="#{request.contextPath}/Designer/loginDesigner.jsf" style='color: blue'>  Login here</a>
+                    </p>
                 </h:form>
             </div>
         </div>

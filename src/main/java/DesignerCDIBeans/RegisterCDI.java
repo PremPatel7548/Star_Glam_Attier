@@ -84,7 +84,7 @@ public class RegisterCDI {
     {
         if(cpass == null ? dt.getPassword() != null : !cpass.equals(dt.getPassword()))
         {
-            ErrorMsg = "Password and confirm password must be same";
+            ErrorMsg = "* Password and confirm password must be same";
         }
         else
         {

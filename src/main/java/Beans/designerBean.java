@@ -185,7 +185,5 @@ public class designerBean implements designerBeanLocal {
             return true;
         }
     }
-    
-    
-    
+ 
 }

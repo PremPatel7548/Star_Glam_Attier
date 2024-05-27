@@ -75,7 +75,7 @@ public class RegisterBean {
     {
         if(cpass == null ? ut.getPassword() != null : !cpass.equals(ut.getPassword()))
         {
-            ErrorMsg = "Password and confirm password must be same";
+            ErrorMsg = "* Password and confirm password must be same";
         }
         else
         {
@@ -104,7 +104,7 @@ public class RegisterBean {
 //        rc.registerUser(ut.getName(), ut.getPassword(),ut.getEmail(),ut.getMobileno(),ut.getGender(),"India", fileName, String.valueOf(new Date()));
          ub.RegisterUser(ut.getName(),ut.getPassword(),ut.getEmail(),ut.getMobileno(),ut.getGender(),ut.getAddress(),fileName,ut.getDob());
 //         rc.afterRegister(ut.getName()); 
-         ub.afterRegister(ut.getName());
+         ub.afterRegister(ut.getEmail());
             ErrorMsg = "";
         }
     }

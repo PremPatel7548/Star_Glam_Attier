@@ -43,7 +43,7 @@ public class LoginBean implements Serializable {
     }
 
     public void setErrorstatus(String errorstatus) {
-        this.errorstatus = errorstatus;
+        this.errorstatus = "* "+errorstatus;
     }
 
     public RestClient getRc() {

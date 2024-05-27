@@ -74,7 +74,7 @@ public class DesignerLoginBean {
        }
        else
        {
-           errorMessage = "Invalid Email Or Password";
+           errorMessage = "* Invalid Email Or Password";
            return "loginDesigner";
        }
     }

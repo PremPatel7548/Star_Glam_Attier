@@ -24,7 +24,7 @@ public class RestClient {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/SGA/resources";
+    private static final String BASE_URI = "http://localhost:8080/Star_Glam_Attier/resources";
 
     public RestClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
@@ -179,8 +179,8 @@ public class RestClient {
         webTarget.path(java.text.MessageFormat.format("addCelebrity/{0}/{1}/{2}/{3}", new Object[]{name, dob, gender, image})).request().post(null);
     }
 
-    public void afterRegister(String username) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("afterRegister/{0}", new Object[]{username})).request().post(null);
+    public void afterRegister(String email) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("afterRegister/{0}", new Object[]{email})).request().post(null);
     }
 
     public void addMovieDesigner(String mid, String did) throws ClientErrorException {

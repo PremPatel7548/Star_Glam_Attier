@@ -32,8 +32,8 @@
         <link rel="stylesheet" href="#{request.contextPath}/public/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
     </h:head>
     <h:body>
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="#{request.contextPath}/public/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" />
+         <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="#{request.contextPath}/public/assets/images/loader.png" alt="logo" height="60" width="60" />
         </div>
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -77,27 +77,16 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar elevation-4" style="position: absolute;  background-color: #212a47">
             <!-- Brand Logo -->
-            <!--    <a href="index3.html" class="brand-link">
-                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" />
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
-                </a>-->
+           <a href="#{request.contextPath}/Designer/Dashboard.jsf">
+                <img src="#{request.contextPath}/public/assets/images/SGA-logo.png" class="brand-image" style="height: 50px; width: 220px; margin: 2px" />
+                </a>
 
             <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3">
-                    <!--                        <div class="image">
-                                            <img src="#{request.contextPath}/public/uploads/blog-details-01.png" class="img-md w-25 h-25" alt="User Image" />
-                                            </div>-->
-                    <div class="info">
-                        <a href="#" class="d-block" style="color: white; font-size: 27px;">𝐒𝐭𝐚𝐫 𝐆𝐥𝐚𝐦 𝐀𝐭𝐭𝐢𝐞𝐫</a>
-                    </div>
-                </div>
+            <div class="sidebar" >
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column h-auto" data-widget="treeview" role="menu" data-accordion="false">
-
                         <li class="nav-item">
                             <a class="nav-link" style="cursor: pointer" href="#{request.contextPath}/Designer/Dashboard.jsf">
                                 <i class="nav-icon fas fa-tachometer-alt" style="color: #929cbe"></i>

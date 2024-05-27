@@ -420,10 +420,10 @@ public class JakartaEE8Resource {
     }
 
     @POST
-    @Path("afterRegister/{username}")
-    public void afterRegister(@PathParam("username") String username)
+    @Path("afterRegister/{email}")
+    public void afterRegister(@PathParam("email") String email)
     {
-        user.afterRegister(username);
+        user.afterRegister(email);
     }
     
     @GET

@@ -42,11 +42,11 @@ public class UserBean implements UserBeanLocal {
     }
     
     @Override
-    public void afterRegister(String username)
+    public void afterRegister(String email)
     {
         GroupMaster gp = new GroupMaster();
         gp.setGroupname("User");
-        gp.setUsername(username);
+        gp.setUsername(email);
         em.persist(gp);
     }
     

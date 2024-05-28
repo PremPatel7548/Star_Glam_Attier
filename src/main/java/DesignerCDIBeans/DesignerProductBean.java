@@ -16,9 +16,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,11 +28,11 @@ import javax.ws.rs.core.Response;
 import org.primefaces.model.file.UploadedFile;
 
 @Named(value = "designerProductBean")
-@ViewScoped
+@SessionScoped
 public class DesignerProductBean implements Serializable {
 
-    
-    @EJB designerBeanLocal dl;
+    @EJB
+    designerBeanLocal dl;
     RestClient rc;
     ProductTb pt = new ProductTb();
     Collection<ProductTb> products;
@@ -45,10 +46,9 @@ public class DesignerProductBean implements Serializable {
     Integer cid, mid, celid, sid;
     UploadedFile file;
     String successmessage;
-     Integer sessionid;
+    Integer sessionid;
     HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-            
     HttpSession session = request.getSession();
 
     public DesignerProductBean() {
@@ -64,9 +64,9 @@ public class DesignerProductBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        categorys = getCategorys();
-        sessionid = (Integer)session.getAttribute("designerId");
-        mds = dl.getMovieByDesigner(sessionid); 
+        categorys = dl.getCategorys();
+        sessionid = (Integer) session.getAttribute("designerId");
+        mds = dl.getMovieByDesigner(sessionid);
         System.out.println("DesignerProductBean initialized with categories and movies.");
     }
 
@@ -129,7 +129,6 @@ public class DesignerProductBean implements Serializable {
     }
 
     public Collection<CategoryTb> getCategorys() {
-        categorys = dl.getCategorys();
         return categorys;
     }
 
@@ -170,14 +169,12 @@ public class DesignerProductBean implements Serializable {
     }
 
     public Integer getSessionid() {
-        
         return sessionid;
     }
 
     public void setSessionid(Integer sessionid) {
         this.sessionid = sessionid;
     }
-    
 
     public void onMovieChange() {
         if (mid != null) {
@@ -196,14 +193,10 @@ public class DesignerProductBean implements Serializable {
             try (InputStream input = file.getInputStream()) {
                 fileName = file.getFileName();
                 OutputStream output = new FileOutputStream("D:/JWD/Project/SGA/src/main/webapp/public/uploads/" + fileName);
-                try {
-                    byte[] buffer = new byte[1024];
-                    int bytesRead;
-                    while ((bytesRead = input.read(buffer)) != -1) {
-                        output.write(buffer, 0, bytesRead);
-                    }
-                } finally {
-                    output.close();
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = input.read(buffer)) != -1) {
+                    output.write(buffer, 0, bytesRead);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -213,16 +206,60 @@ public class DesignerProductBean implements Serializable {
         rc.addDesignerProducts(pt.getName(), String.valueOf(pt.getPrice()), String.valueOf(0), fileName, String.valueOf(cid), String.valueOf(mid), String.valueOf(celid), String.valueOf(sid), String.valueOf(sessionid));
         System.out.println("Product added successfully");
         successmessage = "Product Added Successfully";
+        this.pt = null;
+        this.cid = null;
+        this.celid = null;
+        this.mid = null;
+        this.sid = null;
         return "ProductList";
     }
-    
-    public String removeProduct(Integer id)
-    {
+
+    public String removeProduct(Integer id) {
         rc.deleteDesignerProduct(String.valueOf(id));
         successmessage = "Product Deleted Successfully";
         return "ProductList";
     }
+
+    public String editView(ProductTb p) {
+        this.pt = p;
+        this.cid = p.getCategoryId().getId();
+        this.mid = p.getMovieId().getId();
+        this.celid = p.getCelebrityId().getId();
+        this.sid = p.getSongId().getId();
+        onMovieChange();
+        System.out.println("Editing product: " + pt.getName());
+        return "editProduct";
+    }
     
+    public String editProduct()
+    {
+        String fileName = "";
+        if (file != null) {
+            try (InputStream input = file.getInputStream()) {
+                fileName = file.getFileName();
+                OutputStream output = new FileOutputStream("D:/JWD/Project/SGA/src/main/webapp/public/uploads/" + fileName);
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = input.read(buffer)) != -1) {
+                    output.write(buffer, 0, bytesRead);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+//        rc.addDesignerProducts(pt.getName(), String.valueOf(pt.getPrice()), String.valueOf(0), fileName, String.valueOf(cid), String.valueOf(mid), String.valueOf(celid), String.valueOf(sid), String.valueOf(sessionid));
+        rc.updateDesignerProducts(String.valueOf(pt.getId()), pt.getName(), String.valueOf(pt.getPrice()), String.valueOf(pt.getStock()), fileName, String.valueOf(cid), String.valueOf(mid), String.valueOf(celid), String.valueOf(sid), String.valueOf(sessionid));
+        System.out.println("Product Edited successfully");
+        successmessage = "Product Edited Successfully";
+        this.pt = null;
+        this.cid = null;
+        this.celid = null;
+        this.mid = null;
+        this.sid = null;
+        return "ProductList";
+    }
+
     public void clearSuccessMessage() {
         successmessage = null;
     }

@@ -93,7 +93,7 @@ public class AuthFilter implements Filter {
                     cookie.setMaxAge(60*24*24*60);
                     resp.addCookie(cookie);
                     }
-                    req.getRequestDispatcher("user.jsf").forward(request, response);
+                    req.getRequestDispatcher("/User/Dashboard.jsf").forward(request, response);
                 }
                 else{
                     lb.setErrorstatus("Username or Password is Incorrect...");
@@ -122,7 +122,7 @@ public class AuthFilter implements Filter {
                     req.getRequestDispatcher("/Admin/Dashboard.jsf").forward(request, response);
                 }
                 else if(KeepRecord.getRoles()!=null && KeepRecord.getRoles().contains("User")){
-                    req.getRequestDispatcher("user.jsf").forward(request, response);
+                    req.getRequestDispatcher("/User/Dashboard.jsf").forward(request, response);
                 }
             }
         }

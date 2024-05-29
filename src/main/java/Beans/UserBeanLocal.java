@@ -4,6 +4,9 @@
  */
 package Beans;
 
+import Entitys.ProductTb;
+import Entitys.UserCartTb;
+import Entitys.UserOrderTb;
 import Entitys.UserTb;
 import java.util.Collection;
 import java.util.Date;
@@ -21,4 +24,19 @@ public interface UserBeanLocal {
     public void deleteUser(Integer id);
     public void editUser(Integer id,String name,String password,String email,String mobileno,String gender,String address,String image,Date dob);
     public UserTb getUserById(Integer id);
+    
+    //products
+    public Collection<ProductTb> getAllProduct();
+    public ProductTb getProductDetails(Integer pid);
+    
+    //cart
+    public Collection<UserCartTb> getCartProducts(Integer uid);
+    public void addToCart(Integer uid,Integer pid,String size,Integer qty,Integer price);
+    public void removefromCart(Integer cid);
+    public void editcartProductQuantity(Integer cid,Integer uid,Integer pid,String size,Integer qty,Integer price);
+    public Integer countOfCartProduct(Integer uid);
+    
+    //user order
+    public void addOrder(Integer uid,Integer pid,String size,Integer qty,Integer price);
+    public Collection<UserOrderTb> getOrderHistory(Integer uid);
 }

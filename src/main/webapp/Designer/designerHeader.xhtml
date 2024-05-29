@@ -63,7 +63,7 @@
                     <div class="dropdown-divider"></div>
         
                     <h:form>
-                            <h:commandButton value="Logout" class="dropdown-item" action="#{loginBean.logout()}"></h:commandButton>
+                        <h:commandButton value="Logout" class="dropdown-item" action="#{designerLoginBean.logout()}"></h:commandButton>
                             <!--<i class="fas fa-sign-out-alt"></i>-->
                     </h:form>
                         
@@ -111,6 +111,14 @@
                                 <i class="nav-icon fas fa-stock" style="color: #929cbe"></i>
                                 <p style="color: #929cbe">
                                     Product Stock
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="cursor: pointer">
+                            <a class="nav-link" href="#{request.contextPath}/Designer/userOrders.jsf">
+                                <i class="nav-icon fas fa-stock" style="color: #929cbe"></i>
+                                <p style="color: #929cbe">
+                                    User Orders
                                 </p>
                             </a>
                         </li>

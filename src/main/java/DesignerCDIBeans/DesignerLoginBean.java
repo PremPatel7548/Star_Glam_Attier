@@ -25,6 +25,10 @@ public class DesignerLoginBean {
     boolean isLogin;
     String email,password;
     String errorMessage;
+    Integer sessionid;
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+    HttpSession session = request.getSession();
     /**
      * Creates a new instance of DesignerLoginBean
      */
@@ -77,5 +81,11 @@ public class DesignerLoginBean {
            errorMessage = "* Invalid Email Or Password";
            return "loginDesigner";
        }
+    }
+    
+    public String logout()
+    {
+        session.setAttribute("designerId",null);
+        return "loginDesigner";
     }
 }

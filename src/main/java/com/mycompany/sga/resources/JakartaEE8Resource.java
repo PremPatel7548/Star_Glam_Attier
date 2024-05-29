@@ -13,6 +13,8 @@ import Entitys.MovieTb;
 import Entitys.ProductTb;
 import Entitys.UserTb;
 import Entitys.SongTb;
+import Entitys.UserCartTb;
+import Entitys.UserOrderTb;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -424,6 +426,66 @@ public class JakartaEE8Resource {
     public void afterRegister(@PathParam("email") String email)
     {
         user.afterRegister(email);
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getAllProducts")
+    public Collection<ProductTb> getAllProduct()
+    {
+        return user.getAllProduct();
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getProductDetails/{pid}")
+    public ProductTb getProductDetails(@PathParam("pid") Integer pid)
+    {
+        return user.getProductDetails(pid);
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getCartProducts/{uid}")
+    public Collection<UserCartTb> getCartProducts(@PathParam("uid") Integer uid)
+    {
+        return user.getCartProducts(uid);
+    }
+    
+    @POST
+    @Path("addToCart/{uid}/{pid}/{size}/{qty}/{price}")
+    public void addToCart(@PathParam("uid") Integer uid,@PathParam("pid") Integer pid,@PathParam("size") String size,@PathParam("qty") Integer qty,@PathParam("price") Integer price)
+    {
+        user.addToCart(uid, pid, size, qty, price);
+    }
+    
+    @DELETE
+    @Path("removefromCart/{cid}")
+    public void removefromCart(@PathParam("cid") Integer cid)
+    {
+        user.removefromCart(cid);
+    }
+    
+    @POST
+    @Path("editcartProductQuantity/{cid}/{uid}/{pid}/{size}/{qty}/{price}")
+    public void editcartProductQuantity(@PathParam("cid") Integer cid,@PathParam("uid") Integer uid,@PathParam("pid") Integer pid,@PathParam("size") String size,@PathParam("qty") Integer qty,@PathParam("price") Integer price)
+    {
+        user.editcartProductQuantity(cid, uid, pid, size, qty, price);
+    }
+    
+    @POST
+    @Path("addOrder/{uid}/{pid}/{size}/{qty}/{price}")
+    public void addOrder(@PathParam("uid") Integer uid,@PathParam("pid") Integer pid,@PathParam("size") String size,@PathParam("qty") Integer qty,@PathParam("price") Integer price)
+    {
+        user.addOrder(uid, pid, size, qty, price);
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getOrderHistory/{uid}")
+    public Collection<UserOrderTb> getOrderHistory(@PathParam("uid") Integer uid)
+    {
+        return user.getOrderHistory(uid);
     }
     
     @GET

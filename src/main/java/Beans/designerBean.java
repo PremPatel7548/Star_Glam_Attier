@@ -12,7 +12,10 @@ import Entitys.MovieDesigner;
 import Entitys.MovieTb;
 import Entitys.ProductTb;
 import Entitys.SongTb;
+import Entitys.UserOrderTb;
+import Entitys.UserTb;
 import java.util.Collection;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -184,6 +187,40 @@ public class designerBean implements designerBeanLocal {
             }
             return true;
         }
+    }
+
+    @Override
+    public Collection<UserOrderTb> getUserOrders(Integer did) {
+        DesignerTb dt = em.find(DesignerTb.class,did);
+        
+        Collection<UserOrderTb> orders = em.createQuery("select o from UserOrderTb o where o.productId.designerId=:designer")
+                  .setParameter("designer", dt)
+                  .getResultList();
+        
+        return orders;
+    }
+
+    @Override
+    public void acceptOrder(Integer id, Integer uid, Integer pid, String size, Integer qty, Integer price, Integer total, Date odate, Integer ic) {
+        UserOrderTb uot = em.find(UserOrderTb.class,id);
+        UserTb u = em.find(UserTb.class,uid);
+        ProductTb p = em.find(ProductTb.class,pid);
+        uot.setUserId(u);
+        uot.setProductId(p);
+        uot.setSize(size);
+        uot.setQty(qty);
+        uot.setPrice(price);
+        uot.setTotal(total);
+        uot.setOrderDate(odate);
+        uot.setIsConfirmed(ic);
+        em.merge(uot);
+    }
+
+    @Override
+    public void editStock(Integer pid, Integer qty) {
+        ProductTb p = em.find(ProductTb.class,pid);
+        p.setStock(p.getStock() - qty);
+        em.merge(p);
     }
  
 }

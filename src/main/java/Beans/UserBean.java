@@ -5,12 +5,19 @@
 package Beans;
 
 import Entitys.GroupMaster;
+import Entitys.ProductTb;
+import Entitys.UserCartTb;
+import Entitys.UserOrderTb;
 import Entitys.UserTb;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 
 /**
@@ -84,5 +91,102 @@ public class UserBean implements UserBeanLocal {
     {
         UserTb ut = em.find(UserTb.class, id);
         return ut;
+    }
+
+    @Override
+    public Collection<ProductTb> getAllProduct() {
+        Collection<ProductTb> products = em.createNamedQuery("ProductTb.findAll").getResultList();
+        return products;
+    }
+
+    @Override
+    public Collection<UserCartTb> getCartProducts(Integer uid) {
+        UserTb u = em.find(UserTb.class,uid);
+        Collection<UserCartTb> cartProducts = em.createQuery("select c from UserCartTb c where c.userId=:user")
+                .setParameter("user", u)
+                .getResultList();
+        
+        return cartProducts;
+    }
+
+    @Override
+    public void addToCart(Integer uid, Integer pid, String size, Integer qty, Integer price) {
+        UserCartTb uct = new UserCartTb();
+        UserTb u = em.find(UserTb.class,uid);
+        ProductTb p = em.find(ProductTb.class,pid);
+        uct.setUserId(u);
+        uct.setProductId(p);
+        uct.setSize(size);
+        uct.setQty(qty);
+        uct.setPrice(price);
+        Integer total = qty * price;
+        uct.setTotal(total);
+        em.persist(uct);
+    }
+
+    @Override
+    public void removefromCart(Integer cid) {
+        UserCartTb uct = em.find(UserCartTb.class,cid);
+        em.remove(uct);
+    }
+    
+    @Override
+    public void editcartProductQuantity(Integer cid,Integer uid,Integer pid,String size,Integer qty,Integer price)
+    {
+        UserCartTb uct = em.find(UserCartTb.class,cid);
+        UserTb u = em.find(UserTb.class,uid);
+        ProductTb p = em.find(ProductTb.class,pid);
+        uct.setUserId(u);
+        uct.setProductId(p);
+        uct.setSize(size);
+        uct.setQty(qty);
+        uct.setPrice(price);
+        Integer total = qty * price;
+        uct.setTotal(total);
+        em.merge(uct);
+    }
+    
+    @Override
+    public Collection<UserOrderTb> getOrderHistory(Integer uid)
+    {
+        UserTb u = em.find(UserTb.class,uid);
+        Collection<UserOrderTb> orders = em.createQuery("select o from UserOrderTb o where o.userId=:user")
+                .setParameter("user", u)
+                .getResultList();
+        return orders;
+    }
+
+    @Override
+    public Integer countOfCartProduct(Integer uid) {
+        UserTb u = em.find(UserTb.class,uid);
+        TypedQuery<Long> query = em.createQuery("select count(c) from UserCartTb c where c.userId=:user",Long.class);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
+    @Override
+    public void addOrder(Integer uid, Integer pid, String size, Integer qty, Integer price) {
+        UserOrderTb uot = new UserOrderTb();
+        UserTb u = em.find(UserTb.class,uid);
+        ProductTb p = em.find(ProductTb.class,pid);
+        uot.setUserId(u);
+        uot.setProductId(p);
+        uot.setSize(size);
+        uot.setQty(qty);
+        uot.setPrice(price);
+        Integer total = qty*price;
+        uot.setTotal(total);
+        LocalDateTime now = LocalDateTime.now();
+        ZonedDateTime zonedDateTime = now.atZone(ZoneId.systemDefault());
+        Date date = Date.from(zonedDateTime.toInstant());
+        uot.setOrderDate(date);
+        uot.setIsConfirmed(0);
+        em.persist(uot);
+    }
+
+    @Override
+    public ProductTb getProductDetails(Integer pid) {
+        ProductTb p = em.find(ProductTb.class,pid);
+        return p;
     }
 }

@@ -11,8 +11,10 @@ import Entitys.MovieDesigner;
 import Entitys.MovieTb;
 import Entitys.ProductTb;
 import Entitys.SongTb;
+import Entitys.UserOrderTb;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Date;
 import javax.ejb.Local;
 
 /**
@@ -41,4 +43,8 @@ public interface designerBeanLocal {
     public Collection<CategoryTb> getCategorys();
     
     public boolean checkLogin(String email,String password);
+    
+    public Collection<UserOrderTb> getUserOrders(Integer did);
+    public void acceptOrder(Integer id,Integer uid,Integer pid,String size,Integer qty,Integer price,Integer total,Date odate,Integer ic);
+    public void editStock(Integer pid,Integer qty);
 }

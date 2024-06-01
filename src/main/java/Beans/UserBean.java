@@ -14,6 +14,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,11 +30,9 @@ public class UserBean implements UserBeanLocal {
 
     @PersistenceContext(name = "my_persistence_unit")
     EntityManager em;
-    
-    
+
     @Override
-    public void RegisterUser(String name,String password,String email,String mobileno,String gender,String address,String image,Date dob)
-    {
+    public void RegisterUser(String name, String password, String email, String mobileno, String gender, String address, String image, Date dob) {
         UserTb ut = new UserTb();
         ut.setName(name);
         Pbkdf2PasswordHashImpl pb = new Pbkdf2PasswordHashImpl();
@@ -47,33 +46,29 @@ public class UserBean implements UserBeanLocal {
         ut.setDob(dob);
         em.persist(ut);
     }
-    
+
     @Override
-    public void afterRegister(String email)
-    {
+    public void afterRegister(String email) {
         GroupMaster gp = new GroupMaster();
         gp.setGroupname("User");
         gp.setUsername(email);
         em.persist(gp);
     }
-    
+
     @Override
-    public Collection<UserTb> displayUsers()
-    {
+    public Collection<UserTb> displayUsers() {
         Collection<UserTb> users = em.createNamedQuery("UserTb.findAll").getResultList();
         return users;
     }
-    
+
     @Override
-    public void deleteUser(Integer id)
-    {
+    public void deleteUser(Integer id) {
         UserTb ut = em.find(UserTb.class, id);
         em.remove(ut);
     }
-    
+
     @Override
-    public void editUser(Integer id,String name,String password,String email,String mobileno,String gender,String address,String image,Date dob)
-    {
+    public void editUser(Integer id, String name, String password, String email, String mobileno, String gender, String address, String image, Date dob) {
         UserTb ut = em.find(UserTb.class, id);
         ut.setName(name);
         ut.setPassword(password);
@@ -85,10 +80,9 @@ public class UserBean implements UserBeanLocal {
         ut.setDob(dob);
         em.merge(ut);
     }
-    
+
     @Override
-    public UserTb getUserById(Integer id)
-    {
+    public UserTb getUserById(Integer id) {
         UserTb ut = em.find(UserTb.class, id);
         return ut;
     }
@@ -101,19 +95,19 @@ public class UserBean implements UserBeanLocal {
 
     @Override
     public Collection<UserCartTb> getCartProducts(Integer uid) {
-        UserTb u = em.find(UserTb.class,uid);
+        UserTb u = em.find(UserTb.class, uid);
         Collection<UserCartTb> cartProducts = em.createQuery("select c from UserCartTb c where c.userId=:user")
                 .setParameter("user", u)
                 .getResultList();
-        
+
         return cartProducts;
     }
 
     @Override
     public void addToCart(Integer uid, Integer pid, String size, Integer qty, Integer price) {
         UserCartTb uct = new UserCartTb();
-        UserTb u = em.find(UserTb.class,uid);
-        ProductTb p = em.find(ProductTb.class,pid);
+        UserTb u = em.find(UserTb.class, uid);
+        ProductTb p = em.find(ProductTb.class, pid);
         uct.setUserId(u);
         uct.setProductId(p);
         uct.setSize(size);
@@ -126,16 +120,15 @@ public class UserBean implements UserBeanLocal {
 
     @Override
     public void removefromCart(Integer cid) {
-        UserCartTb uct = em.find(UserCartTb.class,cid);
+        UserCartTb uct = em.find(UserCartTb.class, cid);
         em.remove(uct);
     }
-    
+
     @Override
-    public void editcartProductQuantity(Integer cid,Integer uid,Integer pid,String size,Integer qty,Integer price)
-    {
-        UserCartTb uct = em.find(UserCartTb.class,cid);
-        UserTb u = em.find(UserTb.class,uid);
-        ProductTb p = em.find(ProductTb.class,pid);
+    public void editcartProductQuantity(Integer cid, Integer uid, Integer pid, String size, Integer qty, Integer price) {
+        UserCartTb uct = em.find(UserCartTb.class, cid);
+        UserTb u = em.find(UserTb.class, uid);
+        ProductTb p = em.find(ProductTb.class, pid);
         uct.setUserId(u);
         uct.setProductId(p);
         uct.setSize(size);
@@ -145,11 +138,10 @@ public class UserBean implements UserBeanLocal {
         uct.setTotal(total);
         em.merge(uct);
     }
-    
+
     @Override
-    public Collection<UserOrderTb> getOrderHistory(Integer uid)
-    {
-        UserTb u = em.find(UserTb.class,uid);
+    public Collection<UserOrderTb> getOrderHistory(Integer uid) {
+        UserTb u = em.find(UserTb.class, uid);
         Collection<UserOrderTb> orders = em.createQuery("select o from UserOrderTb o where o.userId=:user")
                 .setParameter("user", u)
                 .getResultList();
@@ -158,8 +150,9 @@ public class UserBean implements UserBeanLocal {
 
     @Override
     public Integer countOfCartProduct(Integer uid) {
-        UserTb u = em.find(UserTb.class,uid);
-        TypedQuery<Long> query = em.createQuery("select count(c) from UserCartTb c where c.userId=:user",Long.class);
+        UserTb u = em.find(UserTb.class, uid);
+        TypedQuery<Long> query = em.createQuery("select count(c) from UserCartTb c where c.userId=:user", Long.class)
+                .setParameter("user", u);
         Long count = query.getSingleResult();
         return count.intValue();
     }
@@ -167,14 +160,14 @@ public class UserBean implements UserBeanLocal {
     @Override
     public void addOrder(Integer uid, Integer pid, String size, Integer qty, Integer price) {
         UserOrderTb uot = new UserOrderTb();
-        UserTb u = em.find(UserTb.class,uid);
-        ProductTb p = em.find(ProductTb.class,pid);
+        UserTb u = em.find(UserTb.class, uid);
+        ProductTb p = em.find(ProductTb.class, pid);
         uot.setUserId(u);
         uot.setProductId(p);
         uot.setSize(size);
         uot.setQty(qty);
         uot.setPrice(price);
-        Integer total = qty*price;
+        Integer total = qty * price;
         uot.setTotal(total);
         LocalDateTime now = LocalDateTime.now();
         ZonedDateTime zonedDateTime = now.atZone(ZoneId.systemDefault());
@@ -186,7 +179,17 @@ public class UserBean implements UserBeanLocal {
 
     @Override
     public ProductTb getProductDetails(Integer pid) {
-        ProductTb p = em.find(ProductTb.class,pid);
+        ProductTb p = em.find(ProductTb.class, pid);
         return p;
+    }
+
+    @Override
+    public Integer getUserIdByUsername(String username) {
+        TypedQuery<UserTb> query = em.createNamedQuery("UserTb.findByEmail", UserTb.class);
+        query.setParameter("email", username);
+        List<UserTb> users = query.getResultList();
+        System.out.println("User ID ========= "+users.get(0).getId());
+
+        return users.get(0).getId();
     }
 }

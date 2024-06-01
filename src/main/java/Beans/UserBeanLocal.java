@@ -24,6 +24,7 @@ public interface UserBeanLocal {
     public void deleteUser(Integer id);
     public void editUser(Integer id,String name,String password,String email,String mobileno,String gender,String address,String image,Date dob);
     public UserTb getUserById(Integer id);
+    public Integer getUserIdByUsername(String username);
     
     //products
     public Collection<ProductTb> getAllProduct();

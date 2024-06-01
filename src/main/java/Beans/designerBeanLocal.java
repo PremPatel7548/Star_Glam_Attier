@@ -29,6 +29,7 @@ public interface designerBeanLocal {
     public Collection<DesignerTb> getDesigners();
     public void deleteDesigner(Integer id);
     public void editDesigner(Integer id,String name,String password,String email,String mobileno,String gender,String image,Integer is_approved);
+    public DesignerTb getDesignerById(Integer id);
     
     // Product
     public void addProduct(String name,Integer price,Integer stock,String image,Integer cid,Integer mid,Integer cbid,Integer sid,Integer did);

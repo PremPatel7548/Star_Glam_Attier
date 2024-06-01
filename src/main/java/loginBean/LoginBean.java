@@ -69,12 +69,22 @@ public class LoginBean implements Serializable {
     boolean rememberme;
     String username,password;
     String errorstatus;
+    Integer uId;
     public String pth1(){
         return rc.path();
     }
     public String pth2(){
         return rc.path2();
     }
+
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
+    }
+    
     public LoginBean() {
         rc = new RestClient();
     }
@@ -89,6 +99,7 @@ public class LoginBean implements Serializable {
     public void logout(){
         username="";
         password="";
+        uId = null;
         KeepRecord.reset();
         KeepRecord.setLogout(true);
         FacesContext fc = FacesContext.getCurrentInstance();

@@ -222,5 +222,11 @@ public class designerBean implements designerBeanLocal {
         p.setStock(p.getStock() - qty);
         em.merge(p);
     }
+
+    @Override
+    public DesignerTb getDesignerById(Integer id) {
+        DesignerTb dt = em.find(DesignerTb.class, id);
+        return dt;
+    }
  
 }

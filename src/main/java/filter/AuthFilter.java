@@ -4,10 +4,12 @@
  */
 package filter;
 
+import Beans.UserBeanLocal;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.security.enterprise.AuthenticationStatus;
 import javax.security.enterprise.SecurityContext;
@@ -42,6 +44,7 @@ public class AuthFilter implements Filter {
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
+    @EJB UserBeanLocal ub;
     @Inject LoginBean lb;
     @Inject SecurityContext sctx;
     CredentialValidationResult cres;
@@ -93,6 +96,7 @@ public class AuthFilter implements Filter {
                     cookie.setMaxAge(60*24*24*60);
                     resp.addCookie(cookie);
                     }
+                    lb.setuId(ub.getUserIdByUsername(lb.getUsername()));
                     req.getRequestDispatcher("/User/Dashboard.jsf").forward(request, response);
                 }
                 else{
@@ -122,6 +126,7 @@ public class AuthFilter implements Filter {
                     req.getRequestDispatcher("/Admin/Dashboard.jsf").forward(request, response);
                 }
                 else if(KeepRecord.getRoles()!=null && KeepRecord.getRoles().contains("User")){
+                    lb.setuId(ub.getUserIdByUsername(lb.getUsername()));
                     req.getRequestDispatcher("/User/Dashboard.jsf").forward(request, response);
                 }
             }

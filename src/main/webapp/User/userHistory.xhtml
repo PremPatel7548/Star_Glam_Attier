@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="./userHeader.xhtml" />
+        <div class="container" style="margin-top: 150px;">
+            <div class="col-lg-10 col-xl-10 m-lr-auto m-b-50">
+                <div class="m-l-10 m-r--38 m-lr-0-xl">
+                    <div class="wrap-table-shopping-cart">
+                        <table class="table-shopping-cart">
+                            <tr class="table_head">
+                                <th class="column-1">Product</th>
+                                <th class="column-2"></th>
+                                <th class="column-3">Price</th>
+                                <th class="column-4">Quantity</th>
+                                <th class="column-5">Total</th>
+                                <th class="column-6">Status</th>
+                            </tr>
+
+                            <ui:repeat value="#{userHistoryBean.historys}" var="c">
+                                <tr class="table_row">
+                                    <td class="column-1">
+                                        <div class="how-itemcart1">
+                                            <img src="#{request.contextPath}/public/uploads/#{c.productId.image}" alt="IMG"/>
+                                        </div>
+                                    </td>
+                                    <td class="column-2">#{c.productId.name}</td>
+                                    <td class="column-3">#{c.price}/-</td>
+                                    <td class="column-4">#{c.qty}</td>
+                                    <td class="column-5">#{c.total}/-</td>
+                                    <td class="column-6">
+                                        <h:panelGroup rendered="#{c.isConfirmed == 0}">
+                                            <h3 class="text-gray-dark">Pending</h3>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{c.isConfirmed == 1}">
+                                            <h3 class="text-success">Delivered</h3>
+                                        </h:panelGroup>
+                                    </td>
+
+                                </tr>
+                            </ui:repeat>
+                        </table>
+                    </div>                           
+                </div>
+            </div>
+        </div>
+
+        <!--===============================================================================================-->	
+        <script src="#{request.contextPath}/public/userAssets/vendor/jquery/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/bootstrap/js/popper.js"></script>
+        <script src="#{request.contextPath}/public/userAssets/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/select2/select2.min.js"></script>
+        <script>
+            $(".js-select2").each(function () {
+                $(this).select2({
+                    minimumResultsForSearch: 20,
+                    dropdownParent: $(this).next('.dropDownSelect2')
+                });
+            })
+        </script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/daterangepicker/moment.min.js"></script>
+        <script src="#{request.contextPath}/public/userAssets/vendor/daterangepicker/daterangepicker.js"></script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/slick/slick.min.js"></script>
+        <script src="#{request.contextPath}/public/userAssets/js/slick-custom.js"></script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/parallax100/parallax100.js"></script>
+        <script>
+            $('.parallax100').parallax100();
+        </script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+        <script>
+            $('.gallery-lb').each(function () { // the containers for all your galleries
+                $(this).magnificPopup({
+                    delegate: 'a', // the selector for gallery item
+                    type: 'image',
+                    gallery: {
+                        enabled: true
+                    },
+                    mainClass: 'mfp-fade'
+                });
+            });
+        </script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/isotope/isotope.pkgd.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/sweetalert/sweetalert.min.js"></script>
+        <script>
+            $('.js-addwish-b2').on('click', function (e) {
+                e.preventDefault();
+            });
+
+            $('.js-addwish-b2').each(function () {
+                var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+                $(this).on('click', function () {
+                    swal(nameProduct, "is added to wishlist !", "success");
+
+                    $(this).addClass('js-addedwish-b2');
+                    $(this).off('click');
+                });
+            });
+
+            $('.js-addwish-detail').each(function () {
+                var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+                $(this).on('click', function () {
+                    swal(nameProduct, "is added to wishlist !", "success");
+
+                    $(this).addClass('js-addedwish-detail');
+                    $(this).off('click');
+                });
+            });
+
+            /*---------------------------------------------*/
+
+            $('.js-addcart-detail').each(function () {
+                var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+                $(this).on('click', function () {
+                    swal(nameProduct, "is added to cart !", "success");
+                });
+            });
+        </script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script>
+            $('.js-pscroll').each(function () {
+                $(this).css('position', 'relative');
+                $(this).css('overflow', 'hidden');
+                var ps = new PerfectScrollbar(this, {
+                    wheelSpeed: 1,
+                    scrollingThreshold: 1000,
+                    wheelPropagation: false,
+                });
+
+                $(window).on('resize', function () {
+                    ps.update();
+                })
+            });
+        </script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/js/main.js"></script>
+    </h:body>
+</html>

@@ -467,10 +467,17 @@ public class JakartaEE8Resource {
     }
     
     @POST
-    @Path("editcartProductQuantity/{cid}/{uid}/{pid}/{size}/{qty}/{price}")
-    public void editcartProductQuantity(@PathParam("cid") Integer cid,@PathParam("uid") Integer uid,@PathParam("pid") Integer pid,@PathParam("size") String size,@PathParam("qty") Integer qty,@PathParam("price") Integer price)
+    @Path("increasecartProductQuantity/{cid}")
+    public void increasecartProductQuantity(@PathParam("cid") Integer cid)
     {
-        user.editcartProductQuantity(cid, uid, pid, size, qty, price);
+        user.increasecartProductQuantity(cid);
+    }
+    
+    @POST
+    @Path("decreasecartProductQuantity/{cid}")
+    public void decreasecartProductQuantity(@PathParam("cid") Integer cid)
+    {
+        user.decreasecartProductQuantity(cid);
     }
     
     @POST

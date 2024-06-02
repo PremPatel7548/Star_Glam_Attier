@@ -34,7 +34,8 @@ public interface UserBeanLocal {
     public Collection<UserCartTb> getCartProducts(Integer uid);
     public void addToCart(Integer uid,Integer pid,String size,Integer qty,Integer price);
     public void removefromCart(Integer cid);
-    public void editcartProductQuantity(Integer cid,Integer uid,Integer pid,String size,Integer qty,Integer price);
+    public void increasecartProductQuantity(Integer cid);
+    public void decreasecartProductQuantity(Integer cid);
     public Integer countOfCartProduct(Integer uid);
     
     //user order

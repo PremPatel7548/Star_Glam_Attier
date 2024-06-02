@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
- */
 package UserCDIBeans;
 
 import Beans.UserBeanLocal;
@@ -17,20 +13,18 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import loginBean.LoginBean;
 
-/**
- *
- * @author Admin
- */
 @Named(value = "userCartBean")
 @Dependent
 public class UserCartBean {
 
-    @EJB UserBeanLocal ub;
+    @EJB 
+    UserBeanLocal ub;
     RestClient rc;
     Collection<UserCartTb> carts;
     GenericType<Collection<UserCartTb>> gc;
     Response res;
-    @Inject LoginBean lb;
+    @Inject 
+    LoginBean lb;
     Integer cartProductCount;
     Integer totalPrice;
     UserCartTb uc = new UserCartTb();
@@ -66,9 +60,7 @@ public class UserCartBean {
 
     public Integer getTotalPrice() {
         totalPrice = 0;
-        getCarts();
-        for(UserCartTb c : carts )
-        {
+        for (UserCartTb c : getCarts()) {
             totalPrice += c.getTotal();
         }
         return totalPrice;
@@ -82,19 +74,24 @@ public class UserCartBean {
         this.carts = carts;
     }
     
-    public String removeCart(Integer cid)
-    {
+    public String removeCart(Integer cid) {
         rc.removefromCart(String.valueOf(cid));
+        // Recalculate totals after removal
+        getCarts();
         return "Shoppingcart";
     }
     
-    public void addQuantity()
-    {
-        
+    public void addQuantity(Integer cid) {
+        System.out.println("Quantity ++");
+        rc.increasecartProductQuantity(String.valueOf(cid));
+        // Recalculate totals after quantity change
+        getCarts();
     }
     
-    public void decreseQuantity()
-    {
-        
+    public void decreaseQuantity(Integer cid) {
+        System.err.println("Quantity --");
+        rc.decreasecartProductQuantity(String.valueOf(cid));
+        // Recalculate totals after quantity change
+        getCarts();
     }
 }

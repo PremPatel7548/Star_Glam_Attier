@@ -125,20 +125,21 @@ public class UserBean implements UserBeanLocal {
     }
 
     @Override
-    public void editcartProductQuantity(Integer cid, Integer uid, Integer pid, String size, Integer qty, Integer price) {
+    public void increasecartProductQuantity(Integer cid) {
         UserCartTb uct = em.find(UserCartTb.class, cid);
-        UserTb u = em.find(UserTb.class, uid);
-        ProductTb p = em.find(ProductTb.class, pid);
-        uct.setUserId(u);
-        uct.setProductId(p);
-        uct.setSize(size);
-        uct.setQty(qty);
-        uct.setPrice(price);
-        Integer total = qty * price;
-        uct.setTotal(total);
+        uct.setQty(uct.getQty() + 1);
+        uct.setTotal(uct.getQty()*uct.getPrice());
         em.merge(uct);
     }
 
+    @Override
+    public void decreasecartProductQuantity(Integer cid) {
+        UserCartTb uct = em.find(UserCartTb.class,cid);
+        uct.setQty(uct.getQty()-1);
+        uct.setTotal(uct.getQty()*uct.getPrice());
+        em.merge(uct);
+    }
+    
     @Override
     public Collection<UserOrderTb> getOrderHistory(Integer uid) {
         UserTb u = em.find(UserTb.class, uid);
@@ -192,4 +193,5 @@ public class UserBean implements UserBeanLocal {
 
         return users.get(0).getId();
     }
+
 }

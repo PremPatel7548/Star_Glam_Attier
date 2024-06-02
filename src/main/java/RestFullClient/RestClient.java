@@ -71,10 +71,6 @@ public class RestClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
     }
 
-    public void editcartProductQuantity(String cid, String uid, String pid, String size, String qty, String price) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("editcartProductQuantity/{0}/{1}/{2}/{3}/{4}/{5}", new Object[]{cid, uid, pid, size, qty, price})).request().post(null);
-    }
-
     public void deleteDesigner(String id) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("deleteDesigner/{0}", new Object[]{id})).request().delete();
     }
@@ -95,6 +91,10 @@ public class RestClient {
 
     public void afterRegister(String email) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("afterRegister/{0}", new Object[]{email})).request().post(null);
+    }
+
+    public void increasecartProductQuantity(String cid) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("increasecartProductQuantity/{0}", new Object[]{cid})).request().post(null);
     }
 
     public void deleteMovieCelebrity(String id) throws ClientErrorException {
@@ -153,6 +153,10 @@ public class RestClient {
         WebTarget resource = webTarget;
         resource = resource.path("displayMovie");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void decreasecartProductQuantity(String cid) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("decreasecartProductQuantity/{0}", new Object[]{cid})).request().post(null);
     }
 
     public void deleteSong(String id) throws ClientErrorException {

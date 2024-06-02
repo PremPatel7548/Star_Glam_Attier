@@ -2,14 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Cart</title>
     </h:head>
     <h:body>
         <ui:include src="./userHeader.xhtml" />
         <!-- Shoping Cart -->
-            <div class="container" style="margin-top: 100px;">
+        <div class="container" style="margin-top: 100px;">
+            <h:form id="cartForm">
                 <div class="row">
                     <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
                         <div class="m-l-10 m-r--38 m-lr-0-xl">
@@ -34,27 +36,27 @@
                                             <td class="column-3">#{c.price}/-</td>
                                             <td class="column-4">
                                                 <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                                        <i class="fs-16 zmdi zmdi-minus"></i>
-                                                    </div>
+                                                    <h:commandButton action="#{userCartBean.decreaseQuantity(c.id)}" styleClass="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" value="-">
+                                                        <f:ajax render="@form totalPrice subtotal total-#{c.id}"/>
+                                                    </h:commandButton>
 
-                                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product-#{c.productId.name}" value="#{c.qty}"/>
+                                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product-#{c.productId.name}" value="#{c.qty}" readonly="true"/>
 
-                                                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                        <i class="fs-16 zmdi zmdi-plus"></i>
-                                                    </div>
+                                                    <h:commandButton action="#{userCartBean.addQuantity(c.id)}" styleClass="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" value="+">
+                                                        <f:ajax render="@form totalPrice subtotal total-#{c.id}"/>
+                                                    </h:commandButton>
                                                 </div>
                                             </td>
-                                            <td class="column-5">#{c.total}/-</td>
+                                            <td class="column-5" id="total-#{c.id}">#{c.total}/-</td>
                                             <td>
-                                                <h:form>
-                                                    <h:commandButton class="btn btn-danger mr-2" value="Remove To Cart" action="#{userCartBean.removeCart(c.id)}"></h:commandButton>
-                                                </h:form>
+                                                <h:commandButton class="btn btn-danger mr-2" value="Remove From Cart" action="#{userCartBean.removeCart(c.id)}">
+                                                   
+                                                </h:commandButton>
                                             </td>
                                         </tr>
                                     </ui:repeat>
                                 </table>
-                            </div>                           
+                            </div>
                         </div>
                     </div>
 
@@ -72,7 +74,7 @@
                                 </div>
 
                                 <div class="size-209">
-                                    <span class="mtext-110 cl2">
+                                    <span class="mtext-110 cl2" id="subtotal">
                                         #{userCartBean.totalPrice}/-
                                     </span>
                                 </div>
@@ -130,7 +132,7 @@
                                 </div>
 
                                 <div class="size-209 p-t-1">
-                                    <span class="mtext-110 cl2">
+                                    <span class="mtext-110 cl2" id="total">
                                         #{userCartBean.totalPrice}/-
                                     </span>
                                 </div>
@@ -142,8 +144,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </h:form>
         
+        </div>
+
 
         <!-- Footer -->
         <footer class="bg3 p-t-75 p-b-32">

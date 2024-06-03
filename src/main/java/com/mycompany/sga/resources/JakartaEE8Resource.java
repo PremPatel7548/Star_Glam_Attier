@@ -496,6 +496,38 @@ public class JakartaEE8Resource {
     }
     
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getProductByCategory/{category}")
+    public Collection<ProductTb> getProductByCategory(@PathParam("category") String category)
+    {
+        return user.getProductByCategory(category);
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getProductByMovie/{movie}")
+    public Collection<ProductTb> getProductByMovie(@PathParam("movie") String movie)
+    {
+        return user.getProductByMovie(movie);
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getProductBySong/{song}")
+    public Collection<ProductTb> getProductBySong(@PathParam("song") String song)
+    {
+        return user.getProductBySong(song);
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getProductByCelebrity/{celebrity}")
+    public Collection<ProductTb> getProductByCelebrity(@PathParam("celebrity") String celebrity)
+    {
+        return user.getProductByCelebrity(celebrity);
+    }
+    
+    @GET
     @Path("p1")
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("Admin")

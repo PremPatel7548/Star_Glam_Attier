@@ -31,6 +31,12 @@ public class RestClient {
         webTarget = client.target(BASE_URI).path("rest");
     }
 
+    public <T> T getProductByCelebrity(Class<T> responseType, String celebrity) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getProductByCelebrity/{0}", new Object[]{celebrity}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public void addMovieCelebrity(String mid, String cid) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("addMovieCelebrity/{0}/{1}", new Object[]{mid, cid})).request().post(null);
     }
@@ -49,6 +55,12 @@ public class RestClient {
 
     public void removefromCart(String cid) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("removefromCart/{0}", new Object[]{cid})).request().delete();
+    }
+
+    public <T> T getProductByMovie(Class<T> responseType, String movie) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getProductByMovie/{0}", new Object[]{movie}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void updateDesignerProducts(String id, String name, String price, String stock, String image, String cid, String mid, String cbid, String sid, String did) throws ClientErrorException {
@@ -73,6 +85,12 @@ public class RestClient {
 
     public void deleteDesigner(String id) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("deleteDesigner/{0}", new Object[]{id})).request().delete();
+    }
+
+    public <T> T getProductByCategory(Class<T> responseType, String category) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getProductByCategory/{0}", new Object[]{category}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public <T> T displayCategorys(Class<T> responseType) throws ClientErrorException {
@@ -230,6 +248,12 @@ public class RestClient {
     public <T> T getOrderHistory(Class<T> responseType, String uid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getOrderHistory/{0}", new Object[]{uid}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getProductBySong(Class<T> responseType, String song) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getProductBySong/{0}", new Object[]{song}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 

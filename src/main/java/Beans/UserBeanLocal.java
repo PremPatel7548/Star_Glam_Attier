@@ -41,4 +41,9 @@ public interface UserBeanLocal {
     //user order
     public void addOrder(Integer uid,Integer pid,String size,Integer qty,Integer price);
     public Collection<UserOrderTb> getOrderHistory(Integer uid);
+    
+    public Collection<ProductTb> getProductByCategory(String category);
+    public Collection<ProductTb> getProductByMovie(String movie);
+    public Collection<ProductTb> getProductBySong(String song);
+    public Collection<ProductTb> getProductByCelebrity(String celebrity);
 }

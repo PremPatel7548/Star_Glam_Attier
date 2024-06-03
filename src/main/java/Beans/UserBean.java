@@ -128,18 +128,18 @@ public class UserBean implements UserBeanLocal {
     public void increasecartProductQuantity(Integer cid) {
         UserCartTb uct = em.find(UserCartTb.class, cid);
         uct.setQty(uct.getQty() + 1);
-        uct.setTotal(uct.getQty()*uct.getPrice());
+        uct.setTotal(uct.getQty() * uct.getPrice());
         em.merge(uct);
     }
 
     @Override
     public void decreasecartProductQuantity(Integer cid) {
-        UserCartTb uct = em.find(UserCartTb.class,cid);
-        uct.setQty(uct.getQty()-1);
-        uct.setTotal(uct.getQty()*uct.getPrice());
+        UserCartTb uct = em.find(UserCartTb.class, cid);
+        uct.setQty(uct.getQty() - 1);
+        uct.setTotal(uct.getQty() * uct.getPrice());
         em.merge(uct);
     }
-    
+
     @Override
     public Collection<UserOrderTb> getOrderHistory(Integer uid) {
         UserTb u = em.find(UserTb.class, uid);
@@ -189,9 +189,42 @@ public class UserBean implements UserBeanLocal {
         TypedQuery<UserTb> query = em.createNamedQuery("UserTb.findByEmail", UserTb.class);
         query.setParameter("email", username);
         List<UserTb> users = query.getResultList();
-        System.out.println("User ID ========= "+users.get(0).getId());
+        System.out.println("User ID ========= " + users.get(0).getId());
 
         return users.get(0).getId();
+    }
+
+    @Override
+    public Collection<ProductTb> getProductByCategory(String category) {
+
+        String queryStr = "SELECT p FROM ProductTb p WHERE p.categoryId.categoryName LIKE :category";
+        TypedQuery<ProductTb> query = em.createQuery(queryStr, ProductTb.class);
+        query.setParameter("category", "%" + category + "%");
+        return query.getResultList();
+    }
+
+    @Override
+    public Collection<ProductTb> getProductByMovie(String movie) {
+        Collection<ProductTb> products = em.createQuery("select p from ProductTb p where p.movieId.name LIKE :movie")
+                .setParameter("movie","%"+movie+"%")
+                .getResultList();
+        return products;
+    }
+
+    @Override
+    public Collection<ProductTb> getProductBySong(String song) {
+        Collection<ProductTb> products = em.createQuery("select p from ProductTb p where p.songId.name LIKE :song")
+                .setParameter("song","%"+song+"%")
+                .getResultList();
+        return products;
+    }
+
+    @Override
+    public Collection<ProductTb> getProductByCelebrity(String celebrity) {
+        Collection<ProductTb> products = em.createQuery("select p from ProductTb p where p.celebrityId.name LIKE :celebrity")
+                .setParameter("celebrity","%"+celebrity+"%")
+                .getResultList();
+        return products;
     }
 
 }

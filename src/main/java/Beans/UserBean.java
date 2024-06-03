@@ -105,17 +105,33 @@ public class UserBean implements UserBeanLocal {
 
     @Override
     public void addToCart(Integer uid, Integer pid, String size, Integer qty, Integer price) {
-        UserCartTb uct = new UserCartTb();
-        UserTb u = em.find(UserTb.class, uid);
-        ProductTb p = em.find(ProductTb.class, pid);
-        uct.setUserId(u);
-        uct.setProductId(p);
-        uct.setSize(size);
-        uct.setQty(qty);
-        uct.setPrice(price);
-        Integer total = qty * price;
-        uct.setTotal(total);
-        em.persist(uct);
+        UserTb user = em.find(UserTb.class, uid);
+        ProductTb product = em.find(ProductTb.class, pid);
+        Collection<UserCartTb> uc = em.createQuery("select c from UserCartTb c where c.userId=:user and c.productId=:product and c.size=:size")
+                .setParameter("user", user)
+                .setParameter("product", product)
+                .setParameter("size",size)
+                .getResultList();
+        if (uc.isEmpty()) {
+            UserCartTb uct = new UserCartTb();
+            UserTb u = em.find(UserTb.class, uid);
+            ProductTb p = em.find(ProductTb.class, pid);
+            uct.setUserId(u);
+            uct.setProductId(p);
+            uct.setSize(size);
+            uct.setQty(qty);
+            uct.setPrice(price);
+            Integer total = qty * price;
+            uct.setTotal(total);
+            em.persist(uct);
+        } else {
+            for (UserCartTb c : uc) {
+                UserCartTb uct = em.find(UserCartTb.class, c.getId());
+                uct.setQty(uct.getQty()+qty);
+                uct.setTotal(uct.getQty()*uct.getPrice());
+                em.merge(uct);
+            }
+        }
     }
 
     @Override
@@ -206,7 +222,7 @@ public class UserBean implements UserBeanLocal {
     @Override
     public Collection<ProductTb> getProductByMovie(String movie) {
         Collection<ProductTb> products = em.createQuery("select p from ProductTb p where p.movieId.name LIKE :movie")
-                .setParameter("movie","%"+movie+"%")
+                .setParameter("movie", "%" + movie + "%")
                 .getResultList();
         return products;
     }
@@ -214,7 +230,7 @@ public class UserBean implements UserBeanLocal {
     @Override
     public Collection<ProductTb> getProductBySong(String song) {
         Collection<ProductTb> products = em.createQuery("select p from ProductTb p where p.songId.name LIKE :song")
-                .setParameter("song","%"+song+"%")
+                .setParameter("song", "%" + song + "%")
                 .getResultList();
         return products;
     }
@@ -222,7 +238,7 @@ public class UserBean implements UserBeanLocal {
     @Override
     public Collection<ProductTb> getProductByCelebrity(String celebrity) {
         Collection<ProductTb> products = em.createQuery("select p from ProductTb p where p.celebrityId.name LIKE :celebrity")
-                .setParameter("celebrity","%"+celebrity+"%")
+                .setParameter("celebrity", "%" + celebrity + "%")
                 .getResultList();
         return products;
     }

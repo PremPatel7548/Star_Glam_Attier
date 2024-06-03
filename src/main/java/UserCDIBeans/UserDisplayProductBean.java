@@ -83,11 +83,12 @@ public class UserDisplayProductBean implements Serializable {
         this.searchval = searchval;
     }
 
-    public void getProductDetail(Integer pid) {
+    public String getProductDetail(Integer pid) {
         System.out.println("Fetching Product Details for ID: " + pid);
         res = rc.getProductDetails(Response.class, String.valueOf(pid));
         this.p = res.readEntity(gpp);
         System.out.println("Product Name: " + p.getName());
+        return "productDetail";
     }
 
     public String addToCart() {

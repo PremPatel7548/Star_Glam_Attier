@@ -7,7 +7,6 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Products</title>
-
     </h:head>
     <h:body>
         <ui:include src="./userHeader.xhtml" />
@@ -62,25 +61,23 @@
                                         <f:selectItem itemLabel="Song" itemValue="song" />
                                         <f:selectItem itemLabel="Celebrity" itemValue="celebrity" />
                                         <f:selectItem itemLabel="Category" itemValue="category" />
+                                        <f:ajax event="change" render="@form productForm"/>
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="bor8 dis-flex p-l-15 col-md-9">
-                                    <h:commandButton class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" action="#{userDisplayProductBean.searchProduct}" value="Search">
-                                        
-                                        <f:ajax execute="@form" render="@form productForm"/>
-                                    </h:commandButton>
                                     <h:inputText
                                         id="searchProduct"
                                         styleClass="mtext-107 cl2 size-114 plh2 p-r-15"
                                         value="#{userDisplayProductBean.searchval}">
                                         <f:passThroughAttribute name="placeholder" value="Search" />
-                                       
+                                        <f:ajax event="keyup" render="@form productForm" listener="#{userDisplayProductBean.searchProduct}"/>
                                     </h:inputText>
                                 </div>
                             </div>
                         </h:form>
                     </div>
                 </div>
+
 
                 <h:form id="productForm">
                     <div class="row isotope-grid">
@@ -91,8 +88,8 @@
                                         <img src="#{request.contextPath}/public/uploads/#{p.image}" alt="IMG-PRODUCT"/>
                                         <h:commandButton value="Quick View"
                                                          action="#{userDisplayProductBean.getProductDetail(p.id)}"
-                                                         styleClass="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-                                            <f:ajax render="modalContent"/>
+                                                         styleClass="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04">
+                                            <!--                                        <f:ajax render="modalContent"/>-->
                                         </h:commandButton>
                                     </div>
                                     <div class="block2-txt flex-w flex-t p-t-14">
@@ -442,7 +439,17 @@
                             $('.js-addcart-detail').each(function () {
                                 var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
                                 $(this).on('click', function () {
-                                    swal(nameProduct, "is added to cart !", "success");
+                                    swal({
+                                        title: nameProduct,
+                                        text: "is added to cart!",
+                                        icon: "success",
+                                        timer: 1000, // Display for at least 1 second
+                                        buttons: false // Hide buttons to prevent dismissal before 1 second
+                                    }).then(function () {
+                                        // Code to execute after 1 second
+                                        // Example: Redirect to another page, update cart, etc.
+                                        console.log("Action after displaying the success message");
+                                    });
                                 });
                             });
         </script>

@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="./designerHeader.xhtml" />
+
+        <div class="content-wrapper" style="padding-left: 30px;padding-right: 30px;padding-bottom:20px">
+
+
+            <c:if test="${not empty designerOrderBean.successmessage}">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    ${designerOrderBean.successmessage}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                #{designerOrderBean.clearSuccessMessage()}
+            </c:if>
+
+            <c:if test="${not empty designerOrderBean.errormessage}">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    ${designerOrderBean.errormessage}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                #{designerOrderBean.clearSuccessMessage()}
+            </c:if>
+
+            <div class="card" style="margin-top: 10px;">
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <h2> Pending Orders </h2>
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th> User </th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th> Quantity </th>
+                                <th> Total </th>
+                                <th> Order Date </th>
+                                <th> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="#{designerOrderBean.orders}" var="o">
+                                <c:if test="#{o.isConfirmed == 0}">
+                                    <tr>
+                                        <td>
+                                            <img src="#{request.contextPath}/public/uploads/#{o.productId.image}" class="img-circle elevation-2 d-flex justify-content-center" alt="User Image" style="width: 30px; height: 30px; cursor:pointer;" />
+                                        </td>
+                                        <td>#{o.userId.name}</td>
+                                        <td>#{o.productId.name}</td>
+                                        <td>#{o.price}</td>
+                                        <td>#{o.qty}</td>
+                                        <td>#{o.total}</td>
+                                        <td>#{o.orderDate}</td>
+                                        <td>
+                                            <h:form>
+                                                <h:commandButton value="Accept" action="#{designerOrderBean.acceptOrder(o)}" class="btn btn-warning ml-4"></h:commandButton>
+                                            </h:form>
+                                        </td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body">
+                    <h2> Confirm Orders </h2>
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th> User </th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th> Quantity </th>
+                                <th> Total </th>
+                                <th> Order Date </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="#{designerOrderBean.orders}" var="o">
+                                <c:if test="#{o.isConfirmed == 1}">
+                                    <tr>
+                                        <td>
+                                            <img src="#{request.contextPath}/public/uploads/#{o.productId.image}" class="img-circle elevation-2 d-flex justify-content-center" alt="User Image" style="width: 30px; height: 30px; cursor:pointer;" />
+                                        </td>
+                                        <td>#{o.userId.name}</td>
+                                        <td>#{o.productId.name}</td>
+                                        <td>#{o.price}</td>
+                                        <td>#{o.qty}</td>
+                                        <td>#{o.total}</td>
+                                        <td>#{o.orderDate}</td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "pageLength": 4,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                });
+            });
+        </script>
+    </h:body>
+</html>

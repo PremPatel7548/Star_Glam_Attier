@@ -101,6 +101,9 @@ public class UserDisplayProductBean implements Serializable {
             fetchAllProducts();
         } else {
             switch (this.searchcat) {
+                case "product":
+                    res = rc.getProductByName(Response.class, searchval);
+                    break;
                 case "movie":
                     res = rc.getProductByMovie(Response.class, searchval);
                     break;

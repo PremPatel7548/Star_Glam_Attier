@@ -46,4 +46,5 @@ public interface UserBeanLocal {
     public Collection<ProductTb> getProductByMovie(String movie);
     public Collection<ProductTb> getProductBySong(String song);
     public Collection<ProductTb> getProductByCelebrity(String celebrity);
+    public Collection<ProductTb> getProductByName(String name);
 }

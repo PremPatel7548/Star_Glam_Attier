@@ -86,14 +86,14 @@ public class DesignerOrderBean {
         if(uot.getProductId().getStock() < uot.getQty())
         {
             errormessage = "Product Out Of Stock !! Order Not Confirmed";
-            return "userOrders";
+            return "orders";
         }
         else
         {
             dl.acceptOrder(uot.getId(),uot.getUserId().getId(),uot.getProductId().getId() ,uot.getSize(),uot.getQty(), uot.getPrice(), uot.getTotal(),uot.getOrderDate(),1);
             dl.editStock(uot.getProductId().getId(),uot.getQty());
             successmessage = "Order Confirmed";
-            return "userOrders";
+            return "orders";
         }
     }
     

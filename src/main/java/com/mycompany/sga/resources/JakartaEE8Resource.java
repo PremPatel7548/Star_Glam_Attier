@@ -528,6 +528,14 @@ public class JakartaEE8Resource {
     }
     
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getProductByName/{name}")
+    public Collection<ProductTb> getProductByName(@PathParam("name") String name)
+    {
+        return user.getProductByName(name);
+    }
+    
+    @GET
     @Path("p1")
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("Admin")

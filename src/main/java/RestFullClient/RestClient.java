@@ -24,7 +24,7 @@ public class RestClient {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/Star_Glam_Attier/resources";
+    private static final String BASE_URI = "http://localhost:8080/SGA/resources";
 
     public RestClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
@@ -211,6 +211,12 @@ public class RestClient {
 
     public void addMovie(String name, String date, String mcid) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("addMovie/{0}/{1}/{2}", new Object[]{name, date, mcid})).request().post(null);
+    }
+
+    public <T> T getProductByName(Class<T> responseType, String name) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getProductByName/{0}", new Object[]{name}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void addToCart(String uid, String pid, String size, String qty, String price) throws ClientErrorException {

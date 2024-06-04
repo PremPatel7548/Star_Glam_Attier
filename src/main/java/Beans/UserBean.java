@@ -243,4 +243,12 @@ public class UserBean implements UserBeanLocal {
         return products;
     }
 
+    @Override
+    public Collection<ProductTb> getProductByName(String name) {
+        Collection<ProductTb> products = em.createQuery("select p from ProductTb p where p.name LIKE :name")
+                .setParameter("name", "%"+name+"%")
+                .getResultList();
+        return products;
+    }
+
 }

@@ -27,6 +27,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>Login.jsf</welcome-file>
+        <welcome-file>LandingPage.jsf</welcome-file>
     </welcome-file-list>
 </web-app>

@@ -1,0 +1,432 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>SGA - Landing Page</title>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/public/userAssets/vendor/bootstrap/css/bootstrap.min.css"/>
+
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/public/landingpageAssets/css/font-awesome.css"/>
+
+        <link rel="stylesheet" href="#{request.contextPath}/public/landingpageAssets/css/templatemo-hexashop.css"/>
+
+        <link rel="stylesheet" href="#{request.contextPath}/public/landingpageAssets/css/owl-carousel.css"/>
+
+        <link rel="stylesheet" href="#{request.contextPath}/public/landingpageAssets/css/lightbox.css"/>
+    </h:head>
+    <h:body>
+
+        <!-- ***** Header Area Start ***** -->
+        <header class="header-area header-sticky">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- ***** Logo Start ***** -->
+                            <a href="#{request.contextPath}/LandingPage.jsf" class="logo">
+                                <img src="#{request.contextPath}/public/assets/images/SGA-logo.png" style="height: 50px; margin-top: -25px; margin-left: -150px; "/>
+                            </a>
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav" style="margin-right: -80px">
+                                <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                                <li class="scroll-to-section"><a href="#aboutus">About us</a></li>
+                                <li class="scroll-to-section"><a href="#team">Our Team</a></li>
+                                <li class="scroll-to-section"><a href="#explore">Explore</a></li>
+                                <li class="submenu">
+                                    <a href="#{request.contextPath}/Registerpage.jsf">Sign Up</a>
+                                    <ul>
+                                        <li><a href="#{request.contextPath}/Registerpage.jsf">User SignUp</a></li>
+                                        <li><a href="#{request.contextPath}/Designer/RegisterDesigner.jsf">Designer SignUp</a></li>
+                                    </ul>
+                                </li>
+                                <li class="submenu">
+                                    <a href="#{request.contextPath}/Login.jsf">Sign In</a>
+                                    <ul>
+                                        <li><a href="#{request.contextPath}/Login.jsf">User SignIn</a></li>
+                                        <li><a href="#{request.contextPath}/Designer/loginDesigner.jsf">Designer SignIn</a></li>
+                                    </ul>
+                                </li>
+                            </ul>        
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                            <!-- ***** Menu End ***** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ***** Header Area End ***** -->
+
+
+        <!-- ***** Main Banner Area Start ***** -->
+        <div class="main-banner" id="top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="left-content">
+                            <div class="thumb" style="position: relative">
+                                <img src="#{request.contextPath}/public/landingpageAssets/images/main.jpg" class="image" style="display: block; height: 629px; width: 740px;" alt="Image"/>
+                                <div class="overlay" style="position: absolute; top: 0; left: 5; width: 740px; height: 629px; background-color: rgba(0, 0, 0, 0.5);"></div>
+                                <div class="inner-content" >
+                                    <h4>We Are Hexashop</h4>
+                                    <span>Awesome, clean &amp; creative HTML5 Template</span>
+                                    <div class="main-border-button">
+                                        <a href="#">Purchase Now!</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="right-content">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="right-first-image">
+                                        <div class="thumb">
+
+
+                                            <div class="overlay-container">
+                                                <img src="#{request.contextPath}/public/landingpageAssets/images/landimg-1.jpg" class="image" style="display: block; height: 300px;" alt="Image"/>
+                                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3);"></div>
+                                            </div>                                          <div class="inner-content">
+                                                <h4>Women</h4>
+                                                <span>Best Clothes For Women</span>
+                                            </div>
+                                            <div class="hover-content">
+                                                <div class="inner">
+                                                    <h4>Women</h4>
+                                                    <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                    <div class="main-border-button">
+                                                        <a href="#">Discover More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="right-first-image">
+                                        <div class="thumb">
+
+
+                                            <div class="overlay-container">
+                                                <img src="#{request.contextPath}/public/landingpageAssets/images/landimg-2.jpg" class="image" style="display: block; height: 300px;" alt="Image"/>
+                                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3);"></div>
+                                            </div>  
+                                            <div class="inner-content">
+                                                <h4>Men</h4>
+                                                <span>Best Clothes For Men</span>
+                                            </div>
+                                            <div class="hover-content">
+                                                <div class="inner">
+                                                    <h4>Men</h4>
+                                                    <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                    <div class="main-border-button">
+                                                        <a href="#">Discover More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="right-first-image">
+                                        <div class="thumb">
+
+                                            <div class="overlay-container">
+                                                <img src="#{request.contextPath}/public/landingpageAssets/images/landimg-3.jpg" class="image" style="display: block; height: 300px;" alt="Image"/>
+                                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3);"></div>
+                                            </div>       
+                                            <div class="inner-content">
+                                                <h4>Men</h4>
+                                                <span>Best Clothes For Men</span>
+                                            </div>
+                                            <div class="hover-content">
+                                                <div class="inner">
+                                                    <h4>Kids</h4>
+                                                    <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                    <div class="main-border-button">
+                                                        <a href="#">Discover More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="right-first-image">
+                                        <div class="thumb">
+
+                                            <div class="overlay-container">
+                                                <img src="#{request.contextPath}/public/landingpageAssets/images/landimg-4.jpg" class="image" style="display: block; height: 300px;" alt="Image"/>
+                                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3);"></div>
+                                            </div> 
+                                            <div class="inner-content">
+                                                <h4>Women</h4>
+                                                <span>Best Clothes For Women</span>
+                                            </div> 
+                                            <div class="hover-content">
+                                                <div class="inner">
+                                                    <h4>Accessories</h4>
+                                                    <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                    <div class="main-border-button">
+                                                        <a href="#">Discover More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Main Banner Area End ***** -->
+
+        <!-- ***** About Area Starts ***** -->
+        <section class="section" id="aboutus">
+            <div class="about-us">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="left-image">
+                                <img src="#{request.contextPath}/public/landingpageAssets/images/about-left-image.jpg" alt=""/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-content">
+                                <h4>About Us &amp; Our Skills</h4>
+                                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod kon tempor incididunt ut labore.</span>
+                                <div class="quote">
+                                    <i class="fa fa-quote-left"></i><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiuski smod kon tempor incididunt ut labore.</p>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod kon tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ***** About Area Ends ***** -->
+
+        <!-- ***** Our Team Area Starts ***** -->
+        <section class="our-team" id="team">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-heading">
+                            <h2>Our Amazing Team</h2>
+                            <span>Details to details is what makes Hexashop different from the other themes.</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="team-item">
+                            <div class="thumb">
+                                <div class="hover-effect">
+                                    <div class="inner-content">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <img src="#{request.contextPath}/public/landingpageAssets/images/team-member-01.jpg" style="height: 350px;"/>
+                            </div>
+                            <div class="down-content">
+                                <h4>Pooja Patel</h4>
+                                <span>Software Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="team-item">
+                            <div class="thumb">
+                                <div class="hover-effect">
+                                    <div class="inner-content">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <img src="#{request.contextPath}/public/landingpageAssets/images/team-member-02.jpg" style="height: 350px;"/>
+                            </div>
+                            <div class="down-content">
+                                <h4>Prem Patel</h4>
+                                <span>Software Developer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- ***** Our Team Area Ends ***** -->
+
+        <!-- ***** Explore Area Starts ***** -->
+        <section class="section" id="explore">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="left-content">
+                            <h2>Explore Our Products</h2>
+                            <span>You are allowed to use this HexaShop HTML CSS template. You can feel free to modify or edit this layout. You can convert this template as any kind of ecommerce CMS theme as you wish.</span>
+                            <div class="quote">
+                                <i class="fa fa-quote-left"></i><p>You are not allowed to redistribute this template ZIP file on any other website.</p>
+                            </div>
+                            <p>There are 5 pages included in this HexaShop Template and we are providing it to you for absolutely free of charge at our TemplateMo website. There are web development costs for us.</p>
+                            <p>If this template is beneficial for your website or business, please kindly <a rel="nofollow" href="https://paypal.me/templatemo" target="_blank">support us</a> a little via PayPal. Please also tell your friends about our great website. Thank you.</p>
+                            <div class="main-border-button">
+                                <a href="products.html">Discover More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="right-content">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="leather">
+                                        <h4>Leather Bags</h4>
+                                        <span>Latest Collection</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="first-image">
+                                        <img src="#{request.contextPath}/public/landingpageAssets/images/explore-image-01.jpg" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="second-image">
+                                        <img src="#{request.contextPath}/public/landingpageAssets/images/explore-image-02.jpg" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="types">
+                                        <h4>Different Types</h4>
+                                        <span>Over 304 Products</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ***** Explore Area Ends ***** -->
+
+        <!-- ***** Footer Start ***** -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="first-item">
+                            <div class="logo">
+                                <img src="assets/images/white-logo.png" alt="hexashop ecommerce templatemo"/>
+                            </div>
+                            <ul>
+                                <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
+                                <li><a href="#">hexashop@company.com</a></li>
+                                <li><a href="#">010-020-0340</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <h4>Shopping &amp; Categories</h4>
+                        <ul>
+                            <li><a href="#">Men’s Shopping</a></li>
+                            <li><a href="#">Women’s Shopping</a></li>
+                            <li><a href="#">Kid's Shopping</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><a href="#">Homepage</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3">
+                        <h4>Help &amp; Information</h4>
+                        <ul>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">FAQ's</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Tracking ID</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="under-footer">
+                            <p>Copyright © 2022 HexaShop Co., Ltd. All Rights Reserved. 
+
+                                <br/>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a></p>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- jQuery -->
+        <script src="#{request.contextPath}/public/landingpageAssets/js/jquery-2.1.0.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="#{request.contextPath}/public/landingpageAssets/js/popper.js"></script>
+        <script src="#{request.contextPath}/public/landingpageAssets/js/bootstrap.min.js"></script>
+
+        <!-- Plugins -->
+        <script src="#{request.contextPath}/public/landingpageAssets/js/owl-carousel.js"></script>
+        <script src="#{request.contextPath}/public/landingpageAssets/js/accordions.js"></script>
+        <script src="#{request.contextPath}/public/landingpageAssets/js/datepicker.js"></script>
+        <script src="#{request.contextPath}/public/landingpageAssets/js/scrollreveal.min.js"></script>
+        <script src="#{request.contextPath}/public/landingpageAssets/js/waypoints.min.js"></script>
+        <script src="#{request.contextPath}/public/landingpageAssets/js/jquery.counterup.min.js"></script>
+        <script src="#{request.contextPath}/public/landingpageAssets/js/imgfix.min.js"></script> 
+        <script src="#{request.contextPath}/public/landingpageAssets/js/slick.js"></script> 
+        <script src="#{request.contextPath}/public/landingpageAssets/js/lightbox.js"></script> 
+        <script src="#{request.contextPath}/public/landingpageAssets/js/isotope.js"></script> 
+
+        <!-- Global Init -->
+        <script src="#{request.contextPath}/public/landingpageAssets/js/custom.js"></script>
+
+        <script>
+
+            $(function () {
+                var selectedClass = "";
+                $("p").click(function () {
+                    selectedClass = $(this).attr("data-rel");
+                    $("#portfolio").fadeTo(50, 0.1);
+                    $("#portfolio div").not("." + selectedClass).fadeOut();
+                    setTimeout(function () {
+                        $("." + selectedClass).fadeIn();
+                        $("#portfolio").fadeTo(50, 1);
+                    }, 500);
+
+                });
+            });
+
+        </script>
+    </h:body>
+</html>

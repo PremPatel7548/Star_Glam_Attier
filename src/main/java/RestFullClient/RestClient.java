@@ -24,7 +24,7 @@ public class RestClient {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/Star_Glam_Attier/resources";
+    private static final String BASE_URI = "http://localhost:8080/SGA/resources";
 
     public RestClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
@@ -223,8 +223,8 @@ public class RestClient {
         webTarget.path(java.text.MessageFormat.format("addToCart/{0}/{1}/{2}/{3}/{4}", new Object[]{uid, pid, size, qty, price})).request().post(null);
     }
 
-    public void addOrder(String uid, String pid, String size, String qty, String price) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("addOrder/{0}/{1}/{2}/{3}/{4}", new Object[]{uid, pid, size, qty, price})).request().post(null);
+    public <T> T addOrder(Class<T> responseType, String uid, String pid, String size, String qty, String price) throws ClientErrorException {
+        return webTarget.path(java.text.MessageFormat.format("addOrder/{0}/{1}/{2}/{3}/{4}", new Object[]{uid, pid, size, qty, price})).request().post(null, responseType);
     }
 
     public void addMovieCategory(String name) throws ClientErrorException {
@@ -311,6 +311,10 @@ public class RestClient {
 
     public void addDesignerProducts(String name, String price, String stock, String image, String cid, String mid, String cbid, String sid, String did) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("addDesignerProducts/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}", new Object[]{name, price, stock, image, cid, mid, cbid, sid, did})).request().post(null);
+    }
+
+    public void addPayment(String uid, String oid, String mode) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("addPayment/{0}/{1}/{2}", new Object[]{uid, oid, mode})).request().post(null);
     }
 
     public void close() {

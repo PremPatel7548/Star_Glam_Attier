@@ -25,6 +25,11 @@ public class UserDisplayProductBean implements Serializable {
     @Inject private LoginBean lb;
     private Integer qty;
     private String searchcat, searchval;
+    
+    // Pagination properties
+    private int currentPage = 1;
+    private int itemsPerPage = 16;
+    private int totalPages;
 
     public UserDisplayProductBean() {
         rc = new RestClient();
@@ -36,7 +41,9 @@ public class UserDisplayProductBean implements Serializable {
     }
 
     public Collection<ProductTb> getProducts() {
-        return products;
+        int fromIndex = (currentPage - 1) * itemsPerPage;
+        int toIndex = Math.min(fromIndex + itemsPerPage, products.size());
+        return new ArrayList<>(products).subList(fromIndex, toIndex);
     }
 
     public void setProducts(Collection<ProductTb> products) {
@@ -121,11 +128,56 @@ public class UserDisplayProductBean implements Serializable {
                     return;
             }
             products = res.readEntity(gp);
+            totalPages = (int) Math.ceil((double) products.size() / itemsPerPage);
         }
     }
 
     private void fetchAllProducts() {
         res = rc.getAllProduct(Response.class);
         products = res.readEntity(gp);
+        totalPages = (int) Math.ceil((double) products.size() / itemsPerPage);
+    }
+
+    // Pagination methods
+    public void nextPage() {
+        if (currentPage < totalPages) {
+            currentPage++;
+        }
+    }
+
+    public void prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+        }
+    }
+
+    public void goToPage(int page) {
+        if (page >= 1 && page <= totalPages) {
+            currentPage = page;
+        }
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public int getItemsPerPage() {
+        return itemsPerPage;
+    }
+
+    public void setItemsPerPage(int itemsPerPage) {
+        this.itemsPerPage = itemsPerPage;
+    }
+
+    public int getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
     }
 }

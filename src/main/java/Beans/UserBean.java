@@ -5,6 +5,7 @@
 package Beans;
 
 import Entitys.GroupMaster;
+import Entitys.PaymentTb;
 import Entitys.ProductTb;
 import Entitys.UserCartTb;
 import Entitys.UserOrderTb;
@@ -110,7 +111,7 @@ public class UserBean implements UserBeanLocal {
         Collection<UserCartTb> uc = em.createQuery("select c from UserCartTb c where c.userId=:user and c.productId=:product and c.size=:size")
                 .setParameter("user", user)
                 .setParameter("product", product)
-                .setParameter("size",size)
+                .setParameter("size", size)
                 .getResultList();
         if (uc.isEmpty()) {
             UserCartTb uct = new UserCartTb();
@@ -127,8 +128,8 @@ public class UserBean implements UserBeanLocal {
         } else {
             for (UserCartTb c : uc) {
                 UserCartTb uct = em.find(UserCartTb.class, c.getId());
-                uct.setQty(uct.getQty()+qty);
-                uct.setTotal(uct.getQty()*uct.getPrice());
+                uct.setQty(uct.getQty() + qty);
+                uct.setTotal(uct.getQty() * uct.getPrice());
                 em.merge(uct);
             }
         }
@@ -175,7 +176,7 @@ public class UserBean implements UserBeanLocal {
     }
 
     @Override
-    public void addOrder(Integer uid, Integer pid, String size, Integer qty, Integer price) {
+    public Integer addOrder(Integer uid, Integer pid, String size, Integer qty, Integer price) {
         UserOrderTb uot = new UserOrderTb();
         UserTb u = em.find(UserTb.class, uid);
         ProductTb p = em.find(ProductTb.class, pid);
@@ -192,6 +193,8 @@ public class UserBean implements UserBeanLocal {
         uot.setOrderDate(date);
         uot.setIsConfirmed(0);
         em.persist(uot);
+        em.flush(); // Force synchronization with the database to get the generated ID
+        return uot.getId();
     }
 
     @Override
@@ -246,9 +249,20 @@ public class UserBean implements UserBeanLocal {
     @Override
     public Collection<ProductTb> getProductByName(String name) {
         Collection<ProductTb> products = em.createQuery("select p from ProductTb p where p.name LIKE :name")
-                .setParameter("name", "%"+name+"%")
+                .setParameter("name", "%" + name + "%")
                 .getResultList();
         return products;
+    }
+
+    @Override
+    public void addPayment(Integer uid, Integer oid, String mode) {
+        PaymentTb p = new PaymentTb();
+        UserTb u = em.find(UserTb.class, uid);
+        UserOrderTb o = em.find(UserOrderTb.class, oid);
+        p.setUserId(u);
+        p.setOrderId(o);
+        p.setPaymentMode(mode);
+        em.persist(p);
     }
 
 }

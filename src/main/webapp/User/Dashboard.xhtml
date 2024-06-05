@@ -7,7 +7,47 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>User</title>
+        <style>
+            .pagination-controls {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+            }
 
+            .pagination-controls .btn-pagination {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                margin: 5px;
+                background-color: #f5f5f5;
+                color: #333;
+                border-radius: 50%;
+                text-decoration: none;
+                font-size: 14px;
+                border: none;
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+
+            .pagination-controls .btn-pagination:hover {
+                background-color: #007bff;
+                color: white;
+            }
+
+            .pagination-controls .btn-pagination:disabled {
+                background-color: #e9ecef;
+                color: #6c757d;
+                cursor: not-allowed;
+            }
+
+            .pagination-controls .btn-pagination.active {
+                background-color: #007bff;
+                color: white;
+            }
+
+        </style>
     </h:head>
 
     <h:body>
@@ -441,14 +481,18 @@
                     </div>
                 </div>
                 <!-- Pagination -->
-                <div class="flex-c-m flex-w w-full p-t-38">
-                    <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
-                        1
-                    </a>
-
-                    <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
-                        2
-                    </a>
+                <!--                <div class="flex-c-m flex-w w-full p-t-38">
+                                    <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
+                                        1
+                                    </a>
+                
+                                    <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
+                                        2
+                                    </a>
+                                </div>-->
+                <div class="pagination-controls">
+                    <h:commandButton value="Previous" action="#{userDisplayProductBean.prevPage}" disabled="#{userDisplayProductBean.currentPage == 1}" class="mr-5 btn btn-info"/>
+                    <h:commandButton value="Next" action="#{userDisplayProductBean.nextPage}" disabled="#{userDisplayProductBean.currentPage == userDisplayProductBean.totalPages}" class="ml-5 btn btn-info"/>
                 </div>
             </div>
         </section>

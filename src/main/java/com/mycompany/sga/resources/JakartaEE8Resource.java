@@ -481,10 +481,11 @@ public class JakartaEE8Resource {
     }
     
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("addOrder/{uid}/{pid}/{size}/{qty}/{price}")
-    public void addOrder(@PathParam("uid") Integer uid,@PathParam("pid") Integer pid,@PathParam("size") String size,@PathParam("qty") Integer qty,@PathParam("price") Integer price)
+    public Integer addOrder(@PathParam("uid") Integer uid,@PathParam("pid") Integer pid,@PathParam("size") String size,@PathParam("qty") Integer qty,@PathParam("price") Integer price)
     {
-        user.addOrder(uid, pid, size, qty, price);
+       return user.addOrder(uid, pid, size, qty, price);
     }
     
     @GET
@@ -533,6 +534,13 @@ public class JakartaEE8Resource {
     public Collection<ProductTb> getProductByName(@PathParam("name") String name)
     {
         return user.getProductByName(name);
+    }
+    
+    @POST
+    @Path("addPayment/{uid}/{oid}/{mode}")
+    public void addPayment(@PathParam("uid") Integer uid,@PathParam("oid") Integer oid,@PathParam("mode") String mode)
+    {
+        user.addPayment(uid, oid, mode);
     }
     
     @GET

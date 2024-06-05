@@ -39,8 +39,10 @@ public interface UserBeanLocal {
     public Integer countOfCartProduct(Integer uid);
     
     //user order
-    public void addOrder(Integer uid,Integer pid,String size,Integer qty,Integer price);
+    public Integer addOrder(Integer uid,Integer pid,String size,Integer qty,Integer price);
     public Collection<UserOrderTb> getOrderHistory(Integer uid);
+    
+    public void addPayment(Integer uid,Integer oid,String mode);
     
     public Collection<ProductTb> getProductByCategory(String category);
     public Collection<ProductTb> getProductByMovie(String movie);

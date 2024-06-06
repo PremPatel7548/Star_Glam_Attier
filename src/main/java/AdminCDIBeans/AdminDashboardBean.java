@@ -5,9 +5,12 @@
 package AdminCDIBeans;
 
 import Beans.adminBeanLocal;
+import Entitys.UserTb;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import loginBean.LoginBean;
 
 /**
  *
@@ -18,6 +21,7 @@ import javax.enterprise.context.RequestScoped;
 public class AdminDashboardBean {
 
     @EJB adminBeanLocal al;
+    @Inject LoginBean lb;
     Integer category_count;
     Integer movie_count;
     Integer song_count;
@@ -26,6 +30,7 @@ public class AdminDashboardBean {
     Integer movie_category_count;
     Integer movie_celebrity_count;
     Integer movie_designer_count;
+    UserTb ut = new UserTb();
     
     public AdminDashboardBean() {
     }
@@ -101,5 +106,15 @@ public class AdminDashboardBean {
     public void setMovie_designer_count(Integer movie_designer_count) {
         this.movie_designer_count = movie_designer_count;
     }
+
+    public UserTb getUt() {
+        ut = al.getAdminByEmail(lb.getUsername());
+        return ut;
+    }
+
+    public void setUt(UserTb ut) {
+        this.ut = ut;
+    }
+    
     
 }

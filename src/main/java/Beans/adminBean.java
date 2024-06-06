@@ -12,8 +12,10 @@ import Entitys.MovieCelebrity;
 import Entitys.MovieDesigner;
 import Entitys.MovieTb;
 import Entitys.SongTb;
+import Entitys.UserTb;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -307,6 +309,16 @@ public class adminBean implements adminBeanLocal {
         TypedQuery<Long> query = em.createQuery("select count(c) from MovieDesigner c",Long.class);
         Long count = query.getSingleResult();
         return count.intValue();
+    }
+
+    @Override
+    public UserTb getAdminByEmail(String email) {
+        TypedQuery<UserTb> query = em.createNamedQuery("UserTb.findByEmail", UserTb.class);
+        query.setParameter("email", email);
+        List<UserTb> users = query.getResultList();
+//        System.out.println("User ID ========= " + users.get(0).getId());
+
+        return users.get(0);
     }
     
 }

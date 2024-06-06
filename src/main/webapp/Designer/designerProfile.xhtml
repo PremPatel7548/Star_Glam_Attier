@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Profile Page</title>
+        <style>
+            .profile-image-container {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .edit-icon {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 50%;
+                padding: 5px;
+            }
+            .edit-icon:hover {
+                cursor: pointer;
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    </h:head>
+    <h:body>
+        <ui:include src="./designerHeader.xhtml" />
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Designer/Dashboard.jsf">Home</a></li>
+                                <li class="breadcrumb-item active">Profile</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-md-9">
+
+                            <!-- Profile Image -->
+                            <div class="card card-primary card-outline">
+                                <div class="card-body box-profile">
+                                    <div class="profile-image-container">
+                                        <img id="profileImage" class="profile-user-img img-fluid img-circle"
+                                             src="#{request.contextPath}/public/uploads/#{designerDashboardBean.dt.image}"
+                                             onclick="toggleImageSize()"
+                                             style="cursor: pointer;"/>
+                                        <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#modal-edit-image"></i>
+                                    </div>
+
+                                    <h3 class="profile-username text-center">#{designerDashboardBean.dt.name}</h3>
+
+                                    <p class="text-muted text-center">#{designerDashboardBean.dt.email}</p>
+
+                                    <div class="card">
+                                        <div class="card-header d-flex justify-content-end">
+                                            <a class="ml-auto" data-toggle="modal" data-target="#modal-default">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </div>
+
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <strong><i class="fas fa-phone mr-1"></i> Mobile no</strong>
+
+                                            <p class="text-muted">
+                                                #{designerDashboardBean.dt.mobileno}
+                                            </p>
+
+                                            <hr/>
+
+                                            <strong><i class="fas fa-user mr-1"></i> Gender </strong>
+
+                                            <p class="text-muted">#{designerDashboardBean.dt.gender}</p>
+
+                                            <hr/>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+
+                        </div>
+
+                    </div>
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+
+        </div>
+
+        <!-- Modal for editing profile -->
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Profile</h4>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h:form class="form-horizontal">
+                        <h:inputHidden value="#{designerDashboardBean.dt.id}"></h:inputHidden>
+                            <div class="form-group row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <h:inputText value="#{designerDashboardBean.dt.name}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <h:inputText value="#{designerDashboardBean.dt.email}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputName2" class="col-sm-2 col-form-label">Mobile no</label>
+                                <div class="col-sm-10">
+                                    <h:inputText value="#{designerDashboardBean.dt.mobileno}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputExperience" class="col-sm-2 col-form-label">Gender</label>
+                                <div class="col-sm-10">
+                                    <h:selectOneMenu value="#{designerDashboardBean.dt.gender}" class="form-control">
+                                        <f:selectItem itemLabel="Select Gender" itemValue=""></f:selectItem>
+                                        <f:selectItem itemLabel="Male" itemValue="Male"></f:selectItem>
+                                        <f:selectItem itemLabel="Female" itemValue="Female"></f:selectItem>
+                                        <f:selectItem itemLabel="Other" itemValue="Other"></f:selectItem>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+
+                            <div style="text-align: center;" class="pb-3">
+                                <h:commandButton value="Edit" class="w-50 btn text-white" style="background-color: #212a47;" action="#{designerDashboardBean.editProfile()}"></h:commandButton>
+                            </div>
+
+                        </h:form>
+
+                    </div>
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <!-- Modal for editing image -->
+        <div class="modal fade" id="modal-edit-image">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Image</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h:form enctype="multipart/form-data">
+                            <h:inputHidden value="#{designerDashboardBean.dt.id}"></h:inputHidden>
+                            <div class="form-group">
+                                <label for="newImage">Choose new profile image</label>
+                                <p:fileUpload id="profile" value="#{designerDashboardBean.file}" mode="simple" />
+                            </div>
+                            <div style="text-align: center;" class="pb-3">
+                                <h:commandButton value="Upload" class="w-50 btn text-white" style="background-color: #212a47;" action="#{designerDashboardBean.editImage()}"></h:commandButton>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleImageSize() {
+                var img = document.getElementById("profileImage");
+                if (img.style.width === "" || img.style.width === "auto") {
+                    img.style.width = "200px";
+                    img.style.height = "200px";
+                } else {
+                    img.style.width = "";
+                    img.style.height = "";
+                }
+            }
+        </script>
+
+    </h:body>
+</html>

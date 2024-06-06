@@ -11,6 +11,7 @@ import Entitys.MovieCelebrity;
 import Entitys.MovieDesigner;
 import Entitys.MovieTb;
 import Entitys.SongTb;
+import Entitys.UserTb;
 import java.util.Collection;
 import java.util.Date;
 import javax.ejb.Local;
@@ -74,4 +75,6 @@ public interface adminBeanLocal {
     public Integer countMovieCategory();
     public Integer countMovieCelebrity();
     public Integer countMovieDesigners();
+    
+    public UserTb getAdminByEmail(String email);
 }

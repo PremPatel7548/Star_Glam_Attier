@@ -37,7 +37,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <h2> Pending Orders </h2>
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="orderComplete" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Image</th>
@@ -113,6 +113,13 @@
         <script>
             $(document).ready(function () {
                 $("#example1").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "pageLength": 4,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                });
+                $("#orderComplete").DataTable({
                     "responsive": true,
                     "lengthChange": false,
                     "autoWidth": false,

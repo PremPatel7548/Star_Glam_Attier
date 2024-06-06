@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>SGA - Profile page</title>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/public/userAssets/css/Profile.css"/>
+
+    </h:head>
+    <h:body>
+        <ui:include src="./userHeader.xhtml" />
+
+        <div class="container emp-profile" style="margin-top: 120px; display: flex; justify-content: center;">
+            <form method="post" style="width: 100%; max-width: 1000px;">
+                <div class="row d-flex" style="justify-content: center; align-items: center;">
+                    <div class="col-md-12 d-flex flex-column align-items-center" style="text-align: center;">
+                        <div class="profile-img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" style="max-width: 100%; height: auto;"/>
+                            <div class="file btn btn-lg btn-primary" style="position: relative; overflow: hidden; margin-top: 10px;">
+                                Change Photo
+                                <input type="file" name="file" style="position: absolute; opacity: 0; right: 0; top: 0; bottom: 0; cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center" style="margin-top: 30px;">
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>User Id</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Kshiti123</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Kshiti Ghelani</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>kshitighelani@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>123 456 7890</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Profession</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Web Developer and Designer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Experience</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Hourly Rate</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Total Projects</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>230</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>English Level</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Availability</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>6 months</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Your Bio</label><br/>
+                                        <p>Your detail description</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center" style="margin-top: 10px;">
+                    <div class="col-md-2">
+                        <input type="submit" class="profile-edit-btn js-show-modal1" name="btnAddMore" value="Edit Profile" style="width: 100%; background-color: #212a47; color: white"/>
+                    </div>
+                </div>
+            </form>           
+        </div>
+
+        <!-- Modal1 -->
+        <div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id="modalContent">
+            <div class="overlay-modal1 js-hide-modal1"></div>
+            <div class="container p-0 ">
+                <div class="card px-4 bg-light" style="max-width: 500px; margin: auto; color: black; border-radius: 20px;">
+                    <p class="h8 py-3" style="margin: 0px; font-size: 30px; font-weight: 800; text-align: center;">Profile</p>
+
+                    <div id="buttonContent" style="display: none;">
+                        <div class="col-12">
+                            <h:form>
+                                <h:commandButton value="Thank You For Shopping #{userCartBean.totalPrice}/-" action="#{userCartBean.processPayment('Cash On Delivery')}" styleClass="btn btn-primary mb-3"></h:commandButton>
+                            </h:form>
+                        </div>
+                    </div>
+                    <div id="formContent" >
+                        <div class="row gx-3">
+                            <div class="col-12">
+                                <div class="d-flex flex-column">
+                                    <p class="text mb-1">Person Name</p>
+                                    <input class="form-control mb-3" type="text" placeholder="Name" value="Barry Allen"/>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column">
+                                    <p class="text mb-1">phone Number</p>
+                                    <input class="form-control mb-3" type="text"/>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column">
+                                    <p class="text mb-1">Email</p>
+                                    <input class="form-control mb-3" type="text"/>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column">
+                                    <p class="text mb-1">Address</p>
+                                    <input class="form-control mb-3 pt-2" type="text" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h:form>
+                                        <h:commandButton value="Edit" styleClass="btn mb-3" style="background-color:#212a47; color: white; width: 100px;">
+
+                                        </h:commandButton>
+                                    </h:form>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-secondary mb-3 js-close-modal1" style="width: 100px;">Close</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--===============================================================================================-->	
+        <script src="#{request.contextPath}/public/userAssets/vendor/jquery/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/bootstrap/js/popper.js"></script>
+        <script src="#{request.contextPath}/public/userAssets/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/select2/select2.min.js"></script>
+
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script>
+            $('.js-pscroll').each(function () {
+                $(this).css('position', 'relative');
+                $(this).css('overflow', 'hidden');
+                var ps = new PerfectScrollbar(this, {
+                    wheelSpeed: 1,
+                    scrollingThreshold: 1000,
+                    wheelPropagation: false,
+                });
+
+                $(window).on('resize', function () {
+                    ps.update();
+                })
+            });
+        </script>
+        <!--===============================================================================================-->
+        <script src="#{request.contextPath}/public/userAssets/js/main.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#showButton").click(function (e) {
+                    e.preventDefault();
+                    $("#formContent").hide();
+                    $("#buttonContent").show();
+                });
+
+                $("#showForm").click(function (e) {
+                    e.preventDefault();
+                    $("#buttonContent").hide();
+                    $("#formContent").show();
+                });
+            });
+            document.querySelector('.js-show-modal1').addEventListener('click', function () {
+                document.querySelector('.js-modal1').classList.add('show-modal1');
+            });
+
+            // Function to hide the modal when clicking outside of it
+            document.querySelector('.overlay-modal1').addEventListener('click', function () {
+                document.querySelector('.js-modal1').classList.remove('show-modal1');
+            });
+
+            // Function to hide the modal when clicking on the close button inside the modal
+            document.querySelector('.js-close-modal1').addEventListener('click', function () {
+                document.querySelector('.js-modal1').classList.remove('show-modal1');
+            });
+
+            document.getElementById('showButton').addEventListener('click', function () {
+                document.getElementById('buttonContent').style.display = 'block';
+                document.getElementById('formContent').style.display = 'none';
+            });
+
+            document.getElementById('showForm').addEventListener('click', function () {
+                document.getElementById('buttonContent').style.display = 'none';
+                document.getElementById('formContent').style.display = 'block';
+            });
+
+        </script>
+    </h:body>
+</html>

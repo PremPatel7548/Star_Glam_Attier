@@ -33,6 +33,18 @@
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="#{request.contextPath}/public/userAssets/css/util.css"/>
         <link rel="stylesheet" type="text/css" href="#{request.contextPath}/public/userAssets/css/main.css"/>
+
+
+        <style>
+            .dropdown-menu {
+                display: none;
+                right: 0;
+                left: auto;
+            }
+            .icon-header-item:hover .dropdown-menu {
+                display: block;
+            }
+        </style>
     </h:head>
 
     <h:body>
@@ -60,7 +72,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="#{request.contextPath}/User/Shoppingcart.jsf">Features</a>
+                                    <a href="#{request.contextPath}/User/Shoppingcart.jsf">Cart</a>
                                 </li>
 
                                 <li>
@@ -71,9 +83,9 @@
 
                         <!-- Icon header -->
                         <div class="wrap-icon-header flex-w flex-r-m h-full">	
-                            <div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-modal-search" >
-                                <i class="zmdi zmdi-search" style="color: white"></i>
-                            </div>
+                            <!--                            <div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-modal-search" >
+                                                            <i class="zmdi zmdi-search" style="color: white"></i>
+                                                        </div>-->
 
 
                             <div class="flex-c-m h-full p-r-25 bor6">
@@ -83,42 +95,26 @@
 
                             </div>
 
-                            <div class="flex-c-m h-full p-lr-19">
-                                <h:form>
-                                    <h:commandLink  action="#{loginBean.logout()}" style="background: transparent;" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">                                    
-                                        <i class="zmdi zmdi-square-right"></i>
-                                    </h:commandLink>
-                                </h:form>
 
+                            <div class="flex-c-m h-full p-lr-19">
+                                <div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar dropdown">
+                                    <i class="zmdi zmdi-account-circle"></i>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#{request.contextPath}/User/userProfile.jsf"><i class="zmdi zmdi-account" style="margin-right: 7px;"></i> Edit Profile</a>
+                                        <h:form>
+                                            <h:commandLink action="#{loginBean.logout()}" style="background: transparent;" class="dropdown-item">
+                                                <i class="zmdi zmdi-square-right" style="margin-right: 7px;"></i> Logout
+                                            </h:commandLink>
+                                        </h:form>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </nav>
                 </div>	
             </div>
 
-            <!-- Header Mobile -->
-            <div class="wrap-header-mobile">
-                <!-- Logo moblie -->		
-                <div class="logo-mobile">
-                    <a href="index.html"><img src="#{request.contextPath}/public/userAssets/images/icons/logo-01.png" alt="IMG-LOGO"/></a>
-                </div>
-
-                <!-- Icon header -->
-                <div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
-                    <div class="flex-c-m h-full p-r-5">
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
-                            <i class="zmdi zmdi-shopping-cart"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Button show menu -->
-                <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-                    <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
-                    </span>
-                </div>
-            </div>
 
             <!-- Modal Search -->
             <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">

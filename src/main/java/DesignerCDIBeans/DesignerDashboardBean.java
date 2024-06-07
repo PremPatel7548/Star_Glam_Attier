@@ -35,6 +35,9 @@ public class DesignerDashboardBean {
     HttpSession session = request.getSession();
     Integer sessionid;
     UploadedFile file;
+    Integer product_count;
+    Integer pending_count;
+    Integer empty_product_count;
     
     
     public DesignerDashboardBean() {
@@ -69,28 +72,55 @@ public class DesignerDashboardBean {
     public void setFile(UploadedFile file) {
         this.file = file;
     }
+
+    public Integer getProduct_count() {
+        product_count = dl.countProducts(sessionid);
+        return product_count;
+    }
+
+    public void setProduct_count(Integer product_count) {
+        this.product_count = product_count;
+    }
+
+    public Integer getPending_count() {
+        pending_count = dl.countPendingOrders(sessionid);
+        return pending_count;
+    }
+
+    public void setPending_count(Integer pending_count) {
+        this.pending_count = pending_count;
+    }
+
+    public Integer getEmpty_product_count() {
+        empty_product_count = dl.countEmptyProducts(sessionid);
+        return empty_product_count;
+    }
+
+    public void setEmpty_product_count(Integer empty_product_count) {
+        this.empty_product_count = empty_product_count;
+    }
     
     public String editImage()
     {
-        String fileName = "";
-        if (file != null) {
-            try (InputStream input = file.getInputStream()) {
-                fileName = file.getFileName();
-                OutputStream output = new FileOutputStream("D:/JWD/Project/SGA/src/main/webapp/public/uploads/" + fileName);
-                try {
-                    byte[] buffer = new byte[1024];
-                    int bytesRead;
-                    while ((bytesRead = input.read(buffer)) != -1) {
-                        output.write(buffer, 0, bytesRead);
+            String fileName = "";
+            if (file != null) {
+                try (InputStream input = file.getInputStream()) {
+                    fileName = file.getFileName();
+                    OutputStream output = new FileOutputStream("D:/JWD/Project/SGA/src/main/webapp/public/uploads/" + fileName);
+                    try {
+                        byte[] buffer = new byte[1024];
+                        int bytesRead;
+                        while ((bytesRead = input.read(buffer)) != -1) {
+                            output.write(buffer, 0, bytesRead);
+                        }
+                    } finally {
+                        output.close();
                     }
-                } finally {
-                    output.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        }
-        
+
         dl.editDesigner(sessionid,dt.getName(),dt.getPassword(),dt.getEmail(),dt.getMobileno(), dt.getGender(),fileName,dt.getIsApproved());
         return "designerProfile";
     }

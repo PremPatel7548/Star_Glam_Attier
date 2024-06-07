@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>SGA - Profile page</title>
         <link rel="stylesheet" type="text/css" href="#{request.contextPath}/public/userAssets/css/Profile.css"/>
@@ -12,14 +14,13 @@
         <ui:include src="./userHeader.xhtml" />
 
         <div class="container emp-profile" style="margin-top: 120px; display: flex; justify-content: center;">
-            <form method="post" style="width: 100%; max-width: 1000px;">
+            <div style="width: 100%; max-width: 1000px;">
                 <div class="row d-flex" style="justify-content: center; align-items: center;">
                     <div class="col-md-12 d-flex flex-column align-items-center" style="text-align: center;">
                         <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" style="max-width: 100%; height: auto;"/>
-                            <div class="file btn btn-lg btn-primary" style="position: relative; overflow: hidden; margin-top: 10px;">
+                            <img src="#{request.contextPath}/public/uploads/#{userProfileBean.ut.image}" alt="" style="max-width: 250px; height: 250px;"/>
+                            <div class="file btn btn-lg btn-primary" style="position: relative; overflow: hidden; margin-top: 10px;" data-toggle="modal" data-target="#modal-edit-image">
                                 Change Photo
-                                <input type="file" name="file" style="position: absolute; opacity: 0; right: 0; top: 0; bottom: 0; cursor: pointer;"/>
                             </div>
                         </div>
                     </div>
@@ -30,18 +31,10 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>User Id</label>
+                                        <label>User Name</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>Kshiti123</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Kshiti Ghelani</p>
+                                        <p>#{userProfileBean.ut.name}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -49,23 +42,39 @@
                                         <label>Email</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>kshitighelani@gmail.com</p>
+                                        <p>#{userProfileBean.ut.email}</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Phone</label>
+                                        <label>Mobile</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>123 456 7890</p>
+                                        <p>#{userProfileBean.ut.mobileno}</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Profession</label>
+                                        <label>Gender</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>Web Developer and Designer</p>
+                                        <p>#{userProfileBean.ut.gender}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>city</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>#{userProfileBean.ut.address}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Birth Date</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>#{userProfileBean.ut.dob}</p>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +134,7 @@
                         <input type="submit" class="profile-edit-btn js-show-modal1" name="btnAddMore" value="Edit Profile" style="width: 100%; background-color: #212a47; color: white"/>
                     </div>
                 </div>
-            </form>           
+            </div>           
         </div>
 
         <!-- Modal1 -->
@@ -135,54 +144,87 @@
                 <div class="card px-4 bg-light" style="max-width: 500px; margin: auto; color: black; border-radius: 20px;">
                     <p class="h8 py-3" style="margin: 0px; font-size: 30px; font-weight: 800; text-align: center;">Profile</p>
 
-                    <div id="buttonContent" style="display: none;">
-                        <div class="col-12">
-                            <h:form>
-                                <h:commandButton value="Thank You For Shopping #{userCartBean.totalPrice}/-" action="#{userCartBean.processPayment('Cash On Delivery')}" styleClass="btn btn-primary mb-3"></h:commandButton>
-                            </h:form>
+                    <h:form>
+                        <h:inputHidden value="#{userProfileBean.ut.id}"></h:inputHidden>
+                        <div id="formContent" >
+                            <div class="row gx-3">
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Person Name</p>
+                                        <!--<input class="form-control mb-3" type="text" placeholder="Name" value="Barry Allen"/>-->
+                                        <h:inputText class="form-control mb-3" value="#{userProfileBean.ut.name}"></h:inputText>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">phone Number</p>
+                                        <!--<input class="form-control mb-3" type="text"/>-->
+                                        <h:inputText class="form-control mb-3" value="#{userProfileBean.ut.mobileno}"></h:inputText>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Email</p>
+                                        <!--<input class="form-control mb-3" type="text"/>-->
+                                        <h:inputText class="form-control mb-3" value="#{userProfileBean.ut.email}"></h:inputText>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">City</p>
+                                        <!--<input class="form-control mb-3 pt-2" type="text" />-->
+                                        <h:inputText class="form-control mb-3" value="#{userProfileBean.ut.address}"></h:inputText>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Gender</p>
+                                        <!--<input class="form-control mb-3 pt-2" type="text" />-->
+                                        <h:selectOneMenu value="#{userProfileBean.ut.gender}" class="form-control col-md-12">
+                                            <f:selectItem itemLabel="Select Gender" itemValue=""></f:selectItem>
+                                            <f:selectItem itemLabel="Male" itemValue="Male"></f:selectItem>
+                                            <f:selectItem itemLabel="Female" itemValue="Female"></f:selectItem>
+                                            <f:selectItem itemLabel="Other" itemValue="Other"></f:selectItem>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h:commandButton value="Edit" action="#{userProfileBean.editProfile()}" class="btn btn-primary mb-3 mt-2 ml-3" style="width: 100px;"></h:commandButton>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-secondary mb-3 js-close-modal1 mt-2" style="width: 100px;">Close</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="modal-edit-image">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Image</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div id="formContent" >
-                        <div class="row gx-3">
-                            <div class="col-12">
-                                <div class="d-flex flex-column">
-                                    <p class="text mb-1">Person Name</p>
-                                    <input class="form-control mb-3" type="text" placeholder="Name" value="Barry Allen"/>
-                                </div>
+                    <div class="modal-body">
+                        <h:form enctype="multipart/form-data">
+                            <h:inputHidden value="#{userProfileBean.ut.id}"></h:inputHidden>
+                            <div class="form-group">
+                                <label for="newImage">Choose new profile image</label>
+                                <p:fileUpload id="profile" value="#{userProfileBean.file}" mode="simple" />
                             </div>
-                            <div class="col-12">
-                                <div class="d-flex flex-column">
-                                    <p class="text mb-1">phone Number</p>
-                                    <input class="form-control mb-3" type="text"/>
-                                </div>
+                            <div style="text-align: center;" class="pb-3">
+                                <h:commandButton value="Upload" class="w-50 btn text-white" style="background-color: #212a47;" action="#{userProfileBean.editImage()}"></h:commandButton>
                             </div>
-                            <div class="col-12">
-                                <div class="d-flex flex-column">
-                                    <p class="text mb-1">Email</p>
-                                    <input class="form-control mb-3" type="text"/>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="d-flex flex-column">
-                                    <p class="text mb-1">Address</p>
-                                    <input class="form-control mb-3 pt-2" type="text" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <h:form>
-                                        <h:commandButton value="Edit" styleClass="btn mb-3" style="background-color:#212a47; color: white; width: 100px;">
-
-                                        </h:commandButton>
-                                    </h:form>
-                                </div>
-                                <div class="col-6">
-                                    <button class="btn btn-secondary mb-3 js-close-modal1" style="width: 100px;">Close</button>
-                                </div>
-                            </div>
-
-
-                        </div>
+                        </h:form>
                     </div>
                 </div>
             </div>

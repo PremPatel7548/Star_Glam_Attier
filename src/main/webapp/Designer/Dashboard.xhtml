@@ -18,7 +18,7 @@
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Admin/Dashboard.jsf">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#{request.contextPath}/Designer/Dashboard.jsf">Home</a></li>
                                 <li class="breadcrumb-item active">Dashboard</li>
                             </ol>
                         </div><!-- /.col -->
@@ -36,46 +36,46 @@
                             <!-- small box -->
                             <div class="small-box  bg-gradient-navy">
                                 <div class="inner">
-                                    <h3>#{adminDashboardBean.category_count}</h3>
+                                    <h3>#{designerDashboardBean.product_count}</h3>
 
-                                    <p>Total Categories</p>
+                                    <p>Total Products</p>
                                 </div>
                                 <div class="icon">
                                     <i class="nav-icon fas fa-list"></i>
                                 </div>
-                                <a href="#{request.contextPath}/Admin/category/CategoryList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#{request.contextPath}/Designer/ProductList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-gradient-maroon">
-                                <div class="inner">
-                                    <h3>#{adminDashboardBean.celebrity_count}</h3>
-
-                                    <p>Total Celebrities</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="nav-icon fas fa-star"></i>
-                                </div>
-                                <a href="#{request.contextPath}/Admin/Celebrity/CelebrityList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
                         <!-- ./col -->
                         <div class="col-lg-3 col-6">
                             <!-- small box -->
                             <div class="small-box bg-gradient-lightblue">
                                 <div class="inner">
-                                    <h3>#{adminDashboardBean.movie_count}</h3>
+                                    <h3>#{designerDashboardBean.empty_product_count}</h3>
 
-                                    <p>Total Movies</p>
+                                    <p>Out Of Stock Products</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="nav-icon fas fa-film"></i>
+                                    <i class="nav-icon fas fa-store"></i>
                                 </div>
-                                <a href="#{request.contextPath}/Admin/Movies/MovieList.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#{request.contextPath}/Designer/productStock.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>   
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-gradient-maroon">
+                                <div class="inner">
+                                    <h3>#{designerDashboardBean.pending_count}</h3>
+
+                                    <p>Pending Orders</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="nav-icon zmdi zmdi-local-shipping"></i>
+                                </div>
+                                <a href="#{request.contextPath}/Designer/orders.jsf" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.row -->
 

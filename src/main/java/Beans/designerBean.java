@@ -20,6 +20,7 @@ import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -228,5 +229,33 @@ public class designerBean implements designerBeanLocal {
         DesignerTb dt = em.find(DesignerTb.class, id);
         return dt;
     }
+
+    @Override
+    public Integer countProducts(Integer did) {
+        DesignerTb dt = em.find(DesignerTb.class,did);
+        TypedQuery<Long> query = em.createQuery("select count(c) from ProductTb c WHERE c.designerId=:designer",Long.class)
+                .setParameter("designer", dt);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
+    @Override
+    public Integer countPendingOrders(Integer did) {
+        DesignerTb dt = em.find(DesignerTb.class,did);
+        TypedQuery<Long> query = em.createQuery("select count(c) from UserOrderTb c WHERE c.productId.designerId=:designer AND c.isConfirmed=0",Long.class)
+                .setParameter("designer", dt);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
+    @Override
+    public Integer countEmptyProducts(Integer did) {
+        DesignerTb dt = em.find(DesignerTb.class,did);
+        TypedQuery<Long> query = em.createQuery("select count(c) from ProductTb c WHERE c.designerId=:designer AND c.stock=0",Long.class)
+                .setParameter("designer", dt);
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+    
  
 }

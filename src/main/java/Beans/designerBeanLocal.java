@@ -48,4 +48,8 @@ public interface designerBeanLocal {
     public Collection<UserOrderTb> getUserOrders(Integer did);
     public void acceptOrder(Integer id,Integer uid,Integer pid,String size,Integer qty,Integer price,Integer total,Date odate,Integer ic);
     public void editStock(Integer pid,Integer qty);
+    
+    public Integer countProducts(Integer did);
+    public Integer countPendingOrders(Integer did);
+    public Integer countEmptyProducts(Integer did);
 }

@@ -1321,7 +1321,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .slick1-dots li img {
-  width: 100%;
+  width: 180px;
+  height: 100px;
 }
 
 .caption-dots-slick1 {

@@ -8,6 +8,7 @@ import Entitys.ProductTb;
 import Entitys.UserCartTb;
 import Entitys.UserOrderTb;
 import Entitys.UserTb;
+import Entitys.WishlistTb;
 import java.util.Collection;
 import java.util.Date;
 import javax.ejb.Local;
@@ -49,4 +50,10 @@ public interface UserBeanLocal {
     public Collection<ProductTb> getProductBySong(String song);
     public Collection<ProductTb> getProductByCelebrity(String celebrity);
     public Collection<ProductTb> getProductByName(String name);
+    
+    public Collection<WishlistTb> getWishProductByUser(Integer uid);
+    public void removeWishList(Integer pid,Integer uid);
+    public void addWishList(Integer pid,Integer uid);
+    
+    public Collection<ProductTb> getWishListProduct(Integer uid);
 }

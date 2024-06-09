@@ -98,6 +98,8 @@ public class UserTb implements Serializable {
     private Collection<UserOrderTb> userOrderTbCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<ReviewTb> reviewTbCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<WishlistTb> wishlistTbCollection;
 
     public UserTb() {
     }
@@ -228,6 +230,16 @@ public class UserTb implements Serializable {
     @JsonbTransient
     public void setReviewTbCollection(Collection<ReviewTb> reviewTbCollection) {
         this.reviewTbCollection = reviewTbCollection;
+    }
+
+    @JsonbTransient
+    public Collection<WishlistTb> getWishlistTbCollection() {
+        return wishlistTbCollection;
+    }
+
+    @JsonbTransient
+    public void setWishlistTbCollection(Collection<WishlistTb> wishlistTbCollection) {
+        this.wishlistTbCollection = wishlistTbCollection;
     }
 
     @Override

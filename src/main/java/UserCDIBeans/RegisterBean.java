@@ -71,7 +71,7 @@ public class RegisterBean {
         this.file = file;
     }
     
-    public void registerUser()
+    public String registerUser()
     {
         if(cpass == null ? ut.getPassword() != null : !cpass.equals(ut.getPassword()))
         {
@@ -107,6 +107,8 @@ public class RegisterBean {
          ub.afterRegister(ut.getEmail());
             ErrorMsg = "";
         }
+        
+        return "Login";
     }
     
 }

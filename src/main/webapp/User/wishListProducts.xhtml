@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Products</title>
+        <title>Facelet Title</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
         <style>
@@ -59,7 +59,7 @@
     </h:head>
     <h:body>
         <ui:include src="./userHeader.xhtml" />
-        <!-- Product -->
+
         <section class="bg0 p-t-23 p-b-130" style="margin-top: 70px">
             <div class="container">
 
@@ -69,69 +69,22 @@
                             All Products
                         </button>
 
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-                            Women
-                        </button>
 
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-                            Men
-                        </button>
-
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-                            Bag
-                        </button>
-
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-                            Shoes
-                        </button>
-
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-                            Watches
-                        </button>
-                    </div>
-
-                    <div class="flex-w flex-c-m m-tb-10">
-
-                        <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-                            <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-                            <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                            Search
-                        </div>
                     </div>
 
                     <!-- Search product -->
-                    <div class="dis-none panel-search w-full p-t-10 p-b-15">
-                        <h:form id="searchForm">
-                            <div class="row">
-                                <div class="bor8 dis-flex p-l-15 col-md-3">
-                                    <h:selectOneMenu id="searchCategory" styleClass="form-control" value="#{userDisplayProductBean.searchcat}">
-                                        <f:selectItem itemLabel="Choose Product Category" itemValue="" />
-                                        <f:selectItem itemLabel="Product" itemValue="product" />
-                                        <f:selectItem itemLabel="Movie" itemValue="movie" />
-                                        <f:selectItem itemLabel="Song" itemValue="song" />
-                                        <f:selectItem itemLabel="Celebrity" itemValue="celebrity" />
-                                        <f:selectItem itemLabel="Category" itemValue="category" />
-                                        <f:ajax event="change" render="@form productForm"/>
-                                    </h:selectOneMenu>
-                                </div>
-                                <div class="bor8 dis-flex p-l-15 col-md-9">
-                                    <h:inputText
-                                        id="searchProduct"
-                                        styleClass="mtext-107 cl2 size-114 plh2 p-r-15"
-                                        value="#{userDisplayProductBean.searchval}">
-                                        <f:passThroughAttribute name="placeholder" value="Search" />
-                                        <f:ajax event="keyup" render="@form productForm" listener="#{userDisplayProductBean.searchProduct}"/>
-                                    </h:inputText>
-                                </div>
-                            </div>
-                        </h:form>
-                    </div>
                 </div>
 
 
                 <h:form id="productForm">
-                    <div class="row isotope-grid">
-                        <ui:repeat value="#{userDisplayProductBean.products}" var="p">
+                    <h:panelGroup rendered="#{empty userWishListBean.wishProducts}">
+                        <div class="alert alert-info" role="alert">
+                            No wishlist products available.
+                        </div>
+                    </h:panelGroup>
+
+                    <div class="row isotope-grid" rendered="#{not empty userWishListBean.wishProducts}">
+                        <ui:repeat value="#{userWishListBean.wishProducts}" var="p">
                             <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                                 <div class="block2">
                                     <div class="block2-pic hov-img0">
@@ -139,6 +92,7 @@
                                         <h:commandButton value="Quick View"
                                                          action="#{userDisplayProductBean.getProductDetail(p.id)}"
                                                          styleClass="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04">
+                                            <!--<f:ajax execute="@this" render="@form"/>-->
                                         </h:commandButton>
                                     </div>
                                     <div class="block2-txt flex-w flex-t p-t-14">
@@ -154,13 +108,14 @@
                                             <div class="btn-addwish-b2 dis-block pos-relative">
                                                 <h:panelGroup id="wishlistPanel#{p.id}">
                                                     <h:panelGroup rendered="#{userDisplayProductBean.isProductInWishlist(p.id)}">
-
-                                                        <h:commandButton styleClass="btn btn-white" value="❤️" action="#{userDisplayProductBean.removeWishlist(p.id)}" />
-
+                                                        <h:commandButton styleClass="btn btn-white" value="❤️" action="#{userDisplayProductBean.removeWishlist(p.id)}">
+                                                            <f:ajax execute="@this" render="@form"/>
+                                                        </h:commandButton>
                                                     </h:panelGroup>
                                                     <h:panelGroup rendered="#{!userDisplayProductBean.isProductInWishlist(p.id)}">
-                                                        <!--<img class="dis-block trans-04" src="#{request.contextPath}/public/userAssets/images/icons/icon-heart-01.png" alt="ICON"/>-->
-                                                        <h:commandButton styleClass="btn btn-outline-danger" value="❤" action="#{userDisplayProductBean.addWishlist(p.id)}" />
+                                                        <h:commandButton styleClass="btn btn-outline-danger" value="❤" action="#{userDisplayProductBean.addWishlist(p.id)}">
+                                                            <f:ajax execute="@this" render="@form"/>
+                                                        </h:commandButton>
                                                     </h:panelGroup>
                                                 </h:panelGroup>
                                             </div>
@@ -172,123 +127,17 @@
                     </div>
 
                     <!-- Pagination controls -->
-                    <div class="pagination-controls">
-                        <h:commandButton value="Previous" action="#{userDisplayProductBean.prevPage}" disabled="#{userDisplayProductBean.currentPage == 1}" class="mr-5 btn btn-info"/>
-                        <h:commandButton value="Next" action="#{userDisplayProductBean.nextPage}" disabled="#{userDisplayProductBean.currentPage == userDisplayProductBean.totalPages}" class="ml-5 btn btn-info"/>
+                    <div class="pagination-controls" rendered="#{not empty userWishListBean.wishProducts}">
+                        <h:commandButton value="Previous" action="#{userWishListBean.prevPage}" disabled="#{userWishListBean.currentPage == 1}" class="mr-5 btn btn-info">
+                            <f:ajax execute="@this" render="@form"/>
+                        </h:commandButton>
+                        <h:commandButton value="Next" action="#{userWishListBean.nextPage}" disabled="#{userWishListBean.currentPage == userWishListBean.totalPages}" class="ml-5 btn btn-info">
+                            <f:ajax execute="@this" render="@form"/>
+                        </h:commandButton>
                     </div>
                 </h:form>
 
 
-
-                <!-- Modal1 -->
-                <div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id="modalContent">
-                    <div class="overlay-modal1 js-hide-modal1"></div>
-                    <div class="container">
-                        <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-7 p-b-30">
-                                    <div class="p-l-25 p-r-30 p-lr-0-lg">
-                                        <div class="wrap-slick3 flex-sb flex-w">
-                                            <div class="slick3 gallery-lb">
-                                                <div class="item-slick3" data-thumb="#{request.contextPath}/public/uploads/#{userDisplayProductBean.p.image}">
-                                                    <div class="wrap-pic-w pos-relative">
-                                                        <img src="#{request.contextPath}/public/uploads/#{userDisplayProductBean.p.image}" alt="IMG-PRODUCT"/>
-                                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="#{request.contextPath}/public/uploads/#{userDisplayProductBean.p.image}">
-                                                            <i class="fa fa-expand"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-5 p-b-30">
-                                    <h:form>
-                                        <h:inputHidden value="#{userDisplayProductBean.p.id}"></h:inputHidden>
-                                        <div class="p-r-50 p-t-5 p-lr-0-lg">
-                                            <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                                                #{userDisplayProductBean.p.name}
-                                            </h4>
-                                            <span class="mtext-106 cl2">
-                                                #{userDisplayProductBean.p.price}/-
-                                            </span>
-                                            <p class="stext-102 cl3 p-t-23">
-                                                #{userDisplayProductBean.p.movieId.name}
-                                            </p>
-                                            <div class="p-t-33">
-                                                <div class="flex-w flex-r-m p-b-10">
-                                                    <div class="size-203 flex-c-m respon6">
-                                                        Size
-                                                    </div>
-                                                    <div class="size-204 respon6-next">
-                                                        <div class="rs1-select2 bor8 bg0">
-                                                            <c:choose>
-                                                                <c:when test="#{userDisplayProductBean.p.categoryId.categoryName == 'Category6'}">
-                                                                    <h:selectOneMenu id="time" styleClass="js-select2" value="#{userDisplayProductBean.size}">
-                                                                        <f:selectItem itemLabel="Choose an option" itemValue="" />
-                                                                        <f:selectItem itemLabel="Size 5" itemValue="5" />
-                                                                        <f:selectItem itemLabel="Size 6" itemValue="6" />
-                                                                        <f:selectItem itemLabel="Size 7" itemValue="7" />
-                                                                        <f:selectItem itemLabel="Size 8" itemValue="8" />
-                                                                        <f:selectItem itemLabel="Size 9" itemValue="9" />
-                                                                        <f:selectItem itemLabel="Size 10" itemValue="10" />
-                                                                    </h:selectOneMenu>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    <h:selectOneMenu id="time" styleClass="js-select2" value="#{userDisplayProductBean.size}">
-                                                                        <f:selectItem itemLabel="Choose an option" itemValue="" />
-                                                                        <f:selectItem itemLabel="Size S" itemValue="S" />
-                                                                        <f:selectItem itemLabel="Size M" itemValue="M" />
-                                                                        <f:selectItem itemLabel="Size L" itemValue="L" />
-                                                                        <f:selectItem itemLabel="Size XL" itemValue="XL" />
-                                                                    </h:selectOneMenu>
-                                                                </c:otherwise>
-                                                            </c:choose>
-
-                                                            <div class="dropDownSelect2"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-w flex-r-m p-b-10">
-                                                    <div class="size-203 flex-c-m respon6">
-                                                        Quantity
-                                                    </div>
-                                                    <div class="size-204 respon6-next">
-                                                        <div class="rs1-select2 bor8 bg0">
-                                                            <h:inputText value="#{userDisplayProductBean.qty}" class="form-control"></h:inputText>
-                                                            <div class="dropDownSelect2"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-w flex-r-m p-b-10">
-                                                    <div class="size-204 flex-w flex-m respon6-next">
-                                                        <h:commandButton value="Add to cart" styleClass="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" action="#{userDisplayProductBean.addToCart()}" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                                                <div class="flex-m bor9 p-r-10 m-r-11">
-                                                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-                                                        <i class="zmdi zmdi-favorite"></i>
-                                                    </a>
-                                                </div>
-                                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-                                                    <i class="fa fa-facebook"></i>
-                                                </a>
-                                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-                                                    <i class="fa fa-twitter"></i>
-                                                </a>
-                                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-                                                    <i class="fa fa-google-plus"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </h:form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 

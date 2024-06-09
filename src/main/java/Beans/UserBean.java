@@ -10,6 +10,7 @@ import Entitys.ProductTb;
 import Entitys.UserCartTb;
 import Entitys.UserOrderTb;
 import Entitys.UserTb;
+import Entitys.WishlistTb;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -263,6 +264,45 @@ public class UserBean implements UserBeanLocal {
         p.setOrderId(o);
         p.setPaymentMode(mode);
         em.persist(p);
+    }
+
+    @Override
+    public Collection<WishlistTb> getWishProductByUser(Integer uid) {
+        UserTb user = em.find(UserTb.class, uid);
+        Collection<WishlistTb> wishProducts = em.createQuery("select w from WishlistTb w where w.userId=:user")
+                .setParameter("user", user)
+                .getResultList();
+        return wishProducts;
+    }
+
+    @Override
+    public void removeWishList(Integer pid, Integer uid) {
+        ProductTb p = em.find(ProductTb.class, pid);
+        UserTb u = em.find(UserTb.class, uid);
+        TypedQuery<WishlistTb> query = em.createQuery("SELECT w FROM WishlistTb w WHERE w.productId = :product AND w.userId = :user", WishlistTb.class);
+        query.setParameter("product", p);
+        query.setParameter("user", u);
+
+        WishlistTb w = query.getSingleResult();
+        em.remove(w);
+    }
+
+    @Override
+    public void addWishList(Integer pid, Integer uid) {
+        WishlistTb w = new WishlistTb();
+        ProductTb p = em.find(ProductTb.class, pid);
+        UserTb u = em.find(UserTb.class, uid);
+        w.setProductId(p);
+        w.setUserId(u);
+        em.persist(w);
+    }
+
+    @Override
+    public Collection<ProductTb> getWishListProduct(Integer uid) {
+       
+        return em.createQuery("select w.productId from WishlistTb w where w.userId.id=:uid", ProductTb.class)
+                .setParameter("uid", uid)
+                .getResultList();
     }
 
 }

@@ -101,6 +101,17 @@
                                         <div class="size-204 flex-w flex-m respon6-next">
                                             <h:commandButton value="Add to cart" styleClass="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" action="#{userDisplayProductBean.addToCart()}" />
                                         </div>
+                                        <h:panelGroup id="wishlistPanel#{userDisplayProductBean.p.id}">
+                                            <h:panelGroup rendered="#{userDisplayProductBean.isProductInWishlist(userDisplayProductBean.p.id)}">
+
+                                                <h:commandButton styleClass="btn btn-white" value="❤️" action="#{userDisplayProductBean.removeWishlist(userDisplayProductBean.p.id)}" />
+
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{!userDisplayProductBean.isProductInWishlist(p.id)}">
+                                                <!--<img class="dis-block trans-04" src="#{request.contextPath}/public/userAssets/images/icons/icon-heart-01.png" alt="ICON"/>-->
+                                                <h:commandButton styleClass="btn btn-outline-danger" value="❤" action="#{userDisplayProductBean.addWishlist(userDisplayProductBean.p.id)}" />
+                                            </h:panelGroup>
+                                        </h:panelGroup>
                                     </div>
                                 </div>
                                 <div class="flex-w flex-m p-l-100 p-t-40 respon7">

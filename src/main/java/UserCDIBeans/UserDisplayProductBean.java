@@ -1,10 +1,13 @@
 package UserCDIBeans;
 
+import Beans.UserBeanLocal;
 import Entitys.ProductTb;
+import Entitys.WishlistTb;
 import RestFullClient.RestClient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -15,7 +18,10 @@ import loginBean.LoginBean;
 @Named(value = "userDisplayProductBean")
 @SessionScoped
 public class UserDisplayProductBean implements Serializable {
+    
+    @EJB UserBeanLocal ul;
     private RestClient rc;
+    Collection<WishlistTb> wishProducts;
     private Collection<ProductTb> products;
     private GenericType<Collection<ProductTb>> gp;
     private Response res;
@@ -38,6 +44,7 @@ public class UserDisplayProductBean implements Serializable {
         gpp = new GenericType<ProductTb>() {};
         p = new ProductTb();
         fetchAllProducts();
+        wishProducts = new ArrayList<>();
     }
 
     public Collection<ProductTb> getProducts() {
@@ -88,6 +95,15 @@ public class UserDisplayProductBean implements Serializable {
 
     public void setSearchval(String searchval) {
         this.searchval = searchval;
+    }
+
+    public Collection<WishlistTb> getWishProducts() {
+        wishProducts = ul.getWishProductByUser(lb.getuId());
+        return wishProducts;
+    }
+
+    public void setWishProducts(Collection<WishlistTb> wishProducts) {
+        this.wishProducts = wishProducts;
     }
 
     public String getProductDetail(Integer pid) {
@@ -180,4 +196,28 @@ public class UserDisplayProductBean implements Serializable {
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
+
+    // Method to check if a product is in the wishlist
+    public boolean isProductInWishlist(int productId) {
+        for (WishlistTb w : getWishProducts()) {
+            if (w.getProductId().getId() == productId) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public String removeWishlist(Integer pid)
+    {
+        System.out.println("Remove karo Wishlist mathi Product id = "+pid);
+        ul.removeWishList(pid, lb.getuId());
+        return "Products";
+    }
+    
+    public String addWishlist(Integer pid)
+    {
+        ul.addWishList(pid, lb.getuId());
+        return "Products";
+    }
+    
 }

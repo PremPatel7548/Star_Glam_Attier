@@ -70,8 +70,9 @@
                                             <div class="input-group-append">
                                                 <div class="input-group-text"><i class="fa fa-user"></i></div>
                                             </div>
-                                            <h:inputText class="form-control" value="#{designerProductStockBean.pstock}" />
+                                            <h:inputText id="stock" class="form-control" value="#{designerProductStockBean.pstock}" required="true" requiredMessage="Please Enter The Stock"/>
                                         </div>
+                                            <h:message for="stock" style="color:red"></h:message>
                                     </div>
 
                                     <div style="text-align: center;" class="pt-4">

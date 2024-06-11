@@ -45,8 +45,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-font"></i></span>
                                             </div>
-                                            <h:inputText  class="form-control" value="#{adminMoviesBean.movie.name}"/>
+                                            <h:inputText id="movieName" class="form-control" value="#{adminMoviesBean.movie.name}" required="true" requiredMessage="Movie name is required"/>
                                         </div>
+                                            <h:message for="movieName" style="color:red"/>
                                     </div>
 
                                     <div>
@@ -55,11 +56,12 @@
                                         </div>
 
                                         <div class="input-group date mb-3 border border-1">
-                                            <div class="input-group-append" >
+                                            <div class="input-group-append">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
-                                            <p:calendar id="exampleInputDate" value="#{adminMoviesBean.movie.releaseDate}" placeholder="Select Release Date"/>
+                                            <p:calendar id="exampleInputDate" value="#{adminMoviesBean.movie.releaseDate}" placeholder="Select Release Date" required="true" requiredMessage="Release date is required"/>
                                         </div>
+                                            <h:message for="exampleInputDate" style="color:red"/>
                                     </div>
 
                                     <div>
@@ -68,7 +70,7 @@
                                         </div>
 
                                         <div class="input-group date mb-3">
-                                            <div class="input-group-append" >
+                                            <div class="input-group-append">
                                                 <div class="input-group-text"><i class="fa fa-indent"></i></div>
                                             </div>
                                             <p:selectOneMenu id="movies" value="#{adminMoviesBean.moviecategoryID}" style="width:470px">
@@ -78,9 +80,7 @@
                                     </div>
                                     <div style="text-align: center;" class="pt-4">
                                         <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Submit" action="#{adminMoviesBean.addMovies()}"></h:commandButton>
-
                                     </div>
-
                                 </h:form>
                             </div>
                         </div>

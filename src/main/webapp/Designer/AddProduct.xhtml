@@ -35,48 +35,60 @@
                                 <h:form enctype="multipart/form-data" id="quickForm">
                                     <div class="input-group mb-3">
                                         <div class="input-group mb-1">
-                                        <label for="exampleInputName">Enter Name:</label>
+                                            <label for="exampleInputName">Enter Name:</label>
                                         </div>
-                                        <h:inputText id="name" class="form-control" value="#{designerProductBean.pt.name}" required="true" />
+                                        <div class="input-group date mb-3">
+                                        <h:inputText id="name" class="form-control" value="#{designerProductBean.pt.name}" required="true" requiredMessage="Name is required"/>
+                                        </div>
+                                        <h:message for="name" style="color: red" />
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group mb-1">
-                                        <label for="exampleInputPrice">Enter Price:</label>
+                                            <label for="exampleInputPrice">Enter Price:</label>
                                         </div>
-                                        <h:inputText id="price" class="form-control" value="#{designerProductBean.pt.price}" required="true" />
+                                        <div class="input-group date mb-3">
+                                        <h:inputText id="price" class="form-control" value="#{designerProductBean.pt.price}" required="true" validatorMessage="price must be 100 up" requiredMessage="Price is required">
+                                        </h:inputText>
+                                        </div>
+                                        <h:message for="price" style="color: red" />
                                     </div>
                                     <div class="input-group mb-3">
                                         <label for="selectcategory">Select Category:</label>
-                                        <p:selectOneMenu id="category" value="#{designerProductBean.cid}" style="width:470px" required="true">
+                                        <p:selectOneMenu id="category" value="#{designerProductBean.cid}" style="width:470px" required="true" requiredMessage=" Please Select Category">
                                             <f:selectItem itemLabel="--Select Category--" itemValue="" />
                                             <f:selectItems value="#{designerProductBean.categorys}" var="cat" itemLabel="#{cat.categoryName}" itemValue="#{cat.id}" />
                                         </p:selectOneMenu>
+                                        <h:message for="category" style="color: red" />
                                     </div>
                                     <div class="input-group mb-3">
                                         <label for="selectmovie">Select Movie:</label>
-                                        <p:selectOneMenu id="movies" value="#{designerProductBean.mid}" style="width:470px" required="true">
+                                        <p:selectOneMenu id="movies" value="#{designerProductBean.mid}" style="width:470px" required="true" requiredMessage=" Please Select Movie">
                                             <f:selectItem itemLabel="--Select Movie--" itemValue="" />
                                             <f:selectItems value="#{designerProductBean.mds}" var="m" itemLabel="#{m.movieId.name}" itemValue="#{m.movieId.id}" />
                                             <p:ajax listener="#{designerProductBean.onMovieChange}" update="celebrities songs" />
                                         </p:selectOneMenu>
+                                        <h:message for="movies" style="color: red" />
                                     </div>
                                     <div class="input-group mb-3">
                                         <label for="selectcelebrity">Select Celebrity:</label>
-                                        <p:selectOneMenu id="celebrities" value="#{designerProductBean.celid}" style="width:470px">
+                                        <p:selectOneMenu id="celebrities" value="#{designerProductBean.celid}" style="width:470px" requiredMessage=" Please Select Celebrity">
                                             <f:selectItem itemLabel="--Select Celebrity--" itemValue="" />
                                             <f:selectItems value="#{designerProductBean.mcs}" var="c" itemLabel="#{c.celebrityId.name}" itemValue="#{c.celebrityId.id}" />
                                         </p:selectOneMenu>
+                                        <h:message for="celebrities" style="color: red" />
                                     </div>
                                     <div class="input-group mb-3">
                                         <label for="selectsong">Select Song:</label>
-                                        <p:selectOneMenu id="songs" value="#{designerProductBean.sid}" style="width:470px">
+                                        <p:selectOneMenu id="songs" value="#{designerProductBean.sid}" style="width:470px" requiredMessage="Please Select Song">
                                             <f:selectItem itemLabel="--Select Song--" itemValue="" />
                                             <f:selectItems value="#{designerProductBean.songs}" var="s" itemLabel="#{s.name}" itemValue="#{s.id}" />
                                         </p:selectOneMenu>
+                                        <h:message for="songs" style="color: red" />
                                     </div>
                                     <div class="input-group mb-3">
                                         <label for="exampleInputProfile">Upload Image:</label>
-                                        <p:fileUpload id="image" value="#{designerProductBean.file}" mode="simple" />
+                                        <p:fileUpload id="image" value="#{designerProductBean.file}" mode="simple" required="true" requiredMessage="Profile picture is required"/>
+                                        <h:message for="image" style="color: red" />
                                     </div>
                                     <div style="text-align: center;" class="pt-4">
                                         <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Submit" action="#{designerProductBean.addProduct}" />

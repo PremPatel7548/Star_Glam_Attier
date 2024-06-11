@@ -46,8 +46,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-music"></i></span>
                                             </div>
-                                            <h:inputText  class="form-control" value="#{adminSongBean.song.name}"/>
+                                            <h:inputText id="songName" class="form-control" value="#{adminSongBean.song.name}" required="true" requiredMessage="Song name is required"/>
                                         </div>
+                                        <h:message for="songName" style="color: red"/>
                                     </div>
 
 
@@ -65,7 +66,7 @@
                                             </p:selectOneMenu>                                
                                         </div>
                                     </div>
-                                   <div style="text-align: center;" class="pt-4">
+                                    <div style="text-align: center;" class="pt-4">
                                         <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Submit" action="#{adminSongBean.editSong}"></h:commandButton>
                                     </div>
 

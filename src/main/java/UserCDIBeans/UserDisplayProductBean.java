@@ -111,6 +111,7 @@ public class UserDisplayProductBean implements Serializable {
         res = rc.getProductDetails(Response.class, String.valueOf(pid));
         this.p = res.readEntity(gpp);
         System.out.println("Product Name: " + p.getName());
+        this.qty = 1;
         return "productDetail";
     }
 

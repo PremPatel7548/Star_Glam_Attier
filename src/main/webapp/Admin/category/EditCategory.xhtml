@@ -27,37 +27,37 @@
 
             <!-- Main content -->
             <section class="content">
-                    <div class="row justify-content-center">
-                        <!-- left column -->
-                        <div class="col-md-6">
-                            <div class="card" style="border: 1px solid #212a47;">
-                                <div class="card-header row justify-content-center">
-                                    <h3 class="card-title font-weight-bold" style="color: #212a47; font-size: 25px">Edit Category</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <!-- form start -->
-                                <h:form id="quickForm">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <h:inputHidden value="#{adminCategoryBean.category.id}"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Enter Category Name :-</label>
-                                            <h:inputText value="#{adminCategoryBean.category.categoryName}" class="form-control" id="exampleInputEmail1" />
-                                        </div>
-
-                                    </div>
-                                    <!-- /.card-body -->
-                                    <div style="text-align: center;" class="pb-3">
-                                        <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Submit" action="#{adminCategoryBean.editCategory()}"></h:commandButton>
-                                    </div>
-                                </h:form>
+                <div class="row justify-content-center">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <div class="card" style="border: 1px solid #212a47;">
+                            <div class="card-header row justify-content-center">
+                                <h3 class="card-title font-weight-bold" style="color: #212a47; font-size: 25px">Edit Category</h3>
                             </div>
-                            <!-- /.card -->
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <h:form id="quickForm">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h:inputHidden value="#{adminCategoryBean.category.id}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Enter Category Name :-</label>
+                                        <h:inputText id="categoryName" value="#{adminCategoryBean.category.categoryName}" class="form-control" required="true" requiredMessage="Category name is required" />
+                                    </div>
+                                        <h:message for="categoryName" style="color: red" />
+                                </div>
+                                <!-- /.card-body -->
+                                <div style="text-align: center;" class="pb-3">
+                                    <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Submit" action="#{adminCategoryBean.editCategory()}" />
+                                </div>
+                            </h:form>
                         </div>
-                        <!--/.col (left) -->
+                        <!-- /.card -->
                     </div>
-                    <!-- /.row -->
+                    <!--/.col (left) -->
+                </div>
+                <!-- /.row -->
             </section>
             <!-- /.content -->
         </div>

@@ -27,7 +27,6 @@
                 </div>
             </section>
 
-
             <div class="container ">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
@@ -39,27 +38,29 @@
                                 <h:form enctype="multipart/form-data">
                                     <div>
                                         <div class="input-group mb-1">
-                                            <label for="exampleInputName">Enter Name:</label>
+                                            <label for="celebrityName">Enter Name:</label>
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
-                                            <h:inputText  class="form-control" value="#{adminCelebrityBean.celebrity.name}"/>
+                                            <h:inputText id="celebrityName" class="form-control" value="#{adminCelebrityBean.celebrity.name}" required="true" requiredMessage="Name is required"/>
                                         </div>
+                                            <h:message for="celebrityName" style="color:red"/>
                                     </div>
 
                                     <div>
                                         <div class="input-group mb-1">
-                                            <label for="exampleInputEmail1">Enter Date of Birth:</label>
+                                            <label for="celebrityDob">Enter Date of Birth:</label>
                                         </div>
 
-                                        <div class="input-group date mb-3" id="reservationdate">
-                                            <div class="input-group-append" >
+                                        <div class="input-group date mb-3">
+                                            <div class="input-group-append">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
-                                            <p:calendar id="exampleInputDate" value="#{adminCelebrityBean.celebrity.dob}" placeholder="Select Date Of Birth"/>
+                                            <p:calendar id="celebrityDob" value="#{adminCelebrityBean.celebrity.dob}" placeholder="Select Date Of Birth" required="true" requiredMessage="Date of birth is required"/>
                                         </div>
+                                            <h:message for="celebrityDob" style="color:red"/>
                                     </div>
 
                                     <div>
@@ -68,22 +69,23 @@
                                         </div>
 
                                         <div class="input-group mb-3 border border-1">
-                                            <h:selectOneRadio id="gender" value="#{adminCelebrityBean.celebrity.gender}">
+                                            <h:selectOneRadio id="gender" value="#{adminCelebrityBean.celebrity.gender}" required="true" requiredMessage="Gender is required">
                                                 <f:selectItem itemValue="Male" itemLabel="Male"/>
                                                 <f:selectItem itemValue="Female" itemLabel="Female"/>
                                                 <f:selectItem itemValue="Other" itemLabel="Other"/>
                                             </h:selectOneRadio>
                                         </div>
-
+                                            <h:message for="gender" style="color:red"/>
                                     </div>
 
                                     <div>
                                         <div class="input-group mb-1">
-                                            <label for="exampleInputEmail1">Upload Profile</label>
+                                            <label for="profile">Upload Profile</label>
                                         </div>
                                         <div class="input-group mb-3 border border-1">
-                                            <p:fileUpload id="profile" value="#{adminCelebrityBean.file}" mode="simple" />
+                                            <p:fileUpload id="profile" value="#{adminCelebrityBean.file}" mode="simple" required="true" requiredMessage="Profile picture is required"/>
                                         </div>
+                                            <h:message for="profile" style="color:red"/>
                                     </div>
                                     <div style="text-align: center;" class="pt-4">
                                         <h:commandButton class="w-75 btn text-white" style="background-color: #212a47;" value="Submit" action="#{adminCelebrityBean.addCelebrity()}"></h:commandButton>
@@ -95,6 +97,5 @@
                 </div>
             </div>
         </div>
-
     </h:body>
 </html>

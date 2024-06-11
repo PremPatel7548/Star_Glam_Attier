@@ -45,10 +45,10 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-music"></i></span>
                                             </div>
-                                            <h:inputText  class="form-control" value="#{adminSongBean.song.name}"/>
+                                            <h:inputText id="songName" class="form-control" value="#{adminSongBean.song.name}" required="true" requiredMessage="Song name is required"/>
                                         </div>
+                                            <h:message for="songName" style="color: red"/>
                                     </div>
-
 
                                     <div>
                                         <div class="input-group mb-1">

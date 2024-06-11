@@ -76,6 +76,7 @@ public class RegisterBean {
         if(cpass == null ? ut.getPassword() != null : !cpass.equals(ut.getPassword()))
         {
             ErrorMsg = "* Password and confirm password must be same";
+            return "Registerpage";
         }
         else
         {
@@ -106,9 +107,8 @@ public class RegisterBean {
 //         rc.afterRegister(ut.getName()); 
          ub.afterRegister(ut.getEmail());
             ErrorMsg = "";
-        }
-        
         return "Login";
+        }
     }
     
 }

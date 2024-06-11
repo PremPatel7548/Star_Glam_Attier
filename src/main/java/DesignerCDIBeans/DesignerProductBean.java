@@ -192,7 +192,7 @@ public class DesignerProductBean implements Serializable {
         if (file != null) {
             try (InputStream input = file.getInputStream()) {
                 fileName = file.getFileName();
-                OutputStream output = new FileOutputStream("D:/JWD/Project/SGA/src/main/webapp/public/uploads/" + fileName);
+                OutputStream output = new FileOutputStream("D:/JWD/Project/SGA/src/main/webapp/public/uploads/D:/college/8th Sem/Start Glam Attire Project/Star_Glam_Attier/Star_Glam_Attier/src/main/webapp/public/uploads/" + fileName);
                 byte[] buffer = new byte[1024];
                 int bytesRead;
                 while ((bytesRead = input.read(buffer)) != -1) {
@@ -237,7 +237,7 @@ public class DesignerProductBean implements Serializable {
         if (file != null) {
             try (InputStream input = file.getInputStream()) {
                 fileName = file.getFileName();
-                OutputStream output = new FileOutputStream("D:/JWD/Project/SGA/src/main/webapp/public/uploads/" + fileName);
+                OutputStream output = new FileOutputStream("D:/college/8th Sem/Start Glam Attire Project/Star_Glam_Attier/Star_Glam_Attier/src/main/webapp/public/uploads/" + fileName);
                 byte[] buffer = new byte[1024];
                 int bytesRead;
                 while ((bytesRead = input.read(buffer)) != -1) {

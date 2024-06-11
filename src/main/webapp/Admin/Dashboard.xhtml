@@ -8,6 +8,10 @@
     </h:head>
     <h:body>
         <ui:include src="./adminHeader.xhtml" />
+           <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="#{request.contextPath}/public/assets/images/loader.png" alt="logo" height="60" width="60" />
+        </div>
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">

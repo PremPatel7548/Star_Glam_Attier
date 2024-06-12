@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="../public/assets/css/registerform/style.css"/>
     </h:head>
     <h:body>
-
         <div class="wrapper" style="background-image: url('../public/assets/images/registerform/bg-designerregister.jpg');">
             <div class="inner">
                 <div class="image-holder">
@@ -23,25 +22,30 @@
                     <h3>Designer Registration</h3>
 
                     <div class="form-wrapper">
-                        <h:inputText value="#{registerCDI.dt.name}" class="form-control">
+                        <h:message for="name" style="color: red;"></h:message>
+                        <h:inputText id="name" value="#{registerCDI.dt.name}" class="form-control" required="true" requiredMessage="Name is required">
                             <f:passThroughAttribute name="placeholder" value="Username" />
                         </h:inputText>
                         <i class="zmdi zmdi-account"></i>
                     </div>
                     <div class="form-wrapper">
-                        <h:inputText value="#{registerCDI.dt.email}" class="form-control">
+                        <h:message for="email" style="color: red;"></h:message>
+                        <h:inputText id="email" value="#{registerCDI.dt.email}" class="form-control" required="true" requiredMessage="Email is required" validatorMessage="Invalid email">
                             <f:passThroughAttribute name="placeholder" value="Email Address" />
+                            <f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$" />
                         </h:inputText>
                         <i class="zmdi zmdi-email"></i>
                     </div>
                     <div class="form-wrapper">
-                        <h:inputText value="#{registerCDI.dt.mobileno}" class="form-control">
+                        <h:message for="mno" style="color: red;"></h:message>
+                        <h:inputText id="mno" value="#{registerCDI.dt.mobileno}" class="form-control" required="true" requiredMessage="Mobile no is required">
                             <f:passThroughAttribute name="placeholder" value="Mobile Number" />
                         </h:inputText>
                         <i class="zmdi zmdi-smartphone"></i>
                     </div>
                     <div class="form-wrapper">
-                        <h:selectOneMenu value="#{registerCDI.dt.gender}" class="form-control">
+                        <h:message for="gender" style="color: red;"></h:message>
+                        <h:selectOneMenu id="gender" value="#{registerCDI.dt.gender}" class="form-control" required="true" requiredMessage="Please select gender">
                             <f:selectItem itemLabel="Select Gender" itemValue=""></f:selectItem>
                             <f:selectItem itemLabel="Male" itemValue="Male"></f:selectItem>
                             <f:selectItem itemLabel="Female" itemValue="Female"></f:selectItem>
@@ -50,28 +54,31 @@
                         <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
                     </div>
                     <div class="form-wrapper">
-                        <h:inputSecret value="#{registerCDI.dt.password}" class="form-control">
+                        <h:message for="password" style="color: red;"></h:message>
+                        <h:inputSecret id="password" value="#{registerCDI.dt.password}" class="form-control" required="true" requiredMessage="Password is required">
                             <f:passThroughAttribute name="placeholder" value="Password" />
                         </h:inputSecret>
                         <i class="zmdi zmdi-lock"></i>
                     </div>
                     <div class="form-wrapper">
-                        <h:inputSecret value="#{registerCDI.cpass}" class="form-control">
+                        <h:message for="confirmPassword" style="color: red;"></h:message>
+                        <h:inputSecret id="confirmPassword" value="#{registerCDI.cpass}" class="form-control" required="true" requiredMessage="Confirm Password is required">
                             <f:passThroughAttribute name="placeholder" value="Confirm Password" />
                         </h:inputSecret>
                         <i class="zmdi zmdi-lock"></i>
                     </div>
-                    <c:if test="${not empty registerCDI.errorMsg}">
-                    <div style="color:red;">
-                         ${registerCDI.errorMsg}
-                    </div><br/>
+                    <c:if test="#{not empty registerCDI.errorMsg}">
+                        <div style="color:red;">
+                            #{registerCDI.errorMsg}
+                        </div><br/>
                     </c:if>
                     <div class="form-wrapper">
-                        <p:fileUpload id="profile" value="#{registerCDI.file}" mode="simple" class="form-control"/>
+                        <h:message for="profile" style="color: red;"></h:message>
+                        <p:fileUpload id="profile" value="#{registerCDI.file}" mode="simple" class="form-control" required="true" requiredMessage="Profile picture required"/>
                         <i class="zmdi zmdi-user"></i>
                     </div>
-                    <button>
-                        <h:commandButton value="Register" action="#{registerCDI.registerDesigner()}"></h:commandButton>
+                    <button type="submit">
+                        <h:commandButton value="Register" action="#{registerCDI.registerDesigner()}" styleClass="btn btn-primary"/>
                         <i class="zmdi zmdi-arrow-right"></i>
                     </button>
                     <p class="text-center" style="display: flex;align-items: center;justify-content: center; margin-top: 10px">You have an account? 

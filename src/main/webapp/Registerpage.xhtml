@@ -23,19 +23,23 @@
                     <h3>Registration Form</h3>
 
                     <div class="form-wrapper">
-                        <h:inputText value="#{registerBean.ut.name}" class="form-control">
+                        <h:message for="name" style="color: red;"></h:message>
+                        <h:inputText id="name" value="#{registerBean.ut.name}" class="form-control" required="true" requiredMessage="name is required">
                             <f:passThroughAttribute name="placeholder" value="Username" />
                         </h:inputText>
                         <i class="zmdi zmdi-account"></i>
                     </div>
                     <div class="form-wrapper">
-                        <h:inputText value="#{registerBean.ut.email}" class="form-control">
+                        <h:message for="email" style="color: red;"></h:message>
+                        <h:inputText id="email" value="#{registerBean.ut.email}" class="form-control" required="true" requiredMessage="email is required" validatorMessage="Invalid email">
                             <f:passThroughAttribute name="placeholder" value="Email Address" />
+                            <f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$" />
                         </h:inputText>
                         <i class="zmdi zmdi-email"></i>
                     </div>
                     <div class="form-wrapper">
-                        <h:inputText value="#{registerBean.ut.mobileno}" class="form-control">
+                         <h:message for="mno" style="color: red;"></h:message>
+                        <h:inputText id="mno" value="#{registerBean.ut.mobileno}" class="form-control" required="true" requiredMessage="Mobile no is required">
                             <f:passThroughAttribute name="placeholder" value="Mobile Number" />
                         </h:inputText>
                         <i class="zmdi zmdi-smartphone"></i>
@@ -47,7 +51,8 @@
                                                     <option value="femal">Female</option>
                                                     <option value="other">Other</option>
                                                 </select>-->
-                        <h:selectOneMenu value="#{registerBean.ut.gender}" class="form-control">
+                         <h:message for="gender" style="color: red;"></h:message>
+                        <h:selectOneMenu id="gender" value="#{registerBean.ut.gender}" class="form-control" required="true" requiredMessage="please select gender">
                             <f:selectItem itemLabel="Select Gender" itemValue=""></f:selectItem>
                             <f:selectItem itemLabel="Male" itemValue="Male"></f:selectItem>
                             <f:selectItem itemLabel="Female" itemValue="Female"></f:selectItem>
@@ -56,7 +61,8 @@
                         <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
                     </div>
                     <div class="form-wrapper">
-                        <h:inputText value="#{registerBean.ut.address}" class="form-control">
+                        <h:message for="city" style="color: red;"></h:message>
+                        <h:inputText id="city" value="#{registerBean.ut.address}" class="form-control" required="true" requiredMessage="city is required">
                             <f:passThroughAttribute name="placeholder" value="Address" />
                         </h:inputText>
                         <i class="zmdi zmdi-pin"></i>
@@ -79,11 +85,13 @@
                         </div><br/>
                     </c:if>
                     <div class="form-wrapper">
-                        <p:fileUpload id="profile" value="#{registerBean.file}" mode="simple" class="form-control"/>
+                         <h:message for="profile" style="color: red;"></h:message>
+                        <p:fileUpload id="profile" value="#{registerBean.file}" mode="simple" class="form-control" required="true" requiredMessage="profile image is required"/>
                         <i class="zmdi zmdi-user"></i>
                     </div>
                     <div class="form-wrapper">
-                        <p:calendar value="#{registerBean.ut.dob}" placeholder="Select Date Of Birth"/>
+                        <h:message for="dob" style="color: red;"></h:message>
+                        <p:calendar id="dob" value="#{registerBean.ut.dob}" placeholder="Select Date Of Birth" required="true" requiredMessage="Birth Date is required"/>
                         <i class="zmdi zmdi-date"></i>
                     </div>
                     <button>

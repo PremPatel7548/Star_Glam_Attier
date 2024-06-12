@@ -35,6 +35,7 @@
                         </button>
                     </div>
                     #{designerProductBean.clearSuccessMessage()}
+                    
                 </c:if>
                 <h:form >
                     <h:commandLink class="btn text-white" style="background-color: #212a47;" action="AddProduct.jsf" value="Add New" />
@@ -73,7 +74,7 @@
                                         <td>
                                             <h:form>
                                                 <h:commandButton value="Delete" action="#{designerProductBean.removeProduct(p.id)}" class="btn btn-danger ml-4"></h:commandButton>
-                                                <h:commandButton value="Edit" action="#{designerProductBean.editView(p)}" class="btn btn-warning ml-4"></h:commandButton>
+                                                <h:commandButton value="Edit" action="#{designerProductBean.editView(p)}" class="btn btn-success ml-4"></h:commandButton>
                                             </h:form>
                                         </td>
                                     </tr>

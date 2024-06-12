@@ -32,7 +32,7 @@
                         <h:message for="email" style="color: red;"></h:message>
                         <h:inputText id="email" value="#{registerCDI.dt.email}" class="form-control" required="true" requiredMessage="Email is required" validatorMessage="Invalid email">
                             <f:passThroughAttribute name="placeholder" value="Email Address" />
-                            <f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$" />
+                            <f:validateRegex pattern="^[a-zA-Z]+(\d+)?@gmail\.com$" />
                         </h:inputText>
                         <i class="zmdi zmdi-email"></i>
                     </div>

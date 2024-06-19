@@ -34,7 +34,7 @@ public class UserDisplayProductBean implements Serializable {
     
     // Pagination properties
     private int currentPage = 1;
-    private int itemsPerPage = 16;
+    private int itemsPerPage = 8;
     private int totalPages;
 
     public UserDisplayProductBean() {

@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Celebrity</title>
     </h:head>
     <h:body>
         <ui:include src="../adminHeader.xhtml" />
@@ -27,57 +27,58 @@
                 </div><!-- /.container-fluid -->
             </div>
 
-                <c:if test="${not empty adminCelebrityBean.successmessage}">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        ${adminCelebrityBean.successmessage}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    #{adminCelebrityBean.clearSuccessMessage()}
-                </c:if>
-                <h:form >
-                    <h:commandLink class="btn text-white" style="background-color: #212a47;" action="AddCelebrity.jsf" value="Add New" />
-                </h:form>
+            <c:if test="${not empty adminCelebrityBean.successmessage}">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    ${adminCelebrityBean.successmessage}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                #{adminCelebrityBean.clearSuccessMessage()}
+            </c:if>
+            <h:form >
+                <h:commandLink class="btn text-white" style="background-color: #212a47;" action="AddCelebrity.jsf" value="Add New" />
+            </h:form>
 
 
 
-                <div class="card" style="margin-top: 10px;">
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
+            <div class="card" style="margin-top: 10px;">
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Profile</th>
+                                <th> Name</th>
+                                <th> Gender</th>
+                                <th> Date of Birth</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="#{adminCelebrityBean.celebrityTbList}" var="c">
                                 <tr>
-                                    <th>Profile</th>
-                                    <th> Name</th>
-                                    <th> Gender</th>
-                                    <th> Date of Birth</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="#{adminCelebrityBean.celebrityTbList}" var="c">
-                                    <tr>
-                                        <td>
-                                            <img src="#{request.contextPath}/public/uploads/#{c.image}" class="img-circle elevation-2 d-flex justify-content-center" alt="User Image" style="width: 70px; height: 70px; cursor:pointer;" />
-                                        </td>
-                                        <td>#{c.name}</td>
-                                        <td>#{c.gender}</td>
-                                        <td>#{c.dob}</td>
-                                        <td>
-                                            <h:form>
-                                                <h:commandButton value="Edit" action="#{adminCelebrityBean.getdataForCelebrity(c)}" class="btn btn-success"/>
-                                                <h:commandButton value="Delete" action="#{adminCelebrityBean.deleteCelebrity(c.id)}" class="btn btn-danger ml-4"/>
+                                    <td>
+                                        <img src="#{request.contextPath}/public/uploads/#{c.image}" class="img-circle elevation-2 d-flex justify-content-center" alt="User Image" style="width: 70px; height: 70px; cursor:pointer;" />
+                                    </td>
+                                    <td>#{c.name}</td>
+                                    <td>#{c.gender}</td>
+                                    <td>#{c.dob}</td>
+                                    <td>
+                                        <h:form>
+                                            <h:commandButton value="Edit" action="#{adminCelebrityBean.getdataForCelebrity(c)}" class="btn btn-success"/>
+                                            <h:commandButton value="Delete" action="#{adminCelebrityBean.deleteCelebrity(c.id)}" class="btn btn-danger ml-4"/>
 
-                                            </h:form>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
+                                        </h:form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
+
         <script>
             $(document).ready(function () {
                 $("#example1").DataTable({
@@ -89,5 +90,6 @@
                 });
             });
         </script>
+
     </h:body>
 </html>

@@ -7,6 +7,7 @@ package Beans;
 import Entitys.GroupMaster;
 import Entitys.PaymentTb;
 import Entitys.ProductTb;
+import Entitys.UserCancelOrderTb;
 import Entitys.UserCartTb;
 import Entitys.UserOrderTb;
 import Entitys.UserTb;
@@ -168,6 +169,15 @@ public class UserBean implements UserBeanLocal {
     }
 
     @Override
+    public Collection<UserCancelOrderTb> getCancelOrders(Integer uid) {
+       UserTb u = em.find(UserTb.class, uid);
+        Collection<UserCancelOrderTb> orders = em.createQuery("select o from UserCancelOrderTb o where o.userId=:user")
+                .setParameter("user", u)
+                .getResultList();
+        
+        return orders;
+    }
+    @Override
     public Integer countOfCartProduct(Integer uid) {
         UserTb u = em.find(UserTb.class, uid);
         TypedQuery<Long> query = em.createQuery("select count(c) from UserCartTb c where c.userId=:user", Long.class)
@@ -304,5 +314,27 @@ public class UserBean implements UserBeanLocal {
                 .setParameter("uid", uid)
                 .getResultList();
     }
+
+    @Override
+    public void addCancelOrder(Integer uid, Integer pid, String size, Integer qty, Integer price, Integer total, Date order_date) {
+        UserCancelOrderTb co = new UserCancelOrderTb();
+        UserTb u = em.find(UserTb.class, uid);
+        ProductTb p = em.find(ProductTb.class, pid);
+        co.setUserId(u);
+        co.setProductId(p);
+        co.setSize(size);
+        co.setQty(qty);
+        co.setPrice(price);
+        co.setTotal(total);
+        co.setOrderDate(order_date);
+        em.persist(co);
+    }
+
+    @Override
+    public void cancelOrder(Integer oid) {
+        UserOrderTb o = em.find(UserOrderTb.class, oid);
+        em.remove(o);
+    }
+
 
 }

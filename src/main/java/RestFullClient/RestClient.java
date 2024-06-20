@@ -41,6 +41,10 @@ public class RestClient {
         webTarget.path(java.text.MessageFormat.format("addMovieCelebrity/{0}/{1}", new Object[]{mid, cid})).request().post(null);
     }
 
+    public void cancelOrder(String oid) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("cancelOrder/{0}", new Object[]{oid})).request().delete();
+    }
+
     public void updateCategory(String id, String name) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("updateCategory/{0}/{1}", new Object[]{id, name})).request().post(null);
     }
@@ -267,6 +271,10 @@ public class RestClient {
         WebTarget resource = webTarget;
         resource = resource.path("displayDesignersProducts");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void addCancelOrder(String uid, String pid, String size, String qty, String price, String total, String order) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("addCancelOrder/{0}/{1}/{2}/{3}/{4}/{5}/{6}", new Object[]{uid, pid, size, qty, price, total, order})).request().post(null);
     }
 
     public void deleteMovie(String id) throws ClientErrorException {

@@ -543,6 +543,20 @@ public class JakartaEE8Resource {
         user.addPayment(uid, oid, mode);
     }
     
+    @POST
+    @Path("addCancelOrder/{uid}/{pid}/{size}/{qty}/{price}/{total}/{order}")
+    public void addCancelOrder(@PathParam("uid") Integer uid,@PathParam("pid") Integer pid,@PathParam("size") String size,@PathParam("qty") Integer qty,@PathParam("price") Integer price,@PathParam("total") Integer total,@PathParam("order") Date order)
+    {
+        user.addCancelOrder(uid, pid, size, qty, price, total, order);
+    }
+    
+    @DELETE
+    @Path("cancelOrder/{oid}")
+    public void cancelOrder(@PathParam("oid") Integer oid)
+    {
+        user.cancelOrder(oid);
+    }
+    
     @GET
     @Path("p1")
     @Produces(MediaType.APPLICATION_JSON)

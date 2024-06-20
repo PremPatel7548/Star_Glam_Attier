@@ -5,6 +5,7 @@
 package Beans;
 
 import Entitys.ProductTb;
+import Entitys.UserCancelOrderTb;
 import Entitys.UserCartTb;
 import Entitys.UserOrderTb;
 import Entitys.UserTb;
@@ -42,6 +43,10 @@ public interface UserBeanLocal {
     //user order
     public Integer addOrder(Integer uid,Integer pid,String size,Integer qty,Integer price);
     public Collection<UserOrderTb> getOrderHistory(Integer uid);
+    public void cancelOrder(Integer oid);
+    public Collection<UserCancelOrderTb> getCancelOrders(Integer uid);
+    
+    public void addCancelOrder(Integer uid,Integer pid,String size,Integer qty,Integer price,Integer total,Date order_date);
     
     public void addPayment(Integer uid,Integer oid,String mode);
     

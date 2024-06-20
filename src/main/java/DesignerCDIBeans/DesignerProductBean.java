@@ -34,7 +34,7 @@ public class DesignerProductBean implements Serializable {
     @EJB
     designerBeanLocal dl;
     RestClient rc;
-    ProductTb pt = new ProductTb();
+    ProductTb pt;
     Collection<ProductTb> products;
     Collection<CategoryTb> categorys;
     Collection<MovieDesigner> mds;
@@ -47,9 +47,9 @@ public class DesignerProductBean implements Serializable {
     UploadedFile file;
     String successmessage;
     Integer sessionid;
-    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-    HttpSession session = request.getSession();
+    HttpServletRequest request;
+    HttpServletResponse response;
+    HttpSession session;
 
     public DesignerProductBean() {
         rc = new RestClient();
@@ -60,17 +60,24 @@ public class DesignerProductBean implements Serializable {
         mds = new ArrayList<>();
         mcs = new ArrayList<>();
         songs = new ArrayList<>();
+        pt = new ProductTb(); // Initialize the ProductTb object
     }
 
     @PostConstruct
     public void init() {
         categorys = dl.getCategorys();
+        request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        session = request.getSession();
         sessionid = (Integer) session.getAttribute("designerId");
         mds = dl.getMovieByDesigner(sessionid);
         System.out.println("DesignerProductBean initialized with categories and movies.");
     }
 
     public ProductTb getPt() {
+        if (pt == null) {
+            pt = new ProductTb(); // Ensure pt is initialized
+        }
         return pt;
     }
 
@@ -192,7 +199,7 @@ public class DesignerProductBean implements Serializable {
         if (file != null) {
             try (InputStream input = file.getInputStream()) {
                 fileName = file.getFileName();
-                OutputStream output = new FileOutputStream("D:/JWD/Project/SGA/src/main/webapp/public/uploads/D:/college/8th Sem/Start Glam Attire Project/Star_Glam_Attier/Star_Glam_Attier/src/main/webapp/public/uploads/" + fileName);
+                OutputStream output = new FileOutputStream("D:/college/8th Sem/Start Glam Attire Project/Star_Glam_Attier/Star_Glam_Attier/src/main/webapp/public/uploads/" + fileName);
                 byte[] buffer = new byte[1024];
                 int bytesRead;
                 while ((bytesRead = input.read(buffer)) != -1) {
@@ -206,11 +213,7 @@ public class DesignerProductBean implements Serializable {
         rc.addDesignerProducts(pt.getName(), String.valueOf(pt.getPrice()), String.valueOf(0), fileName, String.valueOf(cid), String.valueOf(mid), String.valueOf(celid), String.valueOf(sid), String.valueOf(sessionid));
         System.out.println("Product added successfully");
         successmessage = "Product Added Successfully";
-        this.pt = null;
-        this.cid = null;
-        this.celid = null;
-        this.mid = null;
-        this.sid = null;
+        clearForm();
         return "ProductList";
     }
 
@@ -231,8 +234,7 @@ public class DesignerProductBean implements Serializable {
         return "editProduct";
     }
     
-    public String editProduct()
-    {
+    public String editProduct() {
         String fileName = "";
         if (file != null) {
             try (InputStream input = file.getInputStream()) {
@@ -248,16 +250,20 @@ public class DesignerProductBean implements Serializable {
             }
         }
 
-//        rc.addDesignerProducts(pt.getName(), String.valueOf(pt.getPrice()), String.valueOf(0), fileName, String.valueOf(cid), String.valueOf(mid), String.valueOf(celid), String.valueOf(sid), String.valueOf(sessionid));
         rc.updateDesignerProducts(String.valueOf(pt.getId()), pt.getName(), String.valueOf(pt.getPrice()), String.valueOf(pt.getStock()), fileName, String.valueOf(cid), String.valueOf(mid), String.valueOf(celid), String.valueOf(sid), String.valueOf(sessionid));
         System.out.println("Product Edited successfully");
         successmessage = "Product Edited Successfully";
-        this.pt = null;
+        clearForm();
+        return "ProductList";
+    }
+
+    public void clearForm() {
+        this.pt = new ProductTb();
         this.cid = null;
         this.celid = null;
         this.mid = null;
         this.sid = null;
-        return "ProductList";
+        this.file = null;
     }
 
     public void clearSuccessMessage() {

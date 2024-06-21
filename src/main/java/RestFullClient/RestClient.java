@@ -24,7 +24,7 @@ public class RestClient {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/SGA/resources";
+    private static final String BASE_URI = "http://localhost:8080/Star_Glam_Attier/resources";
 
     public RestClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();

@@ -83,9 +83,15 @@ public class DesignerLoginBean {
        }
     }
     
-    public String logout()
+   public String logout()
     {
-        session.setAttribute("designerId",null);
-        return "loginDesigner";
+//        session.setAttribute("designerId",null);
+//        return "loginDesigner";
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "loginDesigner?faces-redirect=true";
     }
 }
